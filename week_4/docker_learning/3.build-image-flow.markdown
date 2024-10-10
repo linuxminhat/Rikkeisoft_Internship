@@ -1,0 +1,8 @@
+Qúa trình build image và quá trình khởi động container trong Docker diễn ra theo thứ tự sau : 
+build image -> khởi động container 
+Đây là giai đoạn Docker sử dụng file Dockerfile để tạo ra một image 
+- Các lệnh RUN, COPY, ADD và các lệnh thiết lập thực thi môi trường khác được sử dụng trong quá trình này !
+Luồng công việc : 
+- Docker đọc file Dockerfile từ trên xuống dưới
+- Thực thi các lệnh RUN COPY ADD
+- Mỗi lệnh Dockerfile tạo ra layer mới cho image 

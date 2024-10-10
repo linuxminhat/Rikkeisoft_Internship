@@ -1,0 +1,49 @@
+working images & containers 
+-----
+the core building blocks 
+-----
+images vs Containers 
+Mô hình :
+					Docker 
+		Images 				Containers 
+Templates/Blueprints		The running "unit of software"
+for containers 
+-----
+Contains code + required
+tools/runtimes 
+----
+images : giống template "bản mẫu" hay bluesprint "bản thiết kế"
+là bản sao tĩnh ứng dụng 
+chứa mã nguồn, thư viện, công cụ và runtime cần thiết 
+=> là bản mẫu bất biến (immutable)
+----
+containers : running unit of software : đơn vị phần mềm chạy
+khởi động container => docker tạo môi trường làm việc cách ly dựa trên image
+----
+Using & Runnng External (Pre-built) Images 
+thùng chứa dựa trên image 
+Cách các image được xây dựng sẵn từ cộng đồng hay các nguồn khác 
+=> Pre buildt images là các image docker xây dựng sẵn và chia sẻ bởi dev khác
+Nơi lưu trữ : Docker Hub
+----
+Cách dùng External Images :
+- Tìm image trên Docker Hub
+- Tải về : 
+COMMAND : docker pull python:2
+- Chạy
+COMMAND : docker run -p 3000:3000 python2
+COMMAND : docker run -it node : 
+-it : tổ hợp tham số 
+-i : nhập lệnh terminal 
+-t : tương tác với container 
+----
+Finding / Creating Images 
+We need an Image ! 
+1/Use an existing, pre-built image : Docker Hub 
+2/Create, custom Image : Write my Dockerfile ! 
+----
+Sự khác biệt giữa lệnh CMD và RUN : 
+1/RUN : thực thi các lệnh trong quá trình build Docker image 
+2/CMD : chỉ định lệnh mặc định sẽ được thực thi khi container khởi động 
+
+

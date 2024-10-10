@@ -1,0 +1,5 @@
+-----
+Về cơ bản, hình ảnh trong Docker giống như một bản chụp nhanh
+Ví dụ trong đoạn mã .js, nếu như mình đã docker build và thực hiện các thao tác thực thi
+Ngay sau đó nếu như mình sửa lại đoạn mã trong Code thì cũng sẽ không được =>  Bởi vì Images are Read-only ! 
+Nếu như muốn thực thi dòng code thay đổi, thì bản thân cần phải "docker build ." lại ! 

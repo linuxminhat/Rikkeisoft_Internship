@@ -1,0 +1,23 @@
+Managing Images and Containers 
+-----
+Cấu hình hình ảnh và quản lí vùng chứa của mình ! 
+Tương tự như Linux thì chúng ta có thể thêm --help to see all options !
+Images 
+    Can be tagged (named) : docker tag <source_image> <repository_name>:<tag>                                
+    Can be listed : docker images                         
+    Can be analyzed : docker image inspect <image_name_or_id>
+    Can be removed : 
+docker rmi <image_id>
+docker image prune
+
+---------------------------------------------       
+Containers 
+    Can be named --name : docker run --name <container_name> <image_name>
+    Can be configured in detail see -help : docker run --help
+    Can be listed : 
+        docker ps     # Liệt kê các container đang chạy
+        docker ps -a  # Liệt kê tất cả các container bao gồm cả những cái đã dừng
+    Can be removed 
+        docker rm <container_id>
+        docker container prune
+---------------------------------------------

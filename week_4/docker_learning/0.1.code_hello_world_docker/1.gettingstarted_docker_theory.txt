@@ -1,0 +1,42 @@
+Learning Docker : 
+----------
+Containter tech : tool for creating and managing containers 
+Container : Package of code and dependencies to run that code
+----------
+Ưu điểm : 
+1/Độc lập : Chạy tách biệt container khác => tránh xung đột phần mềm 
+2/Nhẹ : Chứa cần thiết cho ứng dụng
+3/Di động : tạo Container trên lap => chạy máy chủ có Container
+---------
+Kịch bản : 
+- Chương trình mình viết sài python 3, nhưng ở một số máy cá nhân dùng python 2
+Docker tạo ra để giải quyết confict giữa các version 
+- Dễ dàng chỉa sẻ một môi trường phát triển chung 
+- Một vài máy tính local cài đặt dependencies, docker sinh ra cũng giải quyết !
+--------
+Solution : Virtual Machines / Virtual Operating Systems 
+Bài toán đặt ra : 
+Một máy ảo, sử dụng nhiều phiên bản Virtual OS và tại đó setup lib hay tools phù hợp dự án => Thế tại sao cần Docker ?
+
+Tuy nhiên, điểm mấu chốt là vấn đề chi phí và vấn đề tốn không gian lưu trữ 
+
+Túm lại, máy ảo có ưu điểm nhưng những nhược điểm này khiến nó bị đánh giá thấp hơn Docker : 
+- Nhiều máy ảo sẽ khiến perfomance một máy tính thấp đi
+- KLãng phí không gian 
+Như vậy, cách mà docker giải quyết bài toán này qua mô hình sau : 
+|||||||||
+ContainerA - ContainerB - ContainerC
+Docker Engine : Thành phần trung tâm hệ thông Docker.
+- Gồm các phần như sau : 
+	+Docker Daemon : Chạy hđh máy chủ 
+	+Docker API : Cung cấp giao diện tương tác Docker Daemon
+	+Docker CLI : Công cụ dòng lệnh chạy docker 
+OS Built-in/Emulated Container Support 
+Your OS 
+|||||||||
+HelloWorld Project !
+1/docker build . 
+2/docker images 
+3/docker run -p 3000:3000 images_id
+4/docker ps 
+5/docker stop + name 

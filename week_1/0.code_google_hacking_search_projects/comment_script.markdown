@@ -1,0 +1,3 @@
+-   NOTE : Saving file .env in .gitignore
+-   Cay thu muc : /Template /index.html app.py .env
+-   Thiet lap moi truong trong file .env : pip install python-dotenv

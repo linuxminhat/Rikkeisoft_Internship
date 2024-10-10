@@ -1,0 +1,15 @@
+﻿Journals, Extents, and Limited Checksums
+
+Since their introduction to Linux, these two filesystems have grown closer and closer in feature parity. XFS started out more advanced, and it continues to work well. However, ext4 now successfully adds on much of what once differentiated XFS:
+
+- Journals: A filesystem “journal” writes a duplicate log of all changes to the filesystem. If a write to the filesystem is interrupted (power outage), the system examines the journal and “plays it back” to minimize data loss and file corruption. (Previously, filesystem correctness relied on “checker” tools like fsck.)
+- Extents: Traditionally, filesystems would maintain a “map” of their contents, block by block. A default block is usually 4,096 bytes, so as storage has increased, we can imagine how large these maps have become. Instead, XFS and ext4 map out pieces of data in larger chunks called “extents”. Specifically, an extent map is two numbers: the starting block address and the length of the extent (in blocks). This works well for large volumes and large files, removing the need to track the file membership of each block.
+- Checksums: How do we know our data has not become corrupted? One way is by calculating a checksum — a shorter “magic number” that changes when our larger data changes. We used to do this by running a check-and-repair program: the difficult-to-pronounce fsck. XFS and ext4 now calculate a checksum on metadata and their journal files. This is useful, though far less complete than the block-by-block checksums of btrfs and ZFS.
+
+Although both ext4 and XFS are excellent at what they do, neither are suited to some of today’s more complex storage challenges.
+
+\------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+- Journals: Một “nhật ký” của hệ thống tệp ghi lại một bản sao của tất cả các thay đổi đối với hệ thống tệp. Nếu một ghi vào hệ thống tệp bị gián đoạn (do mất điện), hệ thống sẽ kiểm tra nhật ký và “phát lại” để giảm thiểu mất mát dữ liệu và hỏng tệp. (Trước đây, tính chính xác của hệ thống tệp phụ thuộc vào các công cụ “kiểm tra” như fsck.)
+- Extents: Truyền thống, các hệ thống tệp sẽ duy trì một “bản đồ” nội dung của chúng, từng khối một. Một khối mặc định thường là 4,096 byte, vì vậy khi lưu trữ gia tăng, chúng ta có thể hình dung bản đồ này đã trở nên lớn như thế nào. Thay vào đó, XFS và ext4 lập bản đồ các phần dữ liệu trong các mảnh lớn hơn gọi là “extents”. Cụ thể, một bản đồ extent là hai số: địa chỉ khối bắt đầu và chiều dài của extent (tính bằng khối).
+- Checksums: Làm thế nào chúng ta biết dữ liệu của mình không bị hỏng? Một cách là tính toán một checksum — một “số ma thuật” ngắn hơn thay đổi khi dữ liệu lớn hơn thay đổi. Trước đây, chúng ta thực hiện điều này bằng cách chạy một chương trình kiểm tra và sửa chữa: fsck khó phát âm. XFS và ext4 hiện tính toán checksum cho siêu dữ liệu và các tệp nhật ký của chúng. Điều này hữu ích, nhưng kém hoàn chỉnh hơn so với các checksum từng khối của btrfs và ZFS.

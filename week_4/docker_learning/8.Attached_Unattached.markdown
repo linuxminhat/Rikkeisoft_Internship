@@ -1,0 +1,18 @@
+giải thích khái niệm Attached Containers và Detached Containers : 
+=> Đây là cách Containers được khởi động và cách mà chúng ta tương tác với nó ! 
+----
+1/Attached Containers (Containers gắn kết) : 
+Đây là Containers mà chúng ta khởi động trong chế độ "gắn kết"!
+Tương tác trực tiếp với nó thông qua terminal ! 
+Khi chạy một Container trong chế độ này, xem tất cả các log và các đầu ra của nó trên terminal mà chúng ta sử dụng 
+                COMMAND khởi động : docker run -it <image_name>
+giải thích : -i (interactive) : Cho phép tương tác với container 
+             -t (tt) : Tạo một terminal giả để kết nối với container 
+
+ƯU : Tương tác trực tiếp 
+NHƯỢC : Container dừng khi ngắt kết nối 
+----
+Detached Containers : là một container khởi động chế độ tách biệt, chạy trong nền mà không gắn kết với terminal nào cả ! 
+                COMMAND : docker run -d <image_name>
+ƯU : Container tiếp tục chạy ngay cả khi đóng terminal ! 
+

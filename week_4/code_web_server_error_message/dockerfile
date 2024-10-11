@@ -1,0 +1,20 @@
+FROM php:8.2-fpm as php-fpm
+RUN docker-php-ext-install mysqli pdo pdo_mysql
+
+# Sao chép mã nguồn vào thư mục làm việc của container
+WORKDIR /var/www/html
+COPY . .
+
+FROM nginx:latest
+
+# Sao chép file cấu hình Nginx vào thư mục cấu hình của Nginx trong container
+COPY ./nginx.conf /etc/nginx/conf.d/default.conf
+
+# Sao chép mã nguồn từ image php-fpm sang image Nginx
+COPY --from=php-fpm /var/www/html /var/www/html
+
+# Expose port 80 để truy cập từ bên ngoài vào Nginx
+EXPOSE 80
+
+# Chạy Nginx khi container khởi động
+CMD ["nginx", "-g", "daemon off;"]

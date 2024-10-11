@@ -1,0 +1,12 @@
+FROM node:14
+
+WORKDIR /app
+
+COPY package.json /app/
+
+RUN npm install
+RUN apt-get update && apt-get install -y curl && rm -rf /var/lib/apt/lists/\*
+
+COPY . /app/
+
+CMD ["npm", "start"]

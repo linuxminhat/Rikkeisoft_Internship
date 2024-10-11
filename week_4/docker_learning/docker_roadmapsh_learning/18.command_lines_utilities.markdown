@@ -1,0 +1,23 @@
+Tiện ích dòng lệnh (Command Line Utilities)
+Docker images có thể bao gồm các tiện ích dòng lệnh hoặc các ứng dụng độc lập mà chúng ta có thể chạy bên trong các container.
+BusyBox
+BusyBox là một ứng dụng dòng lệnh nhỏ gọn (chỉ từ 1-2 MB) và đơn giản, cung cấp nhiều tiện ích Unix phổ biến như awk, grep, vi, và nhiều công cụ khác. BusyBox thường được sử dụng trong các tình huống yêu cầu một môi trường Unix đơn giản và hiệu quả.
+
+Để chạy BusyBox bên trong một container Docker, bạn cần thực hiện các bước sau:
+
+Kéo hình ảnh BusyBox về máy:
+
+bash
+Copy code
+docker pull busybox
+Lệnh này tải hình ảnh BusyBox từ Docker Hub về máy của bạn.
+
+Chạy BusyBox bên trong container:
+
+bash
+Copy code
+docker run -it busybox /bin/sh
+-it: Tùy chọn này mở terminal tương tác (interactive terminal) để bạn có thể nhập lệnh.
+busybox: Tên của hình ảnh BusyBox.
+/bin/sh: Lệnh để mở shell bên trong container.
+BusyBox cung cấp nhiều lệnh và tiện ích nhỏ, giúp bạn thực hiện các tác vụ quản trị hệ thống hoặc kiểm tra nhanh các lệnh Unix cơ bản.

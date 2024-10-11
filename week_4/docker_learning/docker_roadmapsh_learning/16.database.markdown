@@ -1,0 +1,14 @@
+Series sẽ hướng dẫn cách pull một image database về máy tính để bắt đàu quá trình chạy !
+
+- Tim kiem image cua PostgreSQL
+  docker search postgres
+- Tai image cua PostgreSQL
+  docker pull postgres
+- Chay container PostgreSQL
+  docker run --name some-postgres -e POSTGRES_PASSWORD=my-secret-pw -p 5432:5432 -d postgres
+  GIAI THICH LENH NAY :
+  --name some-postgres: Đặt tên cho container là some-postgres.
+  -e POSTGRES_PASSWORD=my-secret-pw: Thiết lập mật khẩu cho người dùng mặc định là my-secret-pw.
+  -p 5432:5432: Ánh xạ cổng 5432 trên máy chủ với cổng 5432 của container. Đây là cổng mặc định của PostgreSQL.
+  -d: Chạy container ở chế độ nền (detached mode).
+  postgres: Tên của image mà bạn đã tải về.

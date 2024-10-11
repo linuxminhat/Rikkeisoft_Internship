@@ -1,0 +1,5 @@
+Volume Mounts :
+Đây là sự kết hợp giữa Volume và Mounts
+=> Cách để ánh xạ một thư mục hoặc file trên hệ thống host vào một thư mục hoặc
+file bên trong Container
+=> Giúp dữ liệu tồn tại bên ngoài container ngay cả khi container nó bị xoá đi

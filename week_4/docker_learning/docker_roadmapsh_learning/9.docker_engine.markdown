@@ -1,0 +1,10 @@
+Docker Engine la mot thanh phan cot loi cua Docker
+Chung ta hay nham lan voi Docker Desktop
+Docker Engine la tap hop cac thanh phan trong Docker Desktop, nhung chi duoc cai dat tren Linux => Đó là lí do mà chúng ta phải cài wsl !
+Day la ma nguon mo
+
+---
+
+Thành phần Docker Engine :
+1/Docker Command Line Interface : Công cụ dòng lệnh tương tác docker
+2/Docker daemon : một tiến trình chạy nền, còn được gọi là dockerd, quản lý các Docker object như container, image, network và volume.

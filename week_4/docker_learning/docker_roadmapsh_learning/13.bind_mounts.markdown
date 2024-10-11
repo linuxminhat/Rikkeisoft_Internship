@@ -1,0 +1,2 @@
+Bind mounts là một phương thức gắn kết dữ liệu giữa máy chủ và container trong Docker, trong đó một file hoặc thư mục trên máy chủ (host) được ánh xạ (mount) trực tiếp vào container.
+Một trong những đặc điểm chính của bind mounts là chúng sử dụng đường dẫn tuyệt đối từ hệ thống tệp của máy chủ và liên kết đến container.

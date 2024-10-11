@@ -1,0 +1,8 @@
+Container lưu trữ file bằng công nghệ Union Filesystems
+Dịch vụ files system được phát triển cho Linux để các hệ thống file khác nhau được xếp chồng lên nhau => overlaid
+Mỗi thay đổi được ghi lại trên một lớp mới và được xếp trên cùng, trên tất cả các lớp khác trước đó
+
+---
+
+Lệnh show các thay đổi gần nhất : docker container diff ubuntu
+Lệnh xem toàn bộ các layer : docker history ubuntu

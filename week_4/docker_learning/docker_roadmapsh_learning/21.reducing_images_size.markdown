@@ -1,0 +1,53 @@
+BÀI DỊCH TỪ NGUỒN NGƯỜI KHÁC :
+Dịch và Giải Thích Chi Tiết về Reducing Image Size
+Giảm kích thước của Docker image là một yếu tố rất quan trọng để tăng hiệu suất và hiệu quả khi sử dụng Docker. Việc tối ưu hóa kích thước image giúp giảm thời gian tải xuống và giảm tài nguyên hệ thống được sử dụng. Dưới đây là các cách hiệu quả để giảm kích thước của Docker image:
+
+1. Sử dụng base image phù hợp
+   Chọn base image nhẹ hơn: Bạn nên chọn base image nhỏ hơn và nhẹ hơn mà chỉ chứa những thành phần cần thiết cho ứng dụng của bạn. Ví dụ, bạn có thể sử dụng biến thể alpine của image chính thức, vì nó thường nhỏ hơn rất nhiều về dung lượng.
+   Dockerfile
+   Copy code
+   FROM node:14-alpine
+   Giải thích: alpine là một bản phân phối nhỏ gọn của Linux, được thiết kế đặc biệt để tối ưu hóa dung lượng. Nó chỉ bao gồm những thành phần cơ bản nhất để chạy ứng dụng, do đó giúp giảm đáng kể kích thước của image.
+2. Chạy nhiều lệnh trong một câu lệnh RUN duy nhất
+   Kết hợp các lệnh: Mỗi lệnh RUN tạo ra một layer mới trong image, điều này có thể làm tăng kích thước của image. Để giảm số lượng layer, hãy kết hợp nhiều lệnh thành một câu lệnh RUN duy nhất bằng cách sử dụng &&.
+   Dockerfile
+   Copy code
+   RUN apt-get update && \
+    apt-get install -y some-required-package
+   Giải thích: Việc kết hợp nhiều lệnh vào một câu lệnh duy nhất sẽ giúp bạn giảm số lượng layer được tạo ra trong quá trình xây dựng image, làm giảm kích thước cuối cùng của image.
+3. Xóa các file không cần thiết trong cùng một layer
+   Xóa file tạm thời: Khi cài đặt các package hoặc thêm file trong quá trình build image, hãy chắc chắn rằng bạn xóa các file tạm thời hoặc các file không sử dụng trong cùng một layer để giảm kích thước cuối cùng của image.
+   Dockerfile
+   Copy code
+   RUN apt-get update && \
+    apt-get install -y some-required-package && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/_
+   Giải thích: Lệnh apt-get clean và rm -rf /var/lib/apt/lists/_ giúp xóa các file tạm thời sau khi cài đặt các package, làm giảm đáng kể dung lượng của image.
+4. Sử dụng Multi-Stage Builds
+   Xây dựng đa giai đoạn: Multi-stage builds cho phép bạn sử dụng nhiều lệnh FROM trong Dockerfile. Mỗi lệnh FROM tạo ra một giai đoạn mới trong quá trình build. Bạn có thể sao chép file từ một giai đoạn này sang giai đoạn khác bằng cách sử dụng lệnh COPY --from.
+   Dockerfile
+   Copy code
+
+# Giai đoạn đầu tiên: xây dựng ứng dụng
+
+FROM node:14-alpine as builder
+WORKDIR /app
+COPY . .
+RUN npm install && npm run build
+
+# Giai đoạn thứ hai: chạy ứng dụng với image nhỏ gọn
+
+FROM nginx:alpine
+COPY --from=builder /app/build /usr/share/nginx/html
+Giải thích: Multi-stage builds giúp loại bỏ những file và công cụ không cần thiết sau khi quá trình build hoàn thành, giữ cho image cuối cùng chỉ chứa những thành phần thực sự cần thiết. 5. Sử dụng .dockerignore file
+Tạo file .dockerignore: Sử dụng file .dockerignore để loại trừ các file và thư mục không cần thiết khỏi build context. Điều này giúp giảm kích thước của image và ngăn chặn việc làm mới lại cache khi các file không cần thiết thay đổi.
+Ví dụ nội dung của file .dockerignore:
+
+lua
+Copy code
+node_modules
+npm-debug.log
+Giải thích: Bằng cách loại trừ các file như node_modules và npm-debug.log, bạn đảm bảo rằng những file này không được đưa vào build context, giúp giảm kích thước image và giữ cho quá trình build nhanh hơn.
+Tóm Tắt
+Tối ưu hóa Docker image bằng cách giảm kích thước không chỉ giúp tăng tốc độ build mà còn cải thiện hiệu suất và giảm chi phí lưu trữ. Việc sử dụng các kỹ thuật như chọn base image nhẹ, sử dụng multi-stage builds, kết hợp các lệnh RUN, và sử dụng file .dockerignore sẽ giúp bạn xây dựng những Docker image hiệu quả hơn, phù hợp cho việc triển khai ứng dụng trên môi trường sản xuất.

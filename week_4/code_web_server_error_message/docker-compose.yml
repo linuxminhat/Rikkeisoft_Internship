@@ -1,0 +1,20 @@
+version: "3.9"
+
+services:
+  nginx:
+    build:
+      context: .
+    ports:
+      - "8080:80"
+    volumes:
+      - ./myweb:/var/www/html
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - php
+
+  php:
+    image: php:8.2-fpm
+    volumes:
+      - ./myweb:/var/www/html
+    environment:
+      - PHP_DISPLAY_ERRORS=1

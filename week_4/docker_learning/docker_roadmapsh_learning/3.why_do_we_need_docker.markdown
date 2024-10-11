@@ -1,0 +1,4 @@
+#Nhu cau ve Docker phat sinh tu :
+#Moi truong khong dong nhat : Kha nang tuong thich khi trien khai ung dung
+#Su dung tai nguyen khong hieu qua : May ao VMs yeu cau he dieu hanh day du chay mot ung dung
+#Quy trinh cham va van de mo trong : Phuong phap trien khai truyen thong co thoi gian tiep can thi truong cham hon va gap kho khan trong viec mo rong, lam cham qua trinh cap nhat phan mem

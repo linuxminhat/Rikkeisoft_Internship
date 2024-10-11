@@ -1,0 +1,15 @@
+Tao volume :
+docker volume create my_volume
+Kiem tra thong tin chi tiet :
+docker inspect my_volume
+Gan volume vao Container :
+Cach 1 : Su dung co -v
+docker run -d -v my_volume:/data your_image : data la duong dan
+Cach 2 : Su dung co -mount :
+docker run -d -mount source=my_volume, destination=/data your_image
+Chia se volume :
+Chia se mot volume giua nhieu container, ban chi can gan mot volume vao nhieu container khac nhau
+docker run -d -v my-volume:/data1 image1
+docker run -d -v my-volume:/data2 image2
+Xoa volume :
+docker volume rm my-volume

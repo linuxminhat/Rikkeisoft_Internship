@@ -1,0 +1,15 @@
+Để hiểu thì namespaces nó giống như thứ cách ly các containers đang chạy khác nhau
+=> Điều này giúp cho việc bảo mật
+=> Nghĩa là, khi bạn chạy tiến trình này trên docker thì sẽ không thể thấy được tiến trình khác
+1/PID Namespaces (Process ID) :
+
+- Cách ly không gian ID của tiến trình
+- Ví dụ khi chạy, nó chỉ nhìn thấy các tiến trình trong cùng namespace đó !
+  2/Network Namespaces
+  => Cung cấp ngăn xếp mạng
+  => Ví dụ khi bản thân từng chạy một container dùng cổng 80 thì container khác không thể dùng cổng đó !
+  => Đó chỉnh là nguyên nhân dùng network namespace
+  => Điều này giúp container có cấu hình mạng độc lập, tránh xung đột mạng giữa container hay container và máy chủ
+  3/Mount Namespaces : Cách ly hệ thống file
+  4/UTS Namespace : cách ly hostname và domain name
+  5/User Namespaces : quản lý user ID và group ID

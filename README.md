@@ -1,1 +1,0 @@
-# Rikkeisoft_Internship

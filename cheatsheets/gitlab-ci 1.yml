@@ -1,0 +1,2 @@
+include : 
+  - local: 'week_6/2.GitLab_CI_CD/2.pipeline/.gitlab-ci.yml'

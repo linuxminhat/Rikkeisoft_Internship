@@ -1,0 +1,1 @@
+8 ký tự trong biến môi trường trong GitLab CI/CD thường là phần hiển thị rút gọn của các giá trị bí mật như token hoặc key, nhằm mục đích bảo mật và tránh việc lộ thông tin nhạy cảm, đồng thời vẫn cung cấp cho người dùng đủ thông tin để nhận diện biến môi trường.

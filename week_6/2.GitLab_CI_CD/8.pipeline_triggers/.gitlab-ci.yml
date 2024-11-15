@@ -1,0 +1,9 @@
+stages:
+  - cleanup
+
+cleanup_old_files:
+  stage: cleanup
+  script:
+    - echo "Bat dau xoa..."
+    - find /home/username/Documents -type f -mtime +3 -exec rm -f {} \;
+    - echo "Xoa thanh cong cac file khong su dung qua 3 ngay !!!"

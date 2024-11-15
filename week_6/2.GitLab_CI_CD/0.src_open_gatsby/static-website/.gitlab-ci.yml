@@ -1,0 +1,81 @@
+
+stages:
+  - build
+  - test
+  - deploy stagging
+  - deploy production
+  - production tests 
+
+cache: 
+    key: master
+    paths:
+      -./node_modules
+variables:
+  STAGING_DOMAIN: instazone-staging.surge.sh
+  PRODUCTION_DOMAIN: instazone.surge.sh
+build website:
+  stage: build
+  image: node
+  script:
+    - echo $CI_COMMIT_SHORT_SHA
+    - npm install
+    - npm install -g gatsby-cli
+    - gatsby build
+    - sed -i "s/%%VERSION%%/$CI_COMMIT_SHORT_SHA/" ./public/index.html
+  artifacts: 
+    paths:
+      - ./public
+
+test artifact:
+  image: alpine
+  stage: test
+  script:
+    - grep -q "Gatsby" ./public/index.html
+    - greo "XXXXXXXX" ./public/index.html
+
+test website:
+  image: node
+  stage: test
+  script: 
+    - npm install 
+    - npm install -g gatsby-cli
+    - gatsby serve &
+    - sleep 3 
+    - curl "http://localhost:9000" | tac | tac  grep -q "Gatsby"
+
+deploy staging : 
+  stage: deploy staging
+  environment:
+      name: staging
+      url: https://$STAGING_DOMAIN
+  script: 
+    - npm install --global surge
+    - surge --project ./public --domain $STAGING_DOMAIN
+
+deploy production : 
+  stage: deploy production
+  environment: 
+      name: production
+      url: $PRODUCTION_DOMAIN
+  when: manual
+  allow_failure: false
+  script: 
+    - npm install --global surge
+    - surge --project ./public --domain instazone.surge.sh
+deploy to surge:
+  stage: deploy
+  script: 
+    - npm install --global surge
+    - surge --project ./public --domain instazone.surge.sh
+test deployment: 
+  image: alpine
+  stage: production tests
+  script: 
+    - apk add --no-cache curl
+    - curl -s "https://instazone.surge.sh" | grep -q "Hi Rikkeisoft!"
+    - curl -s "https://instazone.surge.sh" | grep -q "$CI_COMMIT_SHORT_SHA"
+
+
+
+
+

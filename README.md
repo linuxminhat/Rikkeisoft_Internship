@@ -1,6 +1,6 @@
 # Rikkeisoft Internship
 
-# Acknowledgment
+## Acknowledgment
 Special thanks to my mentor for the guidance and support throughout this internship.
 
 ## About My Internship

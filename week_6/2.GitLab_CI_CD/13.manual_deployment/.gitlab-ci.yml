@@ -1,0 +1,14 @@
+stages:
+  - build
+  - deploy
+
+build_job:
+  stage: build
+  script:
+    - echo "Building the application..."
+
+deploy_to_staging:
+  stage: deploy
+  script:
+    - echo "Deploying to staging environment..."
+  when: manual   # Yêu cầu triển khai thủ công

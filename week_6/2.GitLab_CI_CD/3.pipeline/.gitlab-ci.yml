@@ -1,0 +1,28 @@
+stages:
+    - build
+    - test
+
+build the car: 
+  stage: build
+  script:
+    - mkdir build
+    - cd build
+    - touch car.txt
+    - echo "chassis" >> car.txt
+    - echo "engine" >> car.txt
+    - echo "wheel" >> car.txt
+  artifacts:
+    paths:
+      - build/car.txt
+    expire_in: 1 week
+  
+test the car:
+  stage: test
+  script:
+    - ls
+    - test -f build/car.txt
+    - cd build 
+    - cat car.txt
+    - grep "chassis" car.txt
+    - grep "engine" car.txt
+    - grep "wheel" car.txt

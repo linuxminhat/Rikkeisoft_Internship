@@ -1,0 +1,9 @@
+deploy_to_production:
+  stage: deploy
+  script:
+    - echo "Deploying to production..."
+  when: manual
+  environment:
+    name: production
+    url: https://production.example.com
+  allow_failure: false    

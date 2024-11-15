@@ -1,0 +1,14 @@
+stages:
+  - test
+  - deploy
+
+unit_tests:
+  stage: test
+  script:
+    - echo "Running unit tests..."
+
+trigger_manual_job:
+  stage: test
+  script:
+    - echo "This is a manually triggered job."
+  when: manual   # Chỉ chạy khi người dùng kích hoạt

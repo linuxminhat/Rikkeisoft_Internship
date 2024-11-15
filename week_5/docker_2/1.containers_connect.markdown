@@ -1,5 +1,0 @@
-Cách kết nối nhiều Container lại với nhau ! 
-----
-Container & External Networks 
-----
-Connecting Containers with Networks 

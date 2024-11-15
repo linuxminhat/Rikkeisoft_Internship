@@ -1,0 +1,9 @@
+my_set=set();
+print(my_set);
+my_set.add(100);
+my_set.add(1000);
+my_set.add(100);
+print(my_set);
+my_list=[13,23424,23412,1312,1,1,1,1,1,1,1,23423,];
+print(my_list);
+print(set(my_list));

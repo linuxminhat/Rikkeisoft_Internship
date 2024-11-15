@@ -1,0 +1,3 @@
+Virtual environment trong Python là một công cụ giúp tách biệt môi trường làm việc của các dự án Python khác nhau. 
+Khi bạn tạo một virtual environment, nó tạo ra một thư mục chứa phiên bản riêng của Python và các gói thư viện (package) cài đặt từ pip. 
+Mục đích chính của virtual environment là giúp bạn quản lý các dependency (phụ thuộc) của từng dự án một cách riêng biệt, tránh xung đột giữa các phiên bản thư viện.

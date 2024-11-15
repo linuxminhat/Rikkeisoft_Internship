@@ -1,0 +1,18 @@
+/* body {
+  background: url(images.jpg);
+  background-repeat: no-repeat;
+} */
+div {
+  background: blue;
+  /* border: orange;
+  border-width: 2px;
+  border-style: solid; */
+  border: red 2px dashed;
+}
+p {
+  color: yellow;
+}
+span {
+  background-color: red;
+  color: black;
+}

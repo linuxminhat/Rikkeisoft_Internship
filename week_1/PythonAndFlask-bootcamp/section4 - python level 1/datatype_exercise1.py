@@ -1,9 +1,0 @@
-s="flask";
-print(s[0]);
-print(s[4]);
-print(s[2:5:1]);
-my_list=[3,
-         7,
-         [1,4,'hello']];
-my_list[2][2]="goodbye";
-print(my_list);

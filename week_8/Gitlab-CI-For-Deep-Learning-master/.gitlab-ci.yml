@@ -1,0 +1,30 @@
+stages:
+    - buildMyApp
+    - test_gpu
+
+buildApp:
+    image: node:8.9-alpine
+    stage: buildMyApp
+    tags: 
+        - linux_x64
+    script:
+        - echo "start my job - here is the branch-test Not master."
+        - node index.js
+        - cat README.md
+    rules:
+        - if: $CI_COMMIT_BRANCH == "branch-test"
+
+useGPU:
+    image: pytorch/pytorch:latest
+    stage: test_gpu
+    tags: 
+        - linux_x64
+    script:
+        - echo "Check whether we have enabled our GPU or not."
+        - nvidia-smi
+        - echo "Run the test-gpu.py script."
+        - python3 -V
+        - python3 test-gpu.py
+
+    rules:
+        - if: $CI_COMMIT_BRANCH == "use-gpu"

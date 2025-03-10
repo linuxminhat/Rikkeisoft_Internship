@@ -1,0 +1,1 @@
+Using my knowledge for solving some python task in "Superset" real project. Moreover, with my team-mates, we rewrite some code from Scala into Java.

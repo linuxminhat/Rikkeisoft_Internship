@@ -1,0 +1,9 @@
+# Throttle
+# The throttle keyword limits the number of workers for a particular task. It can be set at the block and task level. Use throttle to restrict tasks that may be CPU-intensive or interact with a rate-limiting API.
+
+# Throttle setting is capped by the forks and serial settings.
+
+# Allow only one fork to work on this task at a time.
+tasks:
+  - command: /path/to/cpu_intensive_command
+    throttle: 1

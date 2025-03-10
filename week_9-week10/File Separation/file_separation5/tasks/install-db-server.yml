@@ -1,0 +1,34 @@
+- name: 556847-Install dependencies
+  yum:
+    enablerepo: extras
+    name:
+      - epel-release
+    state: installed
+
+- name: 556847-Install dependencies
+  yum:
+    name:
+      - python-pip
+    state: installed
+
+- name: Install MySQL database
+  yum:
+    name:
+      - mysql-server
+      - MySQL-python
+    state:  installed
+
+- name: Start Mysql Service
+  service:
+    name: mysqld
+    state: started
+    enabled: yes
+
+- name: Create Application Database
+  mysql_db: name='employee_db' state=present
+
+- name: Create Application DB User
+  # For web and db on the same server
+  mysql_user: name='db_user' password='Passw0rd' priv='*.*:ALL' host='localhost' state='present'
+  # For web and db on the different server
+  # mysql_user: name='db_user' password='Passw0rd' priv='*.*:ALL' host='%' state='present'

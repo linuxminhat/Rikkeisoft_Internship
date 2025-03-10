@@ -1,0 +1,87 @@
+---
+- name: Standard Centos7 Deployment
+  hosts: all
+  become: yes
+  vars:
+    - custom_domain: tabernarious.net
+  tasks:
+    - name: Set the hostname to {{ inventory_hostname }}
+      hostname:
+        name: "{{ inventory_hostname }}"
+
+    - name: Set /etc/hostname
+      shell: echo {{ inventory_hostname }} > /etc/hosts
+
+    - name: Configure DNS
+      block:
+        # https://galaxy.ansible.com/ahuffman/resolv
+        - name: Set /etc/resolv.conf
+          include_role:
+            name: ahuffman.resolv
+          vars:
+            resolv_nameservers:
+              - "8.8.8.8"
+              - "8.8.4.4"
+
+        - name: Set /etc/hosts
+          template:
+            src: templates/etc_hosts.j2
+            dest: /etc/hosts
+            owner: root
+            group: root
+          
+    - name: Update packages
+    - name: Install epel-release
+    - name: Install standard packages
+    - name: Set up automatic security updates
+    - name: Configure ansible group
+      group:
+        name: ansible
+        state: present
+
+    - name: Include ansible user password
+      include_vars:
+        file: files/ansible_user_pass_file
+        name: ansible_user_pass
+
+    - name: Configure ansible user and password
+      user:
+        name: ansible
+        state: present
+        password: "{{ ansible_user_pass | string | password_hash('sha512') }}"
+
+    - name: Configure sudoers for ansible group
+        template: 
+          src: sudoers.j2
+          dest: /etc/sudoers.d/ansible_sudoers
+          validate: 'visudo -cf %s'
+          mode: 0440
+
+          - name: Configure authorized_keys
+    - name: Configure sshd to disallow root logon (PermitRootLogin no)
+    - name: Configure sshd to disallow password logons (PasswordAuthentication no)
+    - name: Configure sshd to limit user logons (AllowUsers [username1[@source.fqdn]] [username2...])
+    - name: Configure 'll' alias
+...
+
+# Examples
+- lineinfile:
+   path: /etc/sudoers
+   state: present
+   regexp: '^%wheel\s'
+   line: '%wheel ALL=(ALL) NOPASSWD: ALL'
+
+
+
+
+
+base_svr_groups:
+  - name: developers
+    groupid: 30000
+    sudo: false
+  - name: operations
+    groupid: 31000
+    sudo: true
+  - name: qa
+    groupid: 32000
+    sudo: false

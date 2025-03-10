@@ -1,0 +1,22 @@
+---
+- hosts: local
+  vars:
+    user_list_path: /home/user/vars/list
+  var_file:
+    - /home/user/vars/users.yml
+  tasks:
+    - name: Create file
+      file:
+        path: "{{ user_list_path }}"
+        state: touch
+
+    - name: Write user list to file
+      lineinfile:
+        path: "{{ user_list_path }}"
+        line: "{{ item }}"
+      loop:
+        - "{{ staff }}"
+        - "{{ faculty }}"
+        - "{{ other }}"
+
+# ansible-playbook magic_variables_item.yml -e "@/home/usr/vars/users.yml"

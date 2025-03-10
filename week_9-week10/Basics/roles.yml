@@ -1,0 +1,69 @@
+# Ansible Role: Make your work reusable. Designation for a type of server and everything that must be done to prepare it. It is a task list that can be referenced in a playbook.
+
+# Ansible Galaxy is a community of available roles
+
+# Create Directory Structure
+ansible-galaxy init mysql
+
+# Base Directories
+../my-playbook/roles/
+/etc/ansible/roles/
+# Can be set in /etc/ansible/ansible.cfg
+roles_path=/etc/ansible/roles/
+
+# Find roles on Galaxy (use -p to install to non-default directory)
+ansible-galaxy install user.role
+ansible-galaxy install tabernarious.mysqltest
+ansible-galaxy install user.role -p ./roles
+
+# See what roles are installed
+ansible-galaxy list
+
+# See where roles would be installed
+ansible-config dump | grep DEFAULT_ROLE_PATH
+
+mysql
+- Install pre-requisites
+- Install mysql packages
+- Configure mysql service
+- Configure database and users
+
+nginx
+- Install pre-requisites
+- Install nginx packages
+- Configure nginx service
+- Configure custom web pages
+
+# Why a Role instead of a Playbook? Roles are generally more static and widely usable (e.g. outside your organization).
+
+# Sample Playbook
+-
+  name: Install and Configure MySQL
+  hosts: db-servers
+  roles:
+    - mysql
+
+# Sample Playbook
+-
+  name: Install and Configure MySQL
+  hosts: db-servers
+  roles:
+    - geerlingguy.mysql
+
+# Sample Playbook
+-
+  name: Install and Configure MySQL
+  hosts: db-servers
+  roles:
+    - role: geerlingguy.mysql
+      become: yes
+      vars:
+        mysql_user_name: db-user
+
+# Sample Playbook
+-
+  name: Install and Configure MySQL and NGINX
+  hosts: db-servers,webservers
+  roles:
+    - geerlingguy.mysql
+    - nginx

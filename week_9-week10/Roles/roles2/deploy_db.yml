@@ -1,0 +1,4 @@
+- name: Deploy MySQL Server
+  hosts: db_server
+  roles:
+    - kodekloud1.mysql

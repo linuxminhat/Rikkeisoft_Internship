@@ -1,0 +1,22 @@
+#error_handling3_httpd.yml
+# We have a playbook at ~/playbooks/httpd.yml to install httpd web server on all web nodes. The inventory file at ~/playbooks/inventory has these web nodes added. Update playbook so that if any task fails for any of the web nodes the playbook should exit for all hosts.
+---
+- name: Install httpd but fail play if any host fails
+  hosts: all
+  gather_facts: no
+  any_errors_fatal: yes
+  tasks:
+    - name: Install git
+      yum:
+        name: git
+        state: present
+
+    - name: Install httpd
+      yum:
+        name: httpd
+        state: present
+
+    - name: Start service
+      service:
+        name: httpd
+        state: started

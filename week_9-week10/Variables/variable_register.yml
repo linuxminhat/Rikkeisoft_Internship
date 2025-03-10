@@ -1,0 +1,23 @@
+#ansible_variable_register.txt
+
+---
+- name: Check /etc/hosts file on all hosts
+  hosts: all
+  tasks:
+  - name: Check /etc/hosts file
+    shell: cat /etc/hosts
+    register: result
+  - name: Print etc_hosts_result
+    debug:
+      var: etc_hosts_result
+  - name: Print item within etc_hosts_result
+    debug:
+      var: etc_hosts_result.stdout
+  - name: Print return code (rc) within etc_hosts_result
+    debug:
+      var: etc_hosts_result.rc
+
+# View debug output of each tasks by adding "-v" on CLI
+ansible-playbook -i inventory playbook.yml -v
+
+# Registered variables are scoped to the associated host and can be referenced/reused in a subsequent play for that host

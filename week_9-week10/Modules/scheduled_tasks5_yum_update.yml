@@ -1,0 +1,13 @@
+#yum_update.yml
+- name: Add cronjob to update yum regularly on node00
+  hosts: node00
+  tasks:
+  - name: Add cronjob to update yum regularly
+    cron:
+      name: "yum update"
+      job: "yum -y update"
+      minute: 5
+      hour: 8
+      weekday: 0
+      user: root
+      cron_file: /etc/cron.d/ansible_yum

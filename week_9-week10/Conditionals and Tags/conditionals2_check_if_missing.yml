@@ -1,0 +1,30 @@
+#conditionals2_check_if_missing.yml
+---
+- name: Check if git is missing from web2
+  hosts: web2
+  tasks:
+  - name: Gather package_facts
+    package_facts:
+      manager: auto
+
+#  - name: Print ansible_facts.packages
+#    debug:
+#      var: ansible_facts.packages
+
+#  - name: Print message when package installed
+#    debug:
+#      msg: "apache2 is already installed"
+#    when: "'apache2' in ansible_facts.packages"
+
+#  - name: Print message when package not installed
+#    debug:
+#      msg: "git is NOT already installed"
+#    when: "'git' not in ansible_facts.packages"
+
+  - name: Write text file if git is not installed
+    shell: 'echo "Oops, git is missing" > /tmp/is_git_installed.txt'
+    when: "'git' not in ansible_facts.packages"
+
+  - name: Write git version to text file if git is installed
+    shell: 'echo {{ ansible_facts.packages.git.version }} > /tmp/is_git_installed.txt'
+    when: "'git' in ansible_facts.packages"

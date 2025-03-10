@@ -1,0 +1,42 @@
+# Handlers take action when called
+# Handlers can be called using "notify" keyword
+# Notify must specify handler by "name" (deprecated) or "listen" keyword (preferred)
+# Handler will only be executed at the end of a play (not for each notify)
+
+---
+tasks:
+  - name: template config file
+    template:
+      src: template.j2
+      dest: /etc/foo.conf
+    notify:
+      - roll web
+
+handlers:
+  - name: restart apache
+    service:
+      name: apache
+      state: restarted
+    listen: "roll web"
+...
+
+---
+# Handler (restart apache) will only be called if "replace" (change config) actually occurs
+- hosts: scoldham2
+  become: yes
+  handlers:
+    - name: restart apache
+      service:
+        name: httpd
+        state: restarted
+      listen: "restart web"
+  tasks:
+    - name: change config
+      replace:
+        path: /etc/httpd/conf/httpd.conf
+        regexp: '^DocumentRoot.*$'
+        replace: 'DocumentRoot "/opt/www"'
+        backup: yes
+      notify: "restart web"
+...
+

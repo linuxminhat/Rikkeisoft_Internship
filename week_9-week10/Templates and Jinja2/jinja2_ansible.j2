@@ -1,0 +1,17 @@
+#jinja2_ansible.j2
+
+# File filters
+{{ "/etc/hosts" | basename }}
+hosts
+
+{{ "c:\windows\hosts" | win_basename }}
+
+{{ "c:\windows\hosts" | win_splitdrive }}
+["c:", "\windows\hosts"]
+
+{{ "c:\windows\hosts" | win_basename | first }}
+"c:"
+
+{{ "c:\windows\hosts" | win_basename | last }}
+"\windows\hosts"
+

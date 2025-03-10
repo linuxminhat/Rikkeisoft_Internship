@@ -1,0 +1,10 @@
+#zip.yml
+---
+- name: Create zip archive of /opt on web1
+  hosts: web1
+  tasks:
+  - name: Create zip archive of /opt
+    archive:
+      path: /opt
+      dest: /root/opt.zip
+      format: zip

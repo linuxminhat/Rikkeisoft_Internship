@@ -1,0 +1,17 @@
+#conditionals3_copy_file_only_if.yml
+---
+- name: copy script if not present
+  gather_facts: no
+  hosts: web2
+  vars:
+    remote_dest: /usr/local/bin/report_status.sh
+    copy_file_only_if: true
+  tasks:
+  - debug:
+      var: copy_file_only_if
+  - copy:
+      src: report_status.sh
+      dest: "{{remote_dest}}"
+    when: copy_file_only_if is defined and copy_file_only_if|bool
+    ###......................................problem is here ^
+    ### modify this so copy_file_only_if is evaluated as boolean.

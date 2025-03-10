@@ -1,0 +1,49 @@
+---
+- name: Install NGINX
+  hosts: all
+  tasks:
+  - name: Install NGINX on Debian
+    apt:
+      name: nginx
+      state: present
+    when: ansible_os_family == "Debian" and ansible_distribution_version == "16.04"
+
+  - name: Install NGINX on Red Hat
+    yum:
+      name: nginx
+      state: present
+    when: ansible_os_family == "RedHat" or ansible_os_family == "SUSE"
+
+
+---
+- name: Install Software Packages
+  hosts: all
+  vars:
+    packages:
+    - name: nginx
+      required: True
+    - name: mysql
+      required: True
+    - name: apache
+      required: False
+  tasks:
+  - name: Install "{{ item.name }}" on Debian
+    apt:
+      name: "{{ item.name }}"
+      state: present
+    when: item.required == True
+    loop: "{{ packages }}"
+
+---
+- name: Check status of a service and email if its down
+  hosts: localhost
+  tasks:
+  - name: Check status of httpd
+    command: service httpd status
+    register: httpd_result
+  - name: Email if httpd is down
+    mail:
+      to: admin@company.com
+      subject: Service Alert
+      body: httpd service is down
+    when: httpd_result.stdout.find('down') != -1

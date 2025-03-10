@@ -1,0 +1,28 @@
+#testing_strings.yml
+#https://docs.ansible.com/ansible/latest/user_guide/playbooks_tests.html
+
+vars:
+  url: "http://example.com/users/foo/resources/bar"
+
+tasks:
+    #match succeeds if it finds the pattern at the beginning of the string
+    - debug:
+        msg: "matched pattern 1"
+      when: url is match("http://example.com/users/.*/resources/")
+
+    #search succeeds if it finds the pattern anywhere within string
+    - debug:
+        msg: "matched pattern 2"
+      when: url is search("/users/.*/resources/.*")
+
+    #search succeeds if it finds the pattern anywhere within string
+    - debug:
+        msg: "matched pattern 3"
+      when: url is search("/users/")
+
+    #By default, regex works like search, but regex can be configured to perform other tests as well, by passing the match_type keyword argument. In particular, match_type determines the re method that gets used to perform the search. The full list can be found in the relevant Python documentation here.
+    - debug:
+        msg: "matched pattern 4"
+      when: url is regex("example.com/\w+/foo")
+
+#All of the string tests also take optional ignorecase and multiline arguments. These correspond to re.I and re.M from Python’s re library, respectively.

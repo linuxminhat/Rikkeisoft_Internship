@@ -1,0 +1,87 @@
+cat > ~/playbooks/inventory
+
+# Optional if storing passwords in a separate file
+cat > ~/playbooks/secrets/passwords.yml
+
+
+sudo vi /etc/ansible/ansible.cfg
+vault_password_file = /home/thor/playbooks/secrets/vault.txt
+
+
+ansible-vault encrypt_string --stdin-name 'admins'
+Reading plaintext input from stdin. (ctrl-d to end input)
+adm$n$admins: !vault |
+          $ANSIBLE_VAULT;1.1;AES256
+          34343761633465313838633331376437313637313964666465383930366435356535666531643130
+          6234343232323162346539303664633461333136366165650a366666653035313266633732643133
+          61666332366636636235666164393839373865316431353331646266643739656333363266393639
+          3362393834626138300a663231623163663363326239653666653738363466633735333530646631
+          6266
+Encryption successful
+
+ansible-vault encrypt_string --stdin-name 'developer_pass'
+Reading plaintext input from stdin. (ctrl-d to end input)
+d3v3l0p3rdevelopers: !vault |
+          $ANSIBLE_VAULT;1.1;AES256
+          38646639326630633266313630343934326562383539353261373464393831353564353337393730
+          3066343730666534643331343331353231333139623431300a643961386536363332383962323066
+          31383462353463316531666463623664323032346230306339346630653763616564343730636132
+          6664363738316566650a636332653964373834663761356130633635366536393235313365633233
+          3134
+Encryption successful
+
+cat > secrets/passwords.yml
+#admins: !vault...
+
+cat >> secrets/passwords.yml
+#developers: !vault...
+
+
+cat > ~/playbooks/add_users.yml
+
+
+ansible-playbook -i inventory add_users.yml --check
+
+thor@ansible-controller ~/playbooks$ ansible-playbook -i inventory add_users.yml --check
+
+PLAY [Add and configure users] ***********************************************************************************
+
+TASK [Include users] *********************************************************************************************
+ok: [node00]
+
+TASK [Show users] ************************************************************************************************
+ok: [node00] => {
+    "users": {
+        "admins": [
+            "rob",
+            "david",
+            "joy"
+        ],
+        "developers": [
+            "tim",
+            "ray"
+        ]
+    }
+}
+
+TASK [Show admin password decrypted from vault] ******************************************************************
+ok: [node00] => {
+    "admin_pass": "adm$n$"
+}
+
+TASK [Show hashed admin password] ********************************************************************************
+ok: [node00] => {
+    "msg": "$6$cuK0bEpla1xxAJ6y$Bk.m12c5yY5If9JY7o7eyrDfP1qICLPyvIJL7a.xAtiJiLloGuYWwSC4isJyAdQnml4efrcNupyDBtPFwetYj."
+}
+
+TASK [Add and configure admin users] *****************************************************************************
+changed: [node00] => (item=rob)
+changed: [node00] => (item=david)
+changed: [node00] => (item=joy)
+
+TASK [Add and configure developer users] *************************************************************************
+changed: [node00] => (item=tim)
+changed: [node00] => (item=ray)
+
+PLAY RECAP *******************************************************************************************************
+node00                     : ok=6    changed=2    unreachable=0    failed=0

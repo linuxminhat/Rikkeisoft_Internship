@@ -1,0 +1,8 @@
+---
+- name: Update resolv.conf on hosts
+  hosts: all
+  tasks:
+    - name: Copy resolv.conf template
+      template:
+        src: templates/resolv.conf.j2
+        dest: /tmp/resolv.conf

@@ -1,0 +1,8 @@
+- name: Deploy motd template
+  import_tasks: deploy_motd.yml
+
+- name: Deploy nagios
+  import_tasks: deploy_nagios.yml
+
+- name: Deploy noc user
+  import_tasks: deploy_user_noc.yml

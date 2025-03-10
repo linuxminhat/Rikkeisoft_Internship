@@ -1,0 +1,6 @@
+#magic_variables3_hosts.yml
+---
+- hosts: node00.host
+  gather_facts: yes
+  tasks:
+  - shell: "echo  {{ inventory_hostname }} {{ ansible_default_ipv4.address }} >> /etc/hosts"

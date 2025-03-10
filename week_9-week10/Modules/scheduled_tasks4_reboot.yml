@@ -1,0 +1,9 @@
+#reboot.yml
+- name: Clean up /tmp after reboot on node00
+  hosts: node00
+  tasks:
+  - name: Clean up /tmp after reboot
+    cron:
+      name: cleanup
+      job: "rm -rf /tmp/*"
+      reboot: yes

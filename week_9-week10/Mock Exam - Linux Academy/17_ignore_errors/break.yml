@@ -1,0 +1,14 @@
+---
+- name: Install package fluffy on node2
+  hosts: node2
+  become: yes
+  tasks:
+    - name: Install package fluffy
+      yum:
+        name: fluffy
+        state: installed
+      ignore_errors: yes
+
+    - name: Message
+      debug:
+        msg: Attempted fluffy install!

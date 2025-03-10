@@ -1,0 +1,6 @@
+- name: Deploy Web Server
+  hosts: web_server
+  roles:
+    - role: geerlingguy.nginx
+      vars:
+        nginx_service_enabled: false

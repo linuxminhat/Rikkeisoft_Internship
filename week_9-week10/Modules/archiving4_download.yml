@@ -1,0 +1,14 @@
+#download.yml
+---
+- name: Download and extract archive to /root on web1
+  hosts: web1
+  tasks:
+  - name: Download archive to /root
+    get_url:
+      url: https://github.com/kodekloudhub/Hello-World/archive/master.zip
+      dest: /root/master.zip
+  - name: Extract archive
+    unarchive:
+      remote_src: yes
+      src: /root/master.zip
+      dest: /root

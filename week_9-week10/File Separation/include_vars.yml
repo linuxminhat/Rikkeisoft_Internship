@@ -1,0 +1,17 @@
+#include_vars.yml
+
+#/opt/apps/common-data/email/info.yml
+admin_email: admin@company.com
+
+---
+- name: Deploy Web and DB Server
+  hosts: web-db-server
+  tasks:
+    # Pull in data from info.yml; store as {{ email_data }}; retrieve as {{ email_data.admin_email }}
+    - include_vars:
+        file: /opt/apps/common-data/email/info.yml
+        name: email_data
+    - mail:
+        to: "{{ email_data.admin_email }}"
+        subject: Service Alert
+        body: httpd service is down

@@ -1,0 +1,10 @@
+#local.yml
+---
+- name: Extract local.zip to /tmp on web1
+  hosts: web1
+  tasks:
+  - name: Extract local.zip to /tmp on target hosts
+    unarchive:
+      src: ~/playbooks/local.zip
+      dest: /tmp
+      remote_src: no #default

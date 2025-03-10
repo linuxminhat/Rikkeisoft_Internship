@@ -1,0 +1,8 @@
+# Output datestamp timestamp datetime stamp like "file-name_localhost_20201022-1611".
+# Requires "gather_facts: yes" (default or explicit).
+---
+- name: Output datetime stamp
+  hosts: localhost
+  tasks:
+    - debug:
+        msg: "file-name_{{ inventory_hostname }}_{{ ansible_date_time['year'] }}{{ ansible_date_time['month'] }}{{ ansible_date_time['day'] }}-{{ ansible_date_time['hour'] }}{{ ansible_date_time['minute'] }}"

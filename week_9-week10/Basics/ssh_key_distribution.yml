@@ -1,0 +1,26 @@
+# Ansible SSH Key Distribution
+
+# Create key on Ansible Controller
+ssh-keygen
+
+ssh-copy-id -i id_rsa user@server.domain.com
+
+# If ssh key is ~/.ssh/id_rsa
+# /etc/ansible/hosts
+web1 ansible_host=172.20.1.100 ansible_user=user1
+web2 ansible_host=172.20.1.101 ansible_user=user2# If ssh key is ~/.ssh/id_rsa
+
+# If ssh key is somewhere else
+# /etc/ansible/hosts
+web1 ansible_host=172.20.1.100 ansible_user=user1 ansible_ssh_private_key_file=/some/where/else/private.key
+web2 ansible_host=172.20.1.101 ansible_user=user2 ansible_ssh_private_key_file=/some/where/else/private.key
+
+
+
+
+# Test connectivity
+ssh-copy-id -i ~/.ssh/ansible ansible@web1
+
+ssh -i ~/.ssh/ansible ansible@web1
+
+ansible -m ping -i inventory web1

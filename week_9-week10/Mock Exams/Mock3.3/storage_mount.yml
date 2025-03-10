@@ -1,0 +1,21 @@
+---
+- name: Create and mount filesystem on node01
+  hosts: node01
+  tasks:
+    - name: Create ext4 filesystem
+      filesystem:
+        fstype: ext4
+        dev: /dev/vg_os/lv_os
+
+    - name: Create mount directory
+      file:
+        path: /mnt/os_data
+        state: directory
+        mode: 0755
+
+    - name: Mount filesystem
+      mount:
+        path: /mnt/os_data
+        src: /dev/vg_os/lv_os
+        fstype: ext4
+        state: mounted

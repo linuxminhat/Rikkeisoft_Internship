@@ -1,0 +1,5 @@
+#templates4_report.csv.j2
+hostname, free memory, uptime
+{% for host in groups['web'] %}
+{{ hostvars[host].inventory_hostname }}, {{ hostvars[host].ansible_memfree_mb }}, {{ hostvars[host].ansible_uptime_seconds }}
+{% endfor %}

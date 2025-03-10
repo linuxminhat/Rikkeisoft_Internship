@@ -1,0 +1,32 @@
+---
+- name: Add all users based on groups
+  hosts: node00
+  become: yes
+  gather_facts: no
+  tasks:
+    - name: Import users
+      include_vars:
+        file: data/users.yml
+        name: users
+
+    - debug:
+        var: users['developers']
+
+    - name: Import passwords
+      include_vars:
+        file: secrets/passwords.yml
+        name: passwords
+
+    - name: Create users in developers group
+      user:
+        name: "{{ item }}"
+        password: "{{ passwords['developer_pass'] | string | password_hash('sha512') }}"
+        home: /var/www
+      loop: "{{ users['developers'] }}"
+
+    - name: Create users in admins group
+      user:
+        name: "{{ item }}"
+        password: "{{ passwords['admin_pass'] | string | password_hash('sha512') }}"
+        groups: wheel
+      loop: "{{ users['admins'] }}"

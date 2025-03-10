@@ -1,0 +1,10 @@
+---
+- name: Download and unarchive tarball to localhost
+  hosts: localhost
+  become: yes
+  tasks:
+    - name: Download and unarchive tarball
+      unarchive:
+        src: http://files.example.com/files.tgz
+        remote_src: yes
+        dest: /mnt/

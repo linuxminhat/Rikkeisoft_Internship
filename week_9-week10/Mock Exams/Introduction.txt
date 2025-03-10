@@ -1,0 +1,34 @@
+Welcome to the KodeKloud Ansible Mock Exams!!!
+
+
+The Mock Exams help you get a real exam experience where you will be raising against time to complete a given set of tasks within a given amount of time. It is similar to the practice labs you worked so far, but with one difference - you only get one chance to verify your work.
+
+For support on course curriculum or mock exams, Join our slack channel by clicking here
+
+In the real exam, as with all other hands-on exams out there, you perform the tasks you are asked to complete and you walk away. Your work is later evaluated and results are emailed to you. You don't get a second chance. The same is with our mock exams. You get one chance to test your work. But at the same we want to give you your score immediately. And allow you to figure out what you did wrong.
+
+So we came up with this solution, where the exam are similar to the labs you have been working with. You must verify that your work is good, before hitting the check button. If our checks detect something not working, we mark the question wrong. You may however proceed to troubleshooting and fixing your work and "Check your work again", that way you know where you went wrong. But you have already lost your points and it will reflect in the final score. You can then proceed to attempting the remaining labs.
+
+The real exam is 4 hours long. In our Mock exams, we have broken it down into multiple 1 hour sessions.
+
+Currently we have 2 Mock Exams and we plan to add more.
+
+A few points to note:
+These exams were built to give you a real exam like feel in terms of your ability to read and interpret a given question, validate your own work, manage time to complete given tasks within the given time, and see where you went wrong.
+
+Having said that, Please note that:
+
+This exam is not a replica of the actual exam
+The questions in these exams are not the same as in the actual exam
+The interface is not the same as in the actual exam
+The scoring system may not be the same as in the actual exam
+The difficulty level may not be the same as in the actual exam
+
+
+Also please note that we cannot comment on the real exam format, or questions, or difficulty due to Non Disclosure Agreement (NDA).
+
+We have carefully crafted this course with all contents from the actual exam curriculum and to give you as much practice as we possible can.
+
+For support on course curriculum or mock exams, Join our slack channel by clicking here
+
+Good Luck!!!

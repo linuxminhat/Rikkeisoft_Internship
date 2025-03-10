@@ -1,0 +1,15 @@
+---
+- name: Ensure firewalld is installed and running on all hosts
+  hosts: all
+  become: yes
+  tasks:
+    - name: Ensure firewalld is installed
+      yum:
+        name: firewalld
+        state: installed
+
+    - name: Ensure firewalld is started and enabled
+      service:
+        name: firewalld
+        state: started
+        enabled: yes

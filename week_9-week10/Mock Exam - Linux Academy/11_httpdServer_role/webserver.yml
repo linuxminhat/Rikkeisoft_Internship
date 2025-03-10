@@ -1,0 +1,20 @@
+---
+- name: Deploy httpd using a role
+  hosts: web
+  become: yes
+  roles:
+    - role: httpdServer
+  tasks:
+    - name: Deploy custom index.html
+      lineinfile:
+        path: /var/ww/html/index.html
+        line: "{{ ansible_hostname }}"
+        create: yes
+
+    - name: Change LogLevel to error
+      lineinfile:
+        path: /etc/httpd/conf/httpd.conf
+        regexp: 'LogLevel.*'
+        line: "LogLevel error"
+      notify:
+        - "restart httpd"

@@ -1,0 +1,3 @@
+Write a playbook: ~/playbooks/add_user_with_ssh.yml to create a user: deploy on remote hosts. Its a best practice to ssh using public-key than to use a plain password. Copy the public key: ~/playbooks/devops.pub to remote hosts inside deploy user you just created.
+
+Use inventory file: ~/playbooks/inventory.

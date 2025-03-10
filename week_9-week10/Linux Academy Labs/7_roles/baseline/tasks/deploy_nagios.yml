@@ -1,0 +1,7 @@
+- name: Install nagios
+  yum: name=nagios state=latest
+- name: Add hosts entry for nagios server
+  lineinfile:
+    path: /etc/hosts
+    regexp: ' nagios.example.com$'
+    line: '10.0.1.143 nagios.example.com'

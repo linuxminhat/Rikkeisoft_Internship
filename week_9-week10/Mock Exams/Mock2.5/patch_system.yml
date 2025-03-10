@@ -1,0 +1,21 @@
+---
+- name: Install and configure yum-cron for security updates
+  hosts: all
+  tasks:
+    - name: Install yum-cron
+      yum:
+        name: yum-cron
+        state: installed
+
+    - name: Configure yum-cron for security updates
+      lineinfile:
+        path: /etc/yum/yum-cron.conf
+        regexp: 'update_cmd'
+        line: 'update_cmd = security'
+        create: yes
+
+    - name: Restart yum-cron
+      service:
+        name: yum-cron
+        state: restarted
+        enabled: yes

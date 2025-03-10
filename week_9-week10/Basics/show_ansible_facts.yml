@@ -1,0 +1,8 @@
+#show_ansible_facts.yml
+---
+- name: Show ansible_facts
+  hosts: web2
+  tasks:
+  - name: Show ansible_facts
+    debug:
+      var: ansible_facts

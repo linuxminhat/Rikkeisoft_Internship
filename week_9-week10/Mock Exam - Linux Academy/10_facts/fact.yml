@@ -1,0 +1,10 @@
+---
+- name: Generate host-specific facts.htm
+  hosts: web
+  become: yes
+  tasks:
+    - name: Write facts to facts.htm
+      lineinfile:
+        path: /var/www/html/facts.htm
+        line: "{{ ansible_distribution }}: {{ ansible_default_ipv4['address'] }} {{ ansible_default_ipv4['macaddress'] }}"
+        create: yes

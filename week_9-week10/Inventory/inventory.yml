@@ -1,0 +1,21 @@
+all:
+  hosts:
+    mail.example.com
+      ansible_port: 5556
+      ansible_host: 192.168.0.10
+    jump.example.com
+      jump_port: 6464
+  children:
+    webservers:
+      hosts:
+        httpd1.example.com
+        httpd2.example.com
+      vars:
+        http_port: 8080
+    labservers:
+      hosts:
+        lab[01:99].example.com
+      vars:
+        web_user: jsmith
+  vars:
+    nagios_ip: 192.168.7.42

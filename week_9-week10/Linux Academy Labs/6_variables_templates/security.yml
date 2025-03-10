@@ -1,0 +1,14 @@
+---
+- name: Deploy sudoers template
+  hosts: all
+  become: yes
+  tasks:
+    - name: Verify and deploy sudoers template
+      template:
+        src: /home/ansible/hardened.j2
+        dest: /etc/sudoers.d/hardened
+        #dest: /var/tmp/hardened
+        validate: '/sbin/visudo -cf %s'
+      register: template_out
+
+    - debug: var=template_out

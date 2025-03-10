@@ -1,0 +1,55 @@
+---
+- name: Deploy groups and users on node1
+  hosts: node1
+  tasks:
+    - name: Remove existing list from localhost
+      file:
+        path: ~/exam/user_list.yml
+        state: absent
+      delegate_to: localhost
+
+    - name: Download list of groups and users to localhost
+      uri:
+        url: http://files.example.com/user_list.yml
+        dest: ~/exam/user_list.yml
+      delegate_to: localhost
+
+    - name: Import groups and users
+      include_vars:
+        file: ~/exam/user_list.yml
+        name: user_list
+
+    - debug:
+        msg: "{{ user_list['user_groups'] }}"
+
+    - name: Deploy groups
+      become: yes
+      group:
+        name: "{{ item }}"
+        state: present
+        system: yes
+      with_items: "{{ user_list['user_groups'] }}"
+
+    - name: Deploy staff users
+      become: yes
+      user:
+        name: "{{ item }}"
+        group: staff
+        system: yes
+      with_items: "{{ user_list['staff'] }}"
+
+    - name: Deploy students users
+      become: yes
+      user:
+        name: "{{ item }}"
+        group: students
+        system: yes
+      with_items: "{{ user_list['students'] }}"
+
+    - name: Deploy faculty users
+      become: yes
+      user:
+        name: "{{ item }}"
+        group: faculty
+        system: yes
+      with_items: "{{ user_list['faculty'] }}"

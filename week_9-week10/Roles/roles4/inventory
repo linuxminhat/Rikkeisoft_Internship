@@ -1,0 +1,1 @@
+web_server ansible_host=172.20.1.101 ansible_ssh_pass=Passw0rd ansible_user=root

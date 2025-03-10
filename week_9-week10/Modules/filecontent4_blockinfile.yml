@@ -1,0 +1,14 @@
+#index2.yml
+---
+- name: Add block of content to index.html on web1
+  hosts: web1
+  tasks:
+  - name: Add block of content to index.html
+    blockinfile:
+      path: /var/www/html/index.html
+      insertbefore: BOF
+      owner: apache
+      group: apache
+      block: |
+        Welcome to KodeKloud!
+        This is Ansible Lab.

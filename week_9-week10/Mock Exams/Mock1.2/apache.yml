@@ -1,0 +1,42 @@
+---
+- name: Install and configure httpd and php on node01
+  hosts: node01
+  tasks:
+    - name: Install httpd and php
+      yum:
+        name:
+          - httpd
+          - php
+        state: installed
+
+    - name: Create Apache document root if needed
+      file:
+        path: /var/www/html/myroot
+        state: directory
+        mode: 0755
+
+    - name: Change Apache document root
+      lineinfile:
+        path: /etc/httpd/conf/httpd.conf
+        regexp: '^DocumentRoot '
+        line: 'DocumentRoot /var/www/html/myroot'
+
+    - name: Copy phpinfo.php with template
+      template:
+        src: ~/playbooks/templates/phpinfo.php.j2
+        dest: /var/www/html/myroot/phpinfo.php
+        owner: apache
+        group: apache
+        
+    - name: Start and enable httpd
+      service:
+        name: httpd
+        state: started
+        enabled: yes
+
+    - name: Open firewall
+      firewalld:
+        zone: public
+        port: 80/tcp
+        state: enabled
+        permanent: yes

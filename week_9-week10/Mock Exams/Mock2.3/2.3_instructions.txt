@@ -1,0 +1,3 @@
+Write a playbook /home/thor/playbooks/configure_webserver.yml which installs a nginx and serves a html file: index.html from directory /usr/share/nginx/html on remote servers.
+
+You are provided with /home/thor/playbooks/index.html that you should copy to remote web servers listed on inventory /home/thor/playbooks/inventory. Ensure the nginx service is serving the file that would be copied.

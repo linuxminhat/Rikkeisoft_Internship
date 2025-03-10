@@ -1,0 +1,35 @@
+# Overall structure
+[~/playbooks]
+  - playbook.yml
+  - [inventory]
+    - inventory
+    - [host_vars]
+        - web1.yml
+        - web2.yml
+        - web3. yml
+    - [group_vars]
+        - web_servers.yml
+
+# View inventory as JSON (default)
+ansible-inventory -i inventory/
+
+# View inventory as YAML (-y)
+ansible-inventory -i inventory/ -y
+
+# ~/playbooks/inventory/inventory
+[web_servers]
+web1
+web2
+web3
+
+# ~/playbooks/inventory/host_vars/web1.yml
+ansible_host: 172.20.1.101
+
+# ~/playbooks/nventory/host_vars/web2.yml
+ansible_host: 172.20.1.102
+
+# ~/playbooks/nventory/host_vars/web3.yml
+ansible_host: 172.20.1.103
+
+# ~/playbooks/nventory/group_vars/web_servers.yml
+dns_server: 10.1.1.5

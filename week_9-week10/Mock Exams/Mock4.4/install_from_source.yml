@@ -1,0 +1,38 @@
+---
+- name: Install mosh from source
+  hosts: all
+  tasks:
+    - name: Install dependencies
+      yum:
+        name:
+          - git
+          - make
+          - autoconf
+          - automake
+          - protobuf-devel
+          - libutempter-devel
+          - ncurses-devel
+          - openssl-devel
+          - gcc
+          - gcc-c++
+
+    - name: Clone git repo
+      git:
+        repo: 'https://github.com/mobile-shell/mosh'
+        dest: /root/mosh
+        force: yes
+
+    - name: Run autogen.sh
+      command:
+        chdir: /root/mosh
+        cmd: ./autogen.sh
+
+    - name: Run configure
+      command:
+        chdir: /root/mosh
+        cmd: ./configure
+
+    - name: Run make && make install
+      shell:
+        chdir: /root/mosh
+        cmd: make && make install

@@ -1,0 +1,19 @@
+#data2.yml
+---
+- name: Extract remote archive to /srv on web1
+  hosts: web1
+  tasks:
+  - name: Extract remote archive to /srv
+    unarchive:
+      remote_src: yes
+      src: /root/data.tar.gz
+      dest: /srv
+  - name: Copy remote archive
+    copy:
+      remote_src: yes
+      src: /root/data.tar.gz
+      dest: /root/data2.tar.gz
+  - name: Delete remote archive
+    file:
+      path: /root/data.tar.gz
+      state: absent

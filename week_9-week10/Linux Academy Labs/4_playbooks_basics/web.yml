@@ -1,0 +1,21 @@
+---
+- name: Deploy website
+  hosts: web
+  become: yes
+  tasks:
+    - name: Install httpd
+      yum:
+        name: httpd
+        state: latest
+
+    - name: Start and enable httpd
+      service:
+        name: httpd
+        state: started
+        enabled: yes
+
+    - name: Download and unarchive website
+      unarchive:
+        src: http://repo.example.com/website.tgz
+        remote_src: yes
+        dest: /var/www/html/

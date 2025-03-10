@@ -1,0 +1,30 @@
+ansible-playbook -i inventory deploy_db.yml
+
+PLAY [Deploy MySQL Server] ***************************************************************************************
+
+TASK [Gathering Facts] *******************************************************************************************
+ok: [db_server]
+
+TASK [kodekloud1.mysql : Install MariaDB package] ****************************************************************
+changed: [db_server]
+
+TASK [kodekloud1.mysql : Create Mysql configuration file] ********************************************************
+changed: [db_server]
+
+TASK [kodekloud1.mysql : Start MariaDB Service] ******************************************************************
+changed: [db_server]
+
+TASK [kodekloud1.mysql : Create Application Database] ************************************************************
+changed: [db_server]
+
+TASK [kodekloud1.mysql : Create Application DB User] *************************************************************
+changed: [db_server]
+
+TASK [kodekloud1.mysql : Move db-load-script to db host] *********************************************************
+changed: [db_server]
+
+TASK [kodekloud1.mysql : Load Inventory Data] ********************************************************************
+changed: [db_server]
+
+PLAY RECAP *******************************************************************************************************
+db_server                  : ok=8    changed=7    unreachable=0    failed=0

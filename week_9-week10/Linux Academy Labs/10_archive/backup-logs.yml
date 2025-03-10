@@ -1,0 +1,20 @@
+---
+- name: Archive and download logs from all hosts
+  hosts: all
+  user: ansible
+  become: yes
+  tasks:
+    - name: Archive /var/log directory to /var/tmp/logs.tar.gz
+      archive:
+        path: /var/log
+        dest: /var/tmp/logs.tar.gz
+
+    - name: Download log archive
+      fetch:
+        src: /var/tmp/logs.tar.gz
+        dest: logs_{{ ansible_hostname }}_{{ ansible_date_time['year'] }}{{ ansible_date_time['month'] }}{{ ansible_date_time['day'] }}-{{ ansible_date_time['hour'] }}{{ ansible_date_time['minute'] }}.tar.gz
+
+    - name: Clean up remote log archive
+      file:
+        path: /var/tmp/logs.tar.gz
+        state: absent

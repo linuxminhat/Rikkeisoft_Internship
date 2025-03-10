@@ -1,0 +1,28 @@
+# Variables can be stored in inventory, but best practice is to define variables in separate YAML files.
+
+/home/user/ansible/
+- group_vars (d)
+  - server_group_1 (f)
+- host_vars (d)
+  - host1.example.com (f)
+  - host2.example.com (f)
+  - host3.example.com (f)
+  - host4.example.com (f)
+- inventory (f)
+
+/home/user/ansible/inventory
+host1.example.com
+host2.example.com
+host3.example.com
+host4.example.com
+
+[server_group_1]
+host1.example.com
+host2.example.com
+
+
+/home/user/ansible/group_vars/server_group_1
+dns_server: 8.8.8.8
+
+/home/user/ansible/host_vars/host3.example.com
+dns_server: 4.4.4.4

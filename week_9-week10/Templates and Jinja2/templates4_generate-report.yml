@@ -1,0 +1,16 @@
+#templates4_generate-report.yml
+---
+- name: Gather facts for web hosts
+  hosts: web
+  gather_facts: True
+
+- name: Generate report and push to reporting server
+  hosts: reporting_server
+  tasks:
+  - name: Show Template Results
+    debug:
+      msg: "{{ lookup('template', 'report.csv.j2') }}"
+  - name: Generate report
+    template:
+      src: report.csv.j2
+      dest: /tmp/report.csv

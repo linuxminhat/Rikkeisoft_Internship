@@ -1,0 +1,22 @@
+# Free Strategy (strategy: free)
+# https://docs.ansible.com/ansible/latest/user_guide/playbooks_strategies.html
+
+# Runs Task 1 on each server
+# Runs Task 2 on each server, NOT waiting for other servers to complete Task 1
+# Etc.
+
+---
+- name: Deploy web app but fail/stop play for all hosts if any errors
+  hosts: server1, server2, server3
+  strategy: free
+  tasks:
+    - name: Install dependencies
+      # details
+    - name: Install MySQL database
+      # details
+    - name: Start MySQL service
+      # details
+    - name: Install Python Flask dependencies
+      # details
+    - name: Run web server
+      # details

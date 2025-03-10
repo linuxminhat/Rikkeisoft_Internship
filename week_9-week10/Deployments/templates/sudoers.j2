@@ -1,0 +1,6 @@
+## Deployed by Ansible
+{% for item in base_svr_groups %}
+{% if item.sudo %}
+%{{ item.name }} ALL=(ALL:ALL) NOPASSWD:ALL
+{% endif %}
+{% endfor %}

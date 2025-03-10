@@ -1,0 +1,20 @@
+---
+
+- name: Deploy lamp stack application
+  hosts: all
+  become: yes
+  tasks:
+    - include_tasks: tasks/common.yml
+
+    # Install and Configure Database
+- name: Deploy lamp stack application
+  hosts: lamp-db
+  become: yes
+  tasks:
+    - include_tasks: tasks/db.yml
+
+- name: Deploy lamp stack application
+  hosts: lamp-web
+  become: yes
+  tasks:
+    - include_tasks: tasks/web.yml

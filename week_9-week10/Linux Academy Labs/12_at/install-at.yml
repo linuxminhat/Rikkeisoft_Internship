@@ -1,0 +1,15 @@
+---
+- name: Deploy 'at' package on all hosts
+  hosts: all
+  become: yes
+  tasks:
+    - name: Install 'at' package
+      yum:
+        name: at
+        state: installed
+
+    - name: Start and enable 'atd' service
+      service:
+        name: atd
+        state: started
+        enabled: yes

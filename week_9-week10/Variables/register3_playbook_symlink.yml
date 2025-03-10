@@ -1,0 +1,21 @@
+#playbook.yml
+---
+- name: Create a file
+  hosts: all
+  gather_facts: no
+  tasks:
+  - name: stat module help to find the file info
+    stat:
+      path: /var/run
+    register: stat_output
+  - name: Print stat_output.stat.lnk_source
+    debug:
+      var: stat_output.stat.lnk_source
+  - name: Print stat_output.stat.lnk_target
+    debug:
+      var: stat_output.stat.lnk_target
+    # for your reference, check the outputs of these
+    # - debug: var=your_variable.stat
+
+  - name: Create file noting symlink
+    shell: echo "{{ stat_output.stat.lnk_target}}" > /tmp/by_ansible

@@ -1,0 +1,9 @@
+---
+- name: Push authorized public keys to hosts
+  hosts: all
+  tasks:
+    - name: Push authorized public key
+      authorized_key:
+        user: root
+        state: present
+        key: "{{ lookup('file', '/home/thor/playbooks/john_doe.pub') }}"

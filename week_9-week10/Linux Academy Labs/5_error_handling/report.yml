@@ -1,0 +1,27 @@
+---
+- name: Process transaction list
+  hosts: localhost
+  become: yes
+  tasks:
+    - name: Attempt download and processing
+      block:
+        # - name: Remove existing local transaction_list
+        #   file:
+        #     path: /var/tmp/transaction_list
+        #     state: absent
+        - name: Download transaction list
+          get_url:
+            url: http://apps.l33t.com/transaction_list
+            dest: /var/tmp/transaction_list
+            force: yes
+            # backup: yes
+        - name: Replace blank lines
+          replace:
+            path: /var/tmp/transaction_list
+            regexp: '#BLANKLINE'
+            replace: '\n'
+        - debug: msg="File downloaded."
+      rescue:
+        - debug: msg="l33t.com appears to be down. Try again later."
+      always:
+        - debug: msg="Attempt completed."

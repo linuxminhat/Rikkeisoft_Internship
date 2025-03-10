@@ -1,0 +1,29 @@
+#magic_variables.yml
+
+https://docs.ansible.com/ansible/latest/reference_appendices/special_variables.html
+
+# This will pull {{dns_server}} (variable value) from the web2 (host) subprocess.
+---
+- name: Print dns server
+  hosts: all
+  tasks:
+  - debug:
+      msg: '{{ hostvars['web2'].dns_server }}'
+
+# Other examples
+'{{ hostvars['web2'].ansible_host }}'
+'{{ hostvars['web2'].ansible_facts.architecture }}'
+'{{ hostvars['web2'].ansible_facts.devices }}'
+'{{ hostvars['web2'].ansible_mounts }}'
+
+'{{ hostvars['web2'].ansible_facts.processor }}'
+'{{ hostvars['web2']['ansible_facts']['processor'] }}'
+
+# Return list of hosts in a group
+'{{ groups['americas'] }}'
+
+# Return list of groups the current host is part of
+'{{ group_names }}'
+
+# Return name defined for the current host in the inventory file
+'{{ inventory_hostname }}'

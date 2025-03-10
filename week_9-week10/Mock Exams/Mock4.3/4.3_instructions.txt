@@ -1,0 +1,8 @@
+In Linux system, it is recommended to allocate swap. It has many benefits as it helps the operating system to dump the least frequently used memory pages there and protects services from the OOM killed.
+
+The preference of Linux kernel to push something to swap is governed by the sysctl parameter vm.swappiness. It can vary from 0 to 100 with default (60) and represents the percentage of the free memory before activating swap. Lower value means less likely kernel's preference to use swap.
+
+The system node01 provided to you in inventory:/home/thor/playbooks/inventory has a default swappiness value (60).
+
+
+Write a playbook /home/thor/playbooks/configure_swap.yml to and set vm.swappiness=10 to improve the performance when sufficient memory exists on the system.

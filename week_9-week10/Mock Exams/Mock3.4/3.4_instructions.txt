@@ -1,0 +1,3 @@
+Navigate to ~/playbooks/jenkins and create a playbook called install_jenkins.yml. This playbook should make use of the geerlingguy.jenkins role that is under jenkins/roles/ to install jenkins on node01, use the inventory file present under playbooks/jenkins directory. The playbooks should make use of variable jenkins_http_port: 8082 Also please make sure to install java package (before installing jenkins) using pre-tasks within same playbook.
+
+Note: This playbook can take up to 5-10 minutes to complete so please keep patience after clicking on Check button.

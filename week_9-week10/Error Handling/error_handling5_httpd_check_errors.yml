@@ -1,0 +1,28 @@
+#error_handling5_httpd_check_errors.yml
+# The playbook ~/playbooks/httpd_check_errors.yml installs httpd on web1 node, then checks for errors in the error log and then starts the httpd service. Our goal is for the playbook to fail if the error check (second task) detects errors in the log file. However, with the current playbook, the error check (second task) has no impact as it is only viewing the error log file. Update the playbook so that it fails if it detects a string Error in the file /var/log/httpd/error_log.
+# The task is already there. Only implement error handling. Use ~/playbooks/inventory inventory to test the playbook that is already present on ansible controller.
+
+---
+- name: Install httpd
+  hosts: web1
+  gather_facts: no
+  tasks:
+    - name: Install httpd
+      yum:
+        name: httpd
+        state: present
+
+    - name: Check httpd error logs
+      command: cat /var/log/httpd/error_log
+      register: error_log_out
+      failed_when: "'Error' in error_log_out.stdout"
+
+    - name: start service
+      service:
+        name: httpd
+        state: started
+
+    - name: Create a file
+      file:
+        path: /tmp/file
+        state: touch

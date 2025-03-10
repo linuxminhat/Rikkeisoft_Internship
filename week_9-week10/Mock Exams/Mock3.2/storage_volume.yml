@@ -1,0 +1,14 @@
+---
+- name: Create volume group and logical volume on node01
+  hosts: node01
+  tasks:
+    - name: Create volume group
+      lvg:
+        vg: vg_os
+        pvs: /dev/vdb1
+
+    - name: Create logical volume
+      lvol:
+        vg: vg_os
+        lv: lv_os
+        size: 500M

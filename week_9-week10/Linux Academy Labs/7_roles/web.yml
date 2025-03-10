@@ -1,0 +1,10 @@
+---
+- hosts: webservers
+  become: yes
+  roles:
+    - role: baseline
+  tasks:
+    - name: install httpd
+      yum: name=httpd state=latest
+    - name: start and enable httpd
+      service: name=httpd state=started enabled=yes

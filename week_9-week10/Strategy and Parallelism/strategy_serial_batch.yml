@@ -1,0 +1,46 @@
+# Serial (Batch) Strategy
+# https://docs.ansible.com/ansible/latest/user_guide/playbooks_strategies.html
+
+# Three at a time
+serial: 3
+
+# 10% at a time (any remainder would be handled in a final small batch)
+serial: 10%
+
+# Run the play for 1 host, then 5 hosts, then 10 hosts at time until all are completed
+serial:
+  - 1
+  - 5
+  - 10
+
+# Run the play for 1 host, then 3 hosts, then 20% of the hosts at a time (based on the original total) until all are completed
+serial:
+  - 1
+  - 3
+  - 20%
+
+# Based on default Linear strategy
+
+# Runs Task 1 linearly on three servers
+# Waits for task to complete on all three servers before proceeding to Task 2
+# Runs Task 2 on the same three servers
+# ...
+# Finishes all tasks for initial three servers
+# Runs Task 1 linearly on second set of three servers (or all remaining servers if less than three)
+# Etc.
+
+---
+- name: Deploy web app but fail/stop play for all hosts if any errors
+  hosts: server1, server2, server3, server4, server5
+  serial: 2
+  tasks:
+    - name: Install dependencies
+      # details
+    - name: Install MySQL database
+      # details
+    - name: Start MySQL service
+      # details
+    - name: Install Python Flask dependencies
+      # details
+    - name: Run web server
+      # details

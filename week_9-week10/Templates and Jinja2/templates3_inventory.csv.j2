@@ -1,0 +1,5 @@
+#templates3_inventory.csv.j2
+hostname, architecture, distribution_version, mem_total_mb, processor_cores, processor_count
+{% for host in groups['web'] %}
+{{ hostvars[host]['inventory_hostname'] }}, {{ hostvars[host]['ansible_architecture'] }}, {{ hostvars[host]['ansible_facts']['distribution_version'] }}, {{ hostvars[host]['ansible_memtotal_mb'] }}, {{ hostvars[host]['ansible_processor_cores'] }}, {{ hostvars[host]['ansible_processor_count'] }}
+{% endfor %}

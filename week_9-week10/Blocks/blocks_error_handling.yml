@@ -1,0 +1,25 @@
+#blocks2.yml
+---
+- name: Play with using blocks
+  hosts: all
+  tasks:
+  - block:
+    - name: Install MySQL
+      yum:
+        name: mysql-server
+        state: present
+    - name: Start MySQL service
+      service:
+        name: mysql-server
+        state: started
+        enabled: yes
+    become_user: db-user
+    when: ansible_facts['distribution'] == 'CentOS'
+    rescue:
+    - mail:
+        to: admin@company.com
+        subject: DB install failed at {{ ansible_failed_task.name }}
+    always:
+    - mail:
+        to: admin@company.com
+        subject: DB install status - {{ ansible_failed_result }}

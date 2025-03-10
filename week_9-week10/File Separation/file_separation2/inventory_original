@@ -1,0 +1,4 @@
+#inventory_original
+[web_servers]
+web1 ansible_host=172.20.1.100 dns_server=8.8.8.8 size=big
+web2 ansible_host=172.20.1.101 dns_server=8.8.8.8 size=small

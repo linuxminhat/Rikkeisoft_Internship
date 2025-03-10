@@ -1,0 +1,49 @@
+# Ansible Configuration Order of Precedence (will stop looking once it finds a config file)
+ANSIBLE_CONFIG=/my/path/to/ansible.cfg (environment variable)
+ansible.cfg (in current directory)
+.ansible.cfg (in current user's home directory)
+/etc/ansible/ansible.cfg
+
+# Changes are picked up every time Ansible is run.
+
+# Global configuration
+/etc/ansible/ansible.cfg
+
+# Custom configurations?
+# Place a custom copy of ansible.cfg in the playbook directory, OR
+# Place a custom copy of .ansible.cfg (yes, with a leading dot) in the user's home directory, OR
+# Set $ANSIBLE_CONFIG environment variable to the location of the desired playbook
+  # Single execution
+  ANSIBLE_CONFIG=/opt/ansible.cfg ansible-playbook playbook.yml
+
+  # Persist for active shell
+  export ANSIBLE_CONFIG=/opt/ansible.cfg
+
+  # Persist globally
+  # Copy the ansible.cfg to the playbook directory  
+
+# How are multiple values handled? Order of preference:
+1) Environment variable: $ANSIBLE_CONFIG=/opt/ansible.cfg
+2) Playbook directory: /opt/network-playbooks/ansible.cfg
+3) ".ansible.cfg" in the user's home directory: ~/.ansible.cfg
+4) Global config: /etc/ansible/ansible.cfg
+
+# Can set environment variables for most Ansible configurations:
+/etc/ansible/ansible.cfg
+gathering = implicit
+
+ANSIBLE_GATHERING=explicit
+
+# List all configurations and environment variables
+ansible-config list
+
+# Show the current config file
+ansible-config view
+
+# Show comprehensive list of current settings (and where they were picked up)
+ansible-config dump
+
+# Common Configuration Variables
+ansible_managed (text inserted at top of files managed by Ansible)
+forks (see parallellism and strategy)
+inventory (location of default inventory)

@@ -1,0 +1,18 @@
+---
+- name: Deploy nginx
+  hosts: all
+  tasks:
+    - name: Install nginx
+      yum:
+        name: nginx
+        state: installed
+
+    - name: Copy index.html
+      copy:
+        src: /home/thor/playbooks/index.html
+        dest: /usr/share/nginx/html
+
+    - name: Re/start nginx to ensure correct content
+      service:
+        name: nginx
+        state: reloaded

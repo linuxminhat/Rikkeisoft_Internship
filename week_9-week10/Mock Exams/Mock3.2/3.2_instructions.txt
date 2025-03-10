@@ -1,0 +1,7 @@
+Under ~/playbooks/ directory create a playbook storage_volume.yml . The playbook should only run on node node01 and make use of the inventory file ~/playbooks/inventory .
+
+Task 1: Create a new VG called vg_os. Use the PV /dev/vdb1 for the VG.
+
+Task 2: Create a logical Volume called lv_os and vg vg_os, size 500M
+
+Use module lvg and lvol

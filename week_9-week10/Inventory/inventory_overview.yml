@@ -1,0 +1,11 @@
+# Inventory can be defined statically, dynamically, or a combination (by calling a directory containing both).
+
+# Static inventory can be written in INI or YAML formats.
+
+# Dynamic inventory is based on a script (bash, python, etc.)
+# Script must return JSON format
+# Script must respond to two possible parameters
+--list (all hosts)
+--host [hostname] (single host)
+
+# Variables can be stored in inventory, but best practice is to define variables in separate YAML files.

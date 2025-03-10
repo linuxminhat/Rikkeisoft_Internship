@@ -1,0 +1,12 @@
+Using a playbook ~/playbooks/apache.yml (create new if doesn't exist) perform the below given tasks on node01:
+
+
+a. Install httpd and php packages.
+
+b. Change default document root of Apache to /var/www/html/myroot in default Apache config /etc/httpd/conf/httpd.conf. Make sure /var/www/html/myroot path exists.
+
+c. There is a template ~/playbooks/templates/phpinfo.php.j2 on ansible controller node. Copy this template to Apache document root on node01 host as phpinfo.php file and make sure owner and group owner is apache user.
+
+d. Start and enable httpd service.
+
+e. Add rule in firewalld public zone to open http port 80 for public access so that phpinfo.php page is accessible in browser, also rule should be permanent.

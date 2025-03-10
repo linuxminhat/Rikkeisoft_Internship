@@ -1,0 +1,14 @@
+#data2.yml
+---
+- name: Copy remote archive back on web1
+  hosts: web1
+  tasks:
+  - name: Copy data2 to data
+    copy:
+      remote_src: yes
+      src: /root/data2.tar.gz
+      dest: /root/data.tar.gz
+  - name: Delete data2
+    file:
+      path: /root/data2.tar.gz
+      state: absent

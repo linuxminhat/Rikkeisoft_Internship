@@ -1,0 +1,4 @@
+- name: Configure Firewalld
+  hosts: all
+  roles:
+    - role: ansible-role-firewalld

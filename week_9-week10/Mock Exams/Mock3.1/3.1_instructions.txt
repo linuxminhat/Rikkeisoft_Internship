@@ -1,0 +1,3 @@
+We have 2 managed nodes that are part of different DNS domains with a distinct DNS server for each. Using the sample resolv.conf located at ~/playbooks/dns, generate a new resolv.conf file and copy it to the respective nodes using the template module.
+
+Update the template file located at ~/playbooks/dns/templates/resolv.conf.j2 to print the nameserver details as shown in the sample_resolv.conf file. DNS server to be used is specified in the inventory file. Use this template to create a playbook called update_dns_server.yml. This playbook should generate the new resolv.conf and copy to the temp file /tmp/resolv.conf on the respective nodes .

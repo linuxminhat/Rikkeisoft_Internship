@@ -1,0 +1,16 @@
+# Execution Order
+
+# Run tasks on hosts from top to bottom as listed in the inventory (default)
+order: inventory
+
+# Run tasks on hosts from bottom to top as listed in the inventory
+order: reverse_inventory
+
+# Run tasks on hosts sorted in alphabetical order
+order: sorted
+
+# Run tasks on hosts sorted in reverse-alphabetical order
+order: reverse_sorted
+
+# Run tasks on hosts in random order for each run
+order: shuffle

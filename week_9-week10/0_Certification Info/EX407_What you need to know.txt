@@ -1,0 +1,20 @@
+https://www.redhat.com/en/services/training/ex407-red-hat-certified-specialist-in-ansible-automation-exam?section=What+you+need+to+know
+
+Preparation
+Red Hat encourages you to consider taking Automation with Ansible I (DO407) to help prepare. Attendance in this course is not required; students can choose to take just the exam.
+
+While attending Red Hat classes can be an important part of your preparation, attending class does not guarantee success on the exam. Previous experience, practice, and native aptitude are also important determinants of success.
+
+Many books and other resources on system administration for Red Hat products are available. Red Hat does not endorse any of these materials as preparation guides for exams. Nevertheless, you may find additional reading helpful to deepen your understanding.
+
+Exam format
+This exam is a performance-based evaluation of your ability to use Ansible to automate system configuration and application deployment. Performance-based testing means that you must perform tasks similar to what you perform on your job.
+
+You will be required to develop Ansible playbooks that configure systems for specific roles and then apply those playbooks to systems to implement those roles. You will also be asked to demonstrate your ability to run Ansible playbooks and configure an Ansible environment for specific behaviors. You will be evaluated on whether you have met specific objective criteria.
+
+This exam can also be taken virtually as part of our remote testing format. Find out more about remote exams to see if this is the right choice for you.
+
+Scores and reporting
+Official scores for exams come exclusively from Red Hat Certification Central. Red Hat does not authorize examiners or training partners to report results to candidates directly. Scores on the exam are usually reported within 3 U.S. business days.
+
+Exam results are reported as total scores. Red Hat does not report performance on individual items, nor will it provide additional information upon request.

@@ -1,0 +1,8 @@
+Under ~/playbooks/ directory create a playbook storage_mount.yml . The playbook should only run on node node01 and make use of the inventory file ~/playbooks/inventory .
+
+Task 1: Create a new ext4 filesystem on Logical Volume lv_os created in the previous question.
+
+Task 2: Mount the ext4 filesystem at mount path /mnt/os_data
+
+
+Make use of filesystem and mount modules

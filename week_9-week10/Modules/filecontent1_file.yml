@@ -1,0 +1,10 @@
+#perm.yml
+---
+- name: Create blank file with permissions 0640 on web1
+  hosts: web1
+  tasks:
+  - name: Create blank file with permissions 0640
+    file:
+      path: /opt/data/perm.txt
+      state: touch
+      mode: 0640

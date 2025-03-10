@@ -1,0 +1,14 @@
+#help_me_fix_it.yml
+---
+- name: help me fix it playbook
+  hosts: all
+  gather_facts: no
+  tasks:
+  - name: alternative way to gather facts about remote host
+    setup: filter='ansible_dist*'
+    register: facts
+  - name: Print facts
+    debug:
+      var: facts
+
+  - shell: echo "{{facts.ansible_facts.ansible_distribution}}" > /tmp/output.txt

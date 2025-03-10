@@ -1,0 +1,19 @@
+#failed_when.yml
+---
+- name: Deploy web app but fail play if log contains errors
+  hosts: all
+  tasks:
+    - name: Install dependencies
+      # details
+    - name: Install MySQL database
+      # details
+    - name: Start MySQL service
+      # details
+    - name: Install Python Flask dependencies
+      # details
+    - name: Run web server
+      # details
+    - name: Check log for errors
+      command: cat /var/log/server.log
+      register: server_log_output
+      failed_when: 'ERROR' in server_log_output.stdout

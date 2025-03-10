@@ -1,0 +1,15 @@
+#conditionals1_install_apache.yml
+---
+- name: Install apache on all servers
+  hosts: all
+  tasks:
+  - name: Install httpd on CentOS (RedHat) servers
+    yum:
+      name: httpd
+      state: present
+    when: ansible_os_family == "RedHat"
+  - name: Install apache2 on Ubuntu (Debian) servers
+    apt:
+      name: apache2
+      state: present
+    when: ansible_os_family == "Debian"

@@ -1,0 +1,18 @@
+We have php, nginx and mariadb installed on node02 and have a DB mydb created there. The user to connect to DB is myuser and password is mypassword. Create a playbook ~/playbooks/database.yml to perform below given tasks:
+
+
+a. Start nginx and mariadb services.
+
+b. Delete all default files/directories from nginx document root /usr/share/nginx/html/
+
+c. Download a zip archive from https://github.com/inderpreetaps/ansible-1100-mock-nginx/raw/master/index.php.zip and extract it in /usr/share/nginx/html/
+
+d. The archive have an index.php file to check DB connectivity. Replace some required DB details in the file using replace or lineinfile module:
+
+$database = "database"; to $database = "mydb";
+
+$username = "user"; to $username = "myuser";
+
+$password = "password"; to $password = "mypassword";
+
+e. Restart nginx after making required changes.

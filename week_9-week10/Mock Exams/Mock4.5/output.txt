@@ -1,0 +1,7 @@
+
+thor@ansible-controller ~/playbooks$ sudo yum install -y git
+
+thor@ansible-controller ~/playbooks$ ansible-galaxy install -p ~/playbooks/roles git+https://github.com/arillso/ansible.logrotate
+- extracting ansible.logrotate to /home/thor/playbooks/roles/ansible.logrotate
+- ansible.logrotate was installed successfully
+

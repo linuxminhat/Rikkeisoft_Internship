@@ -1,0 +1,993 @@
+  "libpython-stdlib": [
+    {
+      "source": "apt",
+      "version": "2.7.12-1~16.04",
+      "arch": "amd64",
+      "name": "libpython-stdlib"
+    }
+  ],
+  "python-minimal": [
+    {
+      "source": "apt",
+      "version": "2.7.12-1~16.04",
+      "arch": "amd64",
+      "name": "python-minimal"
+    }
+  ],
+  "libxpm4": [
+    {
+      "source": "apt",
+      "version": "1:3.5.11-1ubuntu0.16.04.1",
+      "arch": "amd64",
+      "name": "libxpm4"
+    }
+  ],
+  "mawk": [
+    {
+      "source": "apt",
+      "version": "1.3.3-17ubuntu2",
+      "arch": "amd64",
+      "name": "mawk"
+    }
+  ],
+  "libgssapi-krb5-2": [
+    {
+      "source": "apt",
+      "version": "1.13.2+dfsg-5ubuntu2.1",
+      "arch": "amd64",
+      "name": "libgssapi-krb5-2"
+    }
+  ],
+  "liblua5.1-0": [
+    {
+      "source": "apt",
+      "version": "5.1.5-8ubuntu1",
+      "arch": "amd64",
+      "name": "liblua5.1-0"
+    }
+  ],
+  "openssl": [
+    {
+      "source": "apt",
+      "version": "1.0.2g-1ubuntu4.15",
+      "arch": "amd64",
+      "name": "openssl"
+    }
+  ],
+  "libp11-kit0": [
+    {
+      "source": "apt",
+      "version": "0.23.2-5~ubuntu16.04.1",
+      "arch": "amd64",
+      "name": "libp11-kit0"
+    }
+  ],
+  "libaprutil1-dbd-sqlite3": [
+    {
+      "source": "apt",
+      "version": "1.5.4-1build1",
+      "arch": "amd64",
+      "name": "libaprutil1-dbd-sqlite3"
+    }
+  ],
+  "python3.5-minimal": [
+    {
+      "source": "apt",
+      "version": "3.5.2-2ubuntu0~16.04.8",
+      "arch": "amd64",
+      "name": "python3.5-minimal"
+    }
+  ],
+  "libapt-inst2.0": [
+    {
+      "source": "apt",
+      "version": "1.2.32ubuntu0.1",
+      "arch": "amd64",
+      "name": "libapt-inst2.0"
+    }
+  ],
+  "login": [
+    {
+      "source": "apt",
+      "version": "1:4.2-3.1ubuntu5.4",
+      "arch": "amd64",
+      "name": "login"
+    }
+  ],
+  "ssl-cert": [
+    {
+      "source": "apt",
+      "version": "1.0.37",
+      "arch": "all",
+      "name": "ssl-cert"
+    }
+  ],
+  "libbsd0": [
+    {
+      "source": "apt",
+      "version": "0.8.2-1",
+      "arch": "amd64",
+      "name": "libbsd0"
+    }
+  ],
+  "libgd3": [
+    {
+      "source": "apt",
+      "version": "2.1.1-4ubuntu0.16.04.11",
+      "arch": "amd64",
+      "name": "libgd3"
+    }
+  ],
+  "libapr1": [
+    {
+      "source": "apt",
+      "version": "1.5.2-3",
+      "arch": "amd64",
+      "name": "libapr1"
+    }
+  ],
+  "libffi6": [
+    {
+      "source": "apt",
+      "version": "3.2.1-4",
+      "arch": "amd64",
+      "name": "libffi6"
+    }
+  ],
+  "libxcb1": [
+    {
+      "source": "apt",
+      "version": "1.11.1-1ubuntu1",
+      "arch": "amd64",
+      "name": "libxcb1"
+    }
+  ],
+  "libdevmapper1.02.1": [
+    {
+      "source": "apt",
+      "version": "2:1.02.110-1ubuntu10",
+      "arch": "amd64",
+      "name": "libdevmapper1.02.1"
+    }
+  ],
+  "libxext6": [
+    {
+      "source": "apt",
+      "version": "2:1.3.3-1",
+      "arch": "amd64",
+      "name": "libxext6"
+    }
+  ],
+  "apt": [
+    {
+      "source": "apt",
+      "version": "1.2.32",
+      "arch": "amd64",
+      "name": "apt"
+    }
+  ],
+  "libxmuu1": [
+    {
+      "source": "apt",
+      "version": "2:1.1.2-2",
+      "arch": "amd64",
+      "name": "libxmuu1"
+    }
+  ],
+  "ucf": [
+    {
+      "source": "apt",
+      "version": "3.0036",
+      "arch": "all",
+      "name": "ucf"
+    }
+  ],
+  "wget": [
+    {
+      "source": "apt",
+      "version": "1.17.1-1ubuntu1.5",
+      "arch": "amd64",
+      "name": "wget"
+    }
+  ],
+  "libperl5.22": [
+    {
+      "source": "apt",
+      "version": "5.22.1-9ubuntu0.6",
+      "arch": "amd64",
+      "name": "libperl5.22"
+    }
+  ],
+  "init-system-helpers": [
+    {
+      "source": "apt",
+      "version": "1.29ubuntu4",
+      "arch": "all",
+      "name": "init-system-helpers"
+    }
+  ],
+  "libc-bin": [
+    {
+      "source": "apt",
+      "version": "2.23-0ubuntu11",
+      "arch": "amd64",
+      "name": "libc-bin"
+    }
+  ],
+  "libbz2-1.0": [
+    {
+      "source": "apt",
+      "version": "1.0.6-8ubuntu0.2",
+      "arch": "amd64",
+      "name": "libbz2-1.0"
+    }
+  ],
+  "libldap-2.4-2": [
+    {
+      "source": "apt",
+      "version": "2.4.42+dfsg-2ubuntu3.9",
+      "arch": "amd64",
+      "name": "libldap-2.4-2"
+    }
+  ],
+  "python3-requests": [
+    {
+      "source": "apt",
+      "version": "2.9.1-3ubuntu0.1",
+      "arch": "all",
+      "name": "python3-requests"
+    }
+  ],
+  "adduser": [
+    {
+      "source": "apt",
+      "version": "3.113+nmu3ubuntu4",
+      "arch": "all",
+      "name": "adduser"
+    }
+  ],
+  "sysv-rc": [
+    {
+      "source": "apt",
+      "version": "2.88dsf-59.3ubuntu2",
+      "arch": "all",
+      "name": "sysv-rc"
+    }
+  ],
+  "perl": [
+    {
+      "source": "apt",
+      "version": "5.22.1-9ubuntu0.6",
+      "arch": "amd64",
+      "name": "perl"
+    }
+  ],
+  "netbase": [
+    {
+      "source": "apt",
+      "version": "5.3",
+      "arch": "all",
+      "name": "netbase"
+    }
+  ],
+  "libaudit-common": [
+    {
+      "source": "apt",
+      "version": "1:2.4.5-1ubuntu2.1",
+      "arch": "all",
+      "name": "libaudit-common"
+    }
+  ],
+  "libjpeg8": [
+    {
+      "source": "apt",
+      "version": "8c-2ubuntu8",
+      "arch": "amd64",
+      "name": "libjpeg8"
+    }
+  ],
+  "libpython3.5-stdlib": [
+    {
+      "source": "apt",
+      "version": "3.5.2-2ubuntu0~16.04.8",
+      "arch": "amd64",
+      "name": "libpython3.5-stdlib"
+    }
+  ],
+  "apache2-data": [
+    {
+      "source": "apt",
+      "version": "2.4.18-2ubuntu3.17",
+      "arch": "all",
+      "name": "apache2-data"
+    }
+  ],
+  "libsepol1": [
+    {
+      "source": "apt",
+      "version": "2.4-2",
+      "arch": "amd64",
+      "name": "libsepol1"
+    }
+  ],
+  "openssh-server": [
+    {
+      "source": "apt",
+      "version": "1:7.2p2-4ubuntu2.8",
+      "arch": "amd64",
+      "name": "openssh-server"
+    }
+  ],
+  "libsemanage-common": [
+    {
+      "source": "apt",
+      "version": "2.3-1build3",
+      "arch": "all",
+      "name": "libsemanage-common"
+    }
+  ],
+  "libgmp10": [
+    {
+      "source": "apt",
+      "version": "2:6.1.0+dfsg-2",
+      "arch": "amd64",
+      "name": "libgmp10"
+    }
+  ],
+  "libgcrypt20": [
+    {
+      "source": "apt",
+      "version": "1.6.5-2ubuntu0.5",
+      "arch": "amd64",
+      "name": "libgcrypt20"
+    }
+  ],
+  "python3-chardet": [
+    {
+      "source": "apt",
+      "version": "2.3.0-2",
+      "arch": "all",
+      "name": "python3-chardet"
+    }
+  ],
+  "python3.5": [
+    {
+      "source": "apt",
+      "version": "3.5.2-2ubuntu0~16.04.8",
+      "arch": "amd64",
+      "name": "python3.5"
+    }
+  ],
+  "debianutils": [
+    {
+      "source": "apt",
+      "version": "4.7",
+      "arch": "amd64",
+      "name": "debianutils"
+    }
+  ],
+  "bsdutils": [
+    {
+      "source": "apt",
+      "version": "1:2.27.1-6ubuntu3.8",
+      "arch": "amd64",
+      "name": "bsdutils"
+    }
+  ],
+  "libheimntlm0-heimdal": [
+    {
+      "source": "apt",
+      "version": "1.7~git20150920+dfsg-4ubuntu1.16.04.1",
+      "arch": "amd64",
+      "name": "libheimntlm0-heimdal"
+    }
+  ],
+  "ncurses-base": [
+    {
+      "source": "apt",
+      "version": "6.0+20160213-1ubuntu1",
+      "arch": "all",
+      "name": "ncurses-base"
+    }
+  ],
+  "dpkg": [
+    {
+      "source": "apt",
+      "version": "1.18.4ubuntu1.6",
+      "arch": "amd64",
+      "name": "dpkg"
+    }
+  ],
+  "grep": [
+    {
+      "source": "apt",
+      "version": "2.25-1~16.04.1",
+      "arch": "amd64",
+      "name": "grep"
+    }
+  ],
+  "mount": [
+    {
+      "source": "apt",
+      "version": "2.27.1-6ubuntu3.8",
+      "arch": "amd64",
+      "name": "mount"
+    }
+  ],
+  "libapparmor1": [
+    {
+      "source": "apt",
+      "version": "2.10.95-0ubuntu2.11",
+      "arch": "amd64",
+      "name": "libapparmor1"
+    }
+  ],
+  "initscripts": [
+    {
+      "source": "apt",
+      "version": "2.88dsf-59.3ubuntu2",
+      "arch": "amd64",
+      "name": "initscripts"
+    }
+  ],
+  "libdb5.3": [
+    {
+      "source": "apt",
+      "version": "5.3.28-11ubuntu0.2",
+      "arch": "amd64",
+      "name": "libdb5.3"
+    }
+  ],
+  "libxslt1.1": [
+    {
+      "source": "apt",
+      "version": "1.1.28-2.1ubuntu0.2",
+      "arch": "amd64",
+      "name": "libxslt1.1"
+    }
+  ],
+  "libapt-pkg5.0": [
+    {
+      "source": "apt",
+      "version": "1.2.32",
+      "arch": "amd64",
+      "name": "libapt-pkg5.0"
+    }
+  ],
+  "geoip-database": [
+    {
+      "source": "apt",
+      "version": "20160408-1",
+      "arch": "all",
+      "name": "geoip-database"
+    }
+  ],
+  "procps": [
+    {
+      "source": "apt",
+      "version": "2:3.3.10-4ubuntu2.4",
+      "arch": "amd64",
+      "name": "procps"
+    }
+  ],
+  "libxdmcp6": [
+    {
+      "source": "apt",
+      "version": "1:1.1.2-1.1",
+      "arch": "amd64",
+      "name": "libxdmcp6"
+    }
+  ],
+  "libtasn1-6": [
+    {
+      "source": "apt",
+      "version": "4.7-3ubuntu0.16.04.3",
+      "arch": "amd64",
+      "name": "libtasn1-6"
+    }
+  ],
+  "rename": [
+    {
+      "source": "apt",
+      "version": "0.20-4",
+      "arch": "all",
+      "name": "rename"
+    }
+  ],
+  "libx11-data": [
+    {
+      "source": "apt",
+      "version": "2:1.6.3-1ubuntu2.1",
+      "arch": "all",
+      "name": "libx11-data"
+    }
+  ],
+  "tar": [
+    {
+      "source": "apt",
+      "version": "1.28-2.1ubuntu0.1",
+      "arch": "amd64",
+      "name": "tar"
+    }
+  ],
+  "libxml2": [
+    {
+      "source": "apt",
+      "version": "2.9.3+dfsg1-1ubuntu0.6",
+      "arch": "amd64",
+      "name": "libxml2"
+    }
+  ],
+  "sudo": [
+    {
+      "source": "apt",
+      "version": "1.8.16-0ubuntu1.7",
+      "arch": "amd64",
+      "name": "sudo"
+    }
+  ],
+  "libwind0-heimdal": [
+    {
+      "source": "apt",
+      "version": "1.7~git20150920+dfsg-4ubuntu1.16.04.1",
+      "arch": "amd64",
+      "name": "libwind0-heimdal"
+    }
+  ],
+  "libfreetype6": [
+    {
+      "source": "apt",
+      "version": "2.6.1-0.1ubuntu2.4",
+      "arch": "amd64",
+      "name": "libfreetype6"
+    }
+  ],
+  "dash": [
+    {
+      "source": "apt",
+      "version": "0.5.8-2.1ubuntu2",
+      "arch": "amd64",
+      "name": "dash"
+    }
+  ],
+  "libprocps4": [
+    {
+      "source": "apt",
+      "version": "2:3.3.10-4ubuntu2.4",
+      "arch": "amd64",
+      "name": "libprocps4"
+    }
+  ],
+  "file": [
+    {
+      "source": "apt",
+      "version": "1:5.25-2ubuntu1.2",
+      "arch": "amd64",
+      "name": "file"
+    }
+  ],
+  "base-files": [
+    {
+      "source": "apt",
+      "version": "9.4ubuntu4.8",
+      "arch": "amd64",
+      "name": "base-files"
+    }
+  ],
+  "libjpeg-turbo8": [
+    {
+      "source": "apt",
+      "version": "1.4.2-0ubuntu3.1",
+      "arch": "amd64",
+      "name": "libjpeg-turbo8"
+    }
+  ],
+  "libpython2.7-stdlib": [
+    {
+      "source": "apt",
+      "version": "2.7.12-1ubuntu0~16.04.8",
+      "arch": "amd64",
+      "name": "libpython2.7-stdlib"
+    }
+  ],
+  "libkrb5support0": [
+    {
+      "source": "apt",
+      "version": "1.13.2+dfsg-5ubuntu2.1",
+      "arch": "amd64",
+      "name": "libkrb5support0"
+    }
+  ],
+  "openssh-sftp-server": [
+    {
+      "source": "apt",
+      "version": "1:7.2p2-4ubuntu2.8",
+      "arch": "amd64",
+      "name": "openssh-sftp-server"
+    }
+  ],
+  "bash": [
+    {
+      "source": "apt",
+      "version": "4.3-14ubuntu1.4",
+      "arch": "amd64",
+      "name": "bash"
+    }
+  ],
+  "libsasl2-2": [
+    {
+      "source": "apt",
+      "version": "2.1.26.dfsg1-14ubuntu0.2",
+      "arch": "amd64",
+      "name": "libsasl2-2"
+    }
+  ],
+  "libxtables11": [
+    {
+      "source": "apt",
+      "version": "1.6.0-2ubuntu3",
+      "arch": "amd64",
+      "name": "libxtables11"
+    }
+  ],
+  "libtinfo5": [
+    {
+      "source": "apt",
+      "version": "6.0+20160213-1ubuntu1",
+      "arch": "amd64",
+      "name": "libtinfo5"
+    }
+  ],
+  "fontconfig-config": [
+    {
+      "source": "apt",
+      "version": "2.11.94-0ubuntu1.1",
+      "arch": "all",
+      "name": "fontconfig-config"
+    }
+  ],
+  "libicu55": [
+    {
+      "source": "apt",
+      "version": "55.1-7ubuntu0.4",
+      "arch": "amd64",
+      "name": "libicu55"
+    }
+  ],
+  "libasn1-8-heimdal": [
+    {
+      "source": "apt",
+      "version": "1.7~git20150920+dfsg-4ubuntu1.16.04.1",
+      "arch": "amd64",
+      "name": "libasn1-8-heimdal"
+    }
+  ],
+  "libfdisk1": [
+    {
+      "source": "apt",
+      "version": "2.27.1-6ubuntu3.8",
+      "arch": "amd64",
+      "name": "libfdisk1"
+    }
+  ],
+  "hostname": [
+    {
+      "source": "apt",
+      "version": "3.16ubuntu2",
+      "arch": "amd64",
+      "name": "hostname"
+    }
+  ],
+  "perl-base": [
+    {
+      "source": "apt",
+      "version": "5.22.1-9ubuntu0.6",
+      "arch": "amd64",
+      "name": "perl-base"
+    }
+  ],
+  "libaudit1": [
+    {
+      "source": "apt",
+      "version": "1:2.4.5-1ubuntu2.1",
+      "arch": "amd64",
+      "name": "libaudit1"
+    }
+  ],
+  "libgnutls30": [
+    {
+      "source": "apt",
+      "version": "3.4.10-4ubuntu1.8",
+      "arch": "amd64",
+      "name": "libgnutls30"
+    }
+  ],
+  "coreutils": [
+    {
+      "source": "apt",
+      "version": "8.25-2ubuntu3~16.04",
+      "arch": "amd64",
+      "name": "coreutils"
+    }
+  ],
+  "libsasl2-modules": [
+    {
+      "source": "apt",
+      "version": "2.1.26.dfsg1-14ubuntu0.2",
+      "arch": "amd64",
+      "name": "libsasl2-modules"
+    }
+  ],
+  "libgdbm3": [
+    {
+      "source": "apt",
+      "version": "1.8.3-13.1",
+      "arch": "amd64",
+      "name": "libgdbm3"
+    }
+  ],
+  "libstdc++6": [
+    {
+      "source": "apt",
+      "version": "5.4.0-6ubuntu1~16.04.11",
+      "arch": "amd64",
+      "name": "libstdc++6"
+    }
+  ],
+  "libkmod2": [
+    {
+      "source": "apt",
+      "version": "22-1ubuntu5.2",
+      "arch": "amd64",
+      "name": "libkmod2"
+    }
+  ],
+  "libx11-6": [
+    {
+      "source": "apt",
+      "version": "2:1.6.3-1ubuntu2.1",
+      "arch": "amd64",
+      "name": "libx11-6"
+    }
+  ],
+  "libnettle6": [
+    {
+      "source": "apt",
+      "version": "3.2-1ubuntu0.16.04.1",
+      "arch": "amd64",
+      "name": "libnettle6"
+    }
+  ],
+  "insserv": [
+    {
+      "source": "apt",
+      "version": "1.14.0-5ubuntu3",
+      "arch": "amd64",
+      "name": "insserv"
+    }
+  ],
+  "passwd": [
+    {
+      "source": "apt",
+      "version": "1:4.2-3.1ubuntu5.4",
+      "arch": "amd64",
+      "name": "passwd"
+    }
+  ],
+  "libaprutil1": [
+    {
+      "source": "apt",
+      "version": "1.5.4-1build1",
+      "arch": "amd64",
+      "name": "libaprutil1"
+    }
+  ],
+  "multiarch-support": [
+    {
+      "source": "apt",
+      "version": "2.23-0ubuntu11",
+      "arch": "amd64",
+      "name": "multiarch-support"
+    }
+  ],
+  "gzip": [
+    {
+      "source": "apt",
+      "version": "1.6-4ubuntu1",
+      "arch": "amd64",
+      "name": "gzip"
+    }
+  ],
+  "zlib1g": [
+    {
+      "source": "apt",
+      "version": "1:1.2.8.dfsg-2ubuntu4.1",
+      "arch": "amd64",
+      "name": "zlib1g"
+    }
+  ],
+  "libc6": [
+    {
+      "source": "apt",
+      "version": "2.23-0ubuntu11",
+      "arch": "amd64",
+      "name": "libc6"
+    }
+  ],
+  "krb5-locales": [
+    {
+      "source": "apt",
+      "version": "1.13.2+dfsg-5ubuntu2.1",
+      "arch": "all",
+      "name": "krb5-locales"
+    }
+  ],
+  "libhogweed4": [
+    {
+      "source": "apt",
+      "version": "3.2-1ubuntu0.16.04.1",
+      "arch": "amd64",
+      "name": "libhogweed4"
+    }
+  ],
+  "libidn11": [
+    {
+      "source": "apt",
+      "version": "1.32-3ubuntu1.2",
+      "arch": "amd64",
+      "name": "libidn11"
+    }
+  ],
+  "libheimbase1-heimdal": [
+    {
+      "source": "apt",
+      "version": "1.7~git20150920+dfsg-4ubuntu1.16.04.1",
+      "arch": "amd64",
+      "name": "libheimbase1-heimdal"
+    }
+  ],
+  "perl-modules-5.22": [
+    {
+      "source": "apt",
+      "version": "5.22.1-9ubuntu0.6",
+      "arch": "all",
+      "name": "perl-modules-5.22"
+    }
+  ],
+  "libdns-export162": [
+    {
+      "source": "apt",
+      "version": "1:9.10.3.dfsg.P4-8ubuntu1.17",
+      "arch": "amd64",
+      "name": "libdns-export162"
+    }
+  ],
+  "libexpat1": [
+    {
+      "source": "apt",
+      "version": "2.1.0-7ubuntu0.16.04.5",
+      "arch": "amd64",
+      "name": "libexpat1"
+    }
+  ],
+  "diffutils": [
+    {
+      "source": "apt",
+      "version": "1:3.3-3",
+      "arch": "amd64",
+      "name": "diffutils"
+    }
+  ],
+  "ncurses-term": [
+    {
+      "source": "apt",
+      "version": "6.0+20160213-1ubuntu1",
+      "arch": "all",
+      "name": "ncurses-term"
+    }
+  ],
+  "python-apt-common": [
+    {
+      "source": "apt",
+      "version": "1.1.0~beta1ubuntu0.16.04.9",
+      "arch": "all",
+      "name": "python-apt-common"
+    }
+  ],
+  "isc-dhcp-client": [
+    {
+      "source": "apt",
+      "version": "4.3.3-5ubuntu12.10",
+      "arch": "amd64",
+      "name": "isc-dhcp-client"
+    }
+  ],
+  "e2fsprogs": [
+    {
+      "source": "apt",
+      "version": "1.42.13-1ubuntu1",
+      "arch": "amd64",
+      "name": "e2fsprogs"
+    }
+  ],
+  "base-passwd": [
+    {
+      "source": "apt",
+      "version": "3.5.39",
+      "arch": "amd64",
+      "name": "base-passwd"
+    }
+  ],
+  "python2.7-minimal": [
+    {
+      "source": "apt",
+      "version": "2.7.12-1ubuntu0~16.04.8",
+      "arch": "amd64",
+      "name": "python2.7-minimal"
+    }
+  ],
+  "dh-python": [
+    {
+      "source": "apt",
+      "version": "2.20151103ubuntu1.2",
+      "arch": "all",
+      "name": "dh-python"
+    }
+  ],
+  "libhx509-5-heimdal": [
+    {
+      "source": "apt",
+      "version": "1.7~git20150920+dfsg-4ubuntu1.16.04.1",
+      "arch": "amd64",
+      "name": "libhx509-5-heimdal"
+    }
+  ],
+  "libselinux1": [
+    {
+      "source": "apt",
+      "version": "2.4-3build2",
+      "arch": "amd64",
+      "name": "libselinux1"
+    }
+  ],
+  "iproute2": [
+    {
+      "source": "apt",
+      "version": "4.3.0-1ubuntu3.16.04.5",
+      "arch": "amd64",
+      "name": "iproute2"
+    }
+  ],
+  "libblkid1": [
+    {
+      "source": "apt",
+      "version": "2.27.1-6ubuntu3.8",
+      "arch": "amd64",
+      "name": "libblkid1"
+    }
+  ],
+  "libuuid1": [
+    {
+      "source": "apt",
+      "version": "2.27.1-6ubuntu3.8",
+      "arch": "amd64",
+      "name": "libuuid1"
+    }
+  ],
+  "libsasl2-modules-db": [
+    {
+      "source": "apt",
+      "version": "2.1.26.dfsg1-14ubuntu0.2",
+      "arch": "amd64",
+      "name": "libsasl2-modules-db"
+    }
+  ],
+  "libjbig0": [
+    {
+      "source": "apt",
+      "version": "2.1-3.1",
+      "arch": "amd64",
+      "name": "libjbig0"
+    }
+  ]
+}

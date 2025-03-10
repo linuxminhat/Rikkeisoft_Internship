@@ -1,0 +1,12 @@
+#file_separation5_playbook.yml
+
+# We must now install and configure db and web server application on 2 servers. Some playbooks and task files have been created in the /home/thor/playbooks/full-stack-playbooks directory.
+# Finish the playbook.yml to include the tasks in the tasks directory.
+
+---
+- name: Configure full stack server
+  hosts: f-server-1
+  gather_facts: no
+  tasks:
+    - include_tasks: tasks/install-db-server.yml
+    - include_tasks: tasks/install-web-server.yml

@@ -1,0 +1,17 @@
+---
+- hosts: local
+  vars:
+    inv_file_path: /home/user/vars/inv.txt
+  tasks:
+    - name: Create file
+      file:
+        path: "{{ inv_file_path }}"
+        state: touch
+    - name: Write inventory to file as a list
+      lineinfile:
+        path: "{{ inv_file_path }}"
+        line: "{{ groups['labservers'] }}"
+    - name: Write inventory to file as a space-separated list
+      lineinfile:
+        path: "{{ inv_file_path }}"
+        line: "{{ groups['labservers'] | join(' ') }}"

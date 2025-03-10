@@ -1,0 +1,16 @@
+---
+- name: Test loops
+  hosts: node02
+  tasks:
+    - debug:
+        msg: "{{ item.regexp }} == {{ item.replace }}"
+      loop:
+        - { regexp: '\$database = "database";', replace: '\$database = "mydb";' }
+        - { regexp: '\$username = "user";', replace: '\$username = "myuser";' }
+        - { regexp: '\$password = "password";', replace: '\$password = "mypassword";' }
+
+    - debug:
+        msg: "{{ item.name }} {{ item.groups }}"
+      loop:
+        - { name: 'testuser1', groups: 'wheel' }
+        - { name: 'testuser2', groups: 'root' }

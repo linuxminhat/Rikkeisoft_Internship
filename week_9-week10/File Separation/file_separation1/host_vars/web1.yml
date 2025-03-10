@@ -1,0 +1,4 @@
+#web1.yml
+ansible_host: 172.20.1.100
+dns_server: 8.8.8.8
+size: big

@@ -1,0 +1,56 @@
+# web1.yml
+# https://docs.ansible.com/ansible/latest/modules/file_module.html
+---
+-
+  name: "Create blank file on web1"
+  hosts: web1
+  tasks:
+    - name: "Create blank file"
+      command: touch /root/myfile.txt
+
+---
+-
+  name: "Create blank file on web1"
+  hosts: web1
+  tasks:
+    - name: "Create blank file"
+      file:
+        path: /root/myfile.txt
+        state: touch
+
+ansible-playbook -i inventory web1.yml
+
+# httpd.yml
+# https://docs.ansible.com/ansible/latest/modules/yum_module.html
+---
+- hosts: web
+  tasks:
+    - name: Install httpd
+      yum:
+        name: httpd
+        state: present
+
+---
+
+ansible-playbook -i inventory httpd.yml
+
+# web2.yml
+---
+- hosts: web2
+  tasks:
+  - name: echo Welcome!
+    shell: 'echo "Welcome!" > /tmp/welcome.txt'
+
+ansible-playbook -i inventory web2.yml
+
+# user.yml
+# https://docs.ansible.com/ansible/latest/modules/user_module.html
+---
+- name: "Create users on web1"
+  hosts: web1
+  tasks:
+    - name: "Create user angel"
+      user:
+        name: angel
+
+ansible-playbook -i inventory user.yml

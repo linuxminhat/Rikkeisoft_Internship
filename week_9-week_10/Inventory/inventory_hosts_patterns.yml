@@ -1,0 +1,10 @@
+# Ansible Patterns
+# https://docs.ansible.com/ansible/latest/user_guide/intro_patterns.html
+
+hosts: host1, host2, host3
+
+hosts: group1, host1
+
+hosts: host*
+
+hosts: *.company.com

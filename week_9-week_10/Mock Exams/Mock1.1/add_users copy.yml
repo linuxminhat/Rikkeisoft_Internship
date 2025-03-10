@@ -1,0 +1,35 @@
+---
+- name: Add and configure users
+  hosts: node00
+  tasks:
+    - name: Include passwords
+      include_vars:
+        file: ~/playbooks/secrets/passwords.yml
+        name: passwords
+
+    - name: Show passwords
+      debug:
+        var: passwords
+
+    - name: Include users
+      include_vars:
+        file: ~/playbooks/data/users.yml
+        name: users
+
+    - name: Show users
+      debug:
+        var: users
+
+    - name: Add and configure admin users
+      user:
+        name: "{{ item }}"
+        password: "{{ passwords.admins }}"
+        groups: wheel
+      loop: "{{ users.admins }}"
+
+    - name: Add and configure developer users
+      user:
+        name: "{{ item }}"
+        password: "{{ passwords.developers }}"
+        home: /var/www
+      loop: "{{ users.developers }}"

@@ -1,0 +1,66 @@
+# Inventory
+web1 ansible_host=172.20.1.100 ansible_ssh_pass=Passw0rd ansible_user=root
+
+# Playbook
+---
+- name: Ensure httpd is started on web1
+  hosts: web1
+  tasks:
+  - name: Ensure httpd is started
+    service:
+      name: httpd
+      state: started
+
+# Playbook
+---
+- hosts: all
+  gather_facts: no
+  tasks:
+    - name: Copy Apache welcome file
+      copy:
+        src: index.html
+        dest: /var/www/html/index.html
+    - name: Reload httpd server
+      service:
+        name: httpd
+        state: reloaded
+
+# Playbook
+---
+- name: Ensure httpd is started on web1
+  hosts: web1
+  tasks:
+  - name: Ensure httpd is started and enabled
+    service:
+      name: httpd
+      state: started
+      enabled: yes
+
+# Playbook
+---
+- hosts: all
+  gather_facts: no
+  tasks:
+    - name: Make changes in Apache config
+      replace:
+        path: /etc/httpd/conf/httpd.conf
+        regexp: "^Listen 80"
+        replace: "Listen 443"
+    - name: Restart httpd
+      service:
+        name: httpd
+        state: restarted
+
+---
+- name: Install nginx on web1
+  hosts: web1
+  tasks:
+  - name: Install nginx
+    yum:
+      name: nginx
+      state: installed
+  - name: Ensure nginx is started and enabled
+    service:
+      name: nginx
+      state: started
+      enabled: yes

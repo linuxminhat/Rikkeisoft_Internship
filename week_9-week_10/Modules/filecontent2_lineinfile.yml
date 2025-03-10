@@ -1,0 +1,10 @@
+#index1.yml
+---
+- name: Create index.html with content on web1
+  hosts: web1
+  tasks:
+  - name: Create index.html with content
+    lineinfile:
+      path: /var/www/html/index.html
+      line: This line was added using Ansible lineinfile module!
+      create: yes

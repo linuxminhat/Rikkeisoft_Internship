@@ -1,0 +1,9 @@
+#templates.yml
+---
+- name: Copy templated index.html to host webservers
+  hosts: web_servers
+  tasks:
+  - name: Copy templated index.html to host
+    template:
+      src: index.html.j2
+      dest: /var/www/nginx-default/index.html

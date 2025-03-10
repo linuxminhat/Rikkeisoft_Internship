@@ -1,0 +1,2 @@
+#file_separation5_inventory
+f-server-1 ansible_host=172.20.1.100 ansible_ssh_pass=Passw0rd ansible_user=root dns_server=8.8.8.8 size=big

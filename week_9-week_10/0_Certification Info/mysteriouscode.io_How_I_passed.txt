@@ -1,0 +1,25 @@
+https://mysteriouscode.io/blog/how-i-passed-red-hat-certificate-of-expertise-in-ansible-automation-exam-ex407/
+
+The exam
+All Red Hat’s exams are performance-based, which means they’re “practical” exams – you are given a workstation with virtual machines running and are asked to perform certain tasks. In case of the Ansible exam, this means mostly writing playbooks, but also running ad-hoc commands and configuring Ansible itself.
+
+You need to know how to create and use static and dynamic inventories (including dynamic inventory scripts), write playbooks using most of Ansible’s features (facts, variables, templates, etc.). Writing roles, as it is a base of using Ansible for anything, is an obvious must.
+Ansible Galaxy, Vault, Tower are also present in the exam’s requirements, so you need to be familiar with “how, what and why”.
+
+In short, the exam touches on a bit more than installing a role from Galaxy and starting a service – you need to have practical experience using almost every feature of Ansible and be aware of some caveats and common problems.
+
+Exam strategy
+My strategy for the exam wasn’t very elaborate – it’s a good idea to skim through the tasks before starting your work, as they are not always entirely specific, so you have to make assumptions and choose the best solution (as per your own judgement). Some tasks may be connected, some may not be, so it’s good to have a general idea of what’s to come.
+
+You have total of 4 hours to complete the exam, which in my opinion is more than enough time – I wouldn’t expect anyone to take more than 2-3 hours to finish, so you can always use the extra time to re-run your playbooks, re-read the tasks and make sure everything is working as it should be.
+
+Note: the exam’s details on Red Hat’s website list the exam as scheduled for 3 hours, but me and other people to whom I talked, where given 4 hours at the testing centre. Not sure if that’s a typo on Red Hat’s website or if the exam time will be shortened to the 3 hours in the future. Even if – 3 hours is really enough time to go through the tasks and re-run all your playbooks after you’re done.
+
+The exam itself is not “hard” (if you have practical knowledge of Ansible), the tasks are no overly complicated, but it touches on a lot of features of the tool. If you’re not completely confident, you can do through the DO407 online training, which goes through everything that the exam covers (and more). If you decide to get the training (which is a self-paced course online with videos and guided tasks), be sure to read through all the content, even the guided tasks and solutions – as some important bits of information may be included in the tasks and not in the written introduction to each chapter.
+
+If you’ve used Ansible extensively and feel confident, go ahead and schedule the exam. Especially if you’re based in the UK – let’s get more people on that list!
+
+Links
+Details on the exam and its contents: www.redhat.com/en/services/training/ex407-red-hat-certificate-expertise-ansible-automation
+Find Red Hat Certified Professionals: www.redhat.com/wapps/training/certification/search.html
+Red Hat’s training for the exam: www.redhat.com/en/services/training/do407-automation-ansible

@@ -1,0 +1,89 @@
+# Create Directory
+---
+- hosts: all
+  tasks:
+  - name: Create Directory
+    file:
+      path: /opt/app/web
+      state: directory
+
+# Create File
+---
+- hosts: all
+  tasks:
+  - name: Create File
+    file:
+      path: /opt/app/web/index.html
+      state: touch
+      owner: app-owner
+      group: app-owner
+      mode: '0644'
+
+# Archive (tar)
+---
+- hosts: all
+  tasks:
+  - name: Compress a folder
+    archive:
+      path: /opt/app/web
+      dest: /tmp/web.gz
+      format: zip|tar|bz2|xz|gz
+
+# Unarchive (unzip) controller-local file to host
+---
+- hosts: all
+  tasks:
+  - name: Uncompress a folder
+    unarchive:
+      src: /tmp/web.gz
+      dest: /opt/app/web
+
+# Unarchive (unzip) host-local file to host
+---
+- hosts: all
+  tasks:
+  - name: Uncompress a folder
+    unarchive:
+      src: /tmp/web.gz
+      dest: /opt/app/web
+      remote_src: yes
+
+# Cron
+---
+- hosts: all
+  tasks:
+  - name: Create a scheduled task
+    cron:
+      name: Run daily health report
+      job: sh /opt/scripts/health.sh
+      month: *
+      day: *
+      hour: 23
+      minute: */5
+      weekday: *
+
+# Create User and Group
+---
+- hosts: all
+  tasks:
+  - name: Create a user maria
+    user:
+      name: maria
+      uid: 1001
+      group: developers
+      shell: /bin/bash
+  - name: Create a group
+    group:
+      name: developers
+
+
+# Set Authorized Keys
+- hosts: localhost
+  check_mode: yes # Do not modify this line
+  #become: yes
+  tasks:
+  - authorized_key:
+       user: maria
+       state: present
+       key: |
+         ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDi4AgyjD8szXxs7UcDTqTSoQwqvFUaayvSg2BnHuAl3eIl7exuZKuMhDqRWkCuw+8Nk9IvvPb5qOj9WMWz3T5Nw9wMz6BCEKDLsirU9MwZg7PO0VyX0YjoEY+/B5kuqabG0s7KUjDO1Q0BG2YxTGjClIX8dOzlS4CFa+o9T6+OZm78nTYn4OmIIKn6/qSmtSlZvSO8XYJfa+bNltRNElWJ2Jh8RrkWr/sz6CeroIp3WL8GEz7n1lZpNxC6pDx+UJ9kZjf/PdD8pUhmHjNvD/2NqSB/BGtacuowysh4A3p746nv7v33/vpmSCJcq6lenM5wNkWi5Jj46S+bfBujC5tJ vagrant@localhost.localdomain

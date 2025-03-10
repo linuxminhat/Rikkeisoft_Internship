@@ -1,0 +1,70 @@
+# Inventory
+node00 ansible_host=172.20.1.100 ansible_ssh_pass=Passw0rd ansible_ssh_user=root
+node01 ansible_host=172.20.1.101 ansible_ssh_pass=Passw0rd ansible_ssh_user=root
+
+# Command
+ssh 172.20.1.100 -l root pvs
+
+# Playbook
+---
+- name: Create VG vg_sql on PV /dev/vdb1 on node00
+  hosts: node00
+  tasks:
+  - name: Create VG vg_sql on PV /dev/vdb1
+    lvg:
+      vg: vg_sql
+      pvs: /dev/vdb1
+
+# Playbook
+---
+- name: Create LV lv_data on VG vg_sql on node00
+  hosts: node00
+  tasks:
+  - name: Create LV lv_data on VG vg_sql
+    lvol:
+      vg: vg_sql
+      lv: lv_data
+      size: 500m
+
+# Playbook
+---
+- name: Create filesystem on LV lv_data on node00
+  hosts: node00
+  tasks:
+  - name: Create filesystem on LV lv_data
+    filesystem:
+      dev: /dev/vg_sql/lv_data
+      fstype: ext4
+
+# Playbook
+---
+- name: Create mount /mnt/data for filesystem on lv_data on node00
+  hosts: node00
+  tasks:
+  - name: Create mount /mnt/data for filesystem on lv_data
+    mount:
+      path: /mnt/data
+      src: /dev/vg_sql/lv_data
+      fstype: ext4
+      state: mounted
+
+# Playbook
+---
+- name: Create lv, filesystem, and mount on node00
+  hosts: node00
+  tasks:
+  - name: Create LV mssql_db
+    lvol:
+      vg: vg_sql
+      lv: mssql_db
+      size: 1g
+  - name: Create ext4 filesystem on mssql_db
+    filesystem:
+      dev: /dev/vg_sql/mssql_db
+      fstype: ext4
+  - name: Mount mssql_db to /mnt/mssql
+    mount:
+      path: /mnt/mssql
+      src: /dev/vg_sql/mssql_db
+      fstype: ext4
+      state: mounted

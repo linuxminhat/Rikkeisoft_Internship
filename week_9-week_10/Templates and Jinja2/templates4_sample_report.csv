@@ -1,0 +1,5 @@
+#templates4_sample_report.csv
+hostname, free memory, uptime
+web0001, 1443, 6720
+web0002, 1444, 6720
+web0003, 1444, 6720

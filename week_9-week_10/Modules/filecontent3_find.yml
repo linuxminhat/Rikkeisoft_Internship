@@ -1,0 +1,15 @@
+#find.yml
+---
+- hosts: web1
+  tasks:
+    - name: Find files
+      find:
+        paths: /opt/data
+        recurse: yes
+        age: 2m
+        size: 1m
+      register: file
+
+    - name: Copy files
+      command: "cp {{ item.path }} /opt"
+      with_items: "{{ file.files }}"

@@ -1,0 +1,14 @@
+#httpd.yml
+---
+- name: Run httpd on port 8080 and restart service on web1
+  hosts: web1
+  tasks:
+  - name: Run httpd on port 8080
+    replace:
+      path: /etc/httpd/conf/httpd.conf
+      regexp: '^Listen 80.*$'
+      replace: Listen 8080
+  - name: Restart httpd
+    service:
+      name: httpd
+      state: restarted

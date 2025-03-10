@@ -1,0 +1,13 @@
+---
+- name: Create new user with key-based ssh access
+  hosts: all
+  tasks:
+    - name: Create new user
+      user:
+        name: deploy
+
+    - name: Push ssh key for new user
+      authorized_key:
+        user: deploy
+        state: present
+        key: "{{ lookup('file', 'devops.pub') }}"

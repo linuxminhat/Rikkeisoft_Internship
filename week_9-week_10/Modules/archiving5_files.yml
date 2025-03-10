@@ -1,0 +1,13 @@
+#files.yml
+---
+- name: Create zip archive of files on web1
+  hosts: web1
+  tasks:
+  - name: Create zip archive of /opt
+    archive:
+      path:
+      - /root/file1.txt
+      - /usr/local/share/file2.txt
+      - /var/log/lastlog
+      dest: /root/files.tar.bz2
+      format: bz2

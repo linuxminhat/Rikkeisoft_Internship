@@ -1,0 +1,18 @@
+#parallelism5_httpd.yml
+# Revert the previous change made to the playbook ~/playbooks/httpd.yml to remove the free strategy and let Ansible use the default linear strategy. Make changes in this playbook to process only 1 server in a single batch i.e Ansible must execute tasks on a single server at a time.
+
+---
+- name: Install httpd
+  hosts: all
+  gather_facts: no
+  serial: 1
+  tasks:
+    - name: Install httpd
+      yum:
+        name: httpd
+        state: present
+
+    - name: start service
+      service:
+        name: httpd
+        state: started

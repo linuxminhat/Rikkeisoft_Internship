@@ -1,0 +1,36 @@
+# Ansible Variables
+# Can be added in-line, in the inventory, or in separate files
+
+# Sample Inventory
+localhost ansible_connection=localhost nameserver_ip=10.1.250.10
+
+# Sample Playbook
+-
+    name: 'Update nameserver entry into resolv.conf file on localhost'
+    hosts: localhost
+    tasks:
+        -
+            name: 'Update nameserver entry into resolv.conf file'
+            lineinfile:
+                path: /etc/resolv.conf
+                line: 'nameserver {{nameserver_ip}}'
+
+# Sample Inventory File
+localhost ansible_connection=localhost nameserver_ip=10.1.250.10 snmp_port=160-161
+
+# Sample Playbook
+-
+    name: 'Update nameserver entry into resolv.conf file on localhost'
+    hosts: localhost
+    tasks:
+        -
+            name: 'Update nameserver entry into resolv.conf file'
+            lineinfile:
+                path: /etc/resolv.conf
+                line: 'nameserver {{ nameserver_ip }}'
+        -
+            name: 'Disable SNMP Port'
+            firewalld:
+                port: '{{snmp_port}}'
+                permanent: true
+                state: disabled

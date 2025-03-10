@@ -1,0 +1,9 @@
+#templates1_generate-agent-info.yml
+---
+- name: Deploy agents.conf using template to lamp_app hosts
+  hosts: monitoring_server
+  tasks:
+  - name: Deploy agents.conf using template
+    template:
+      src: agents.conf.j2
+      dest: /etc/monitor/agents.conf

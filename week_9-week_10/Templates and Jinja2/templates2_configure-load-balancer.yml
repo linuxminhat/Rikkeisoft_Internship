@@ -1,0 +1,12 @@
+#templates2_configure-load-balancer.yml
+---
+- name: Configure load balancer servers using template
+  hosts: load_balancer
+  tasks:
+  - name: Show Template Results
+    debug:
+      msg: "{{ lookup('template', 'load-balancer.conf.j2') }}"
+  - name: Configure load balancer servers using template
+    template:
+      src: load-balancer.conf.j2
+      dest: /etc/nginx/conf.d/load-balancer.conf

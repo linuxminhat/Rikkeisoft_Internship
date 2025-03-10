@@ -1,0 +1,43 @@
+---
+- name: Start and configure nginx and mariadb
+  hosts: node02
+  tasks:
+    - name: Start nginx and mariadb
+      service:
+        name: "{{ item }}"
+        state: started
+        enabled: yes
+      loop:
+        - nginx
+        - mariadb
+
+    - name: Remove default files and directories from nginx document root
+      file:
+        name: /usr/share/nginx/html
+        state: absent
+
+    - name: Create new document root
+      file:
+        name: /usr/share/nginx/html
+        state: directory
+
+    - name: Download and extract archive
+      unarchive:
+        src: https://github.com/inderpreetaps/ansible-1100-mock-nginx/raw/master/index.php.zip
+        dest: /usr/share/nginx/html
+        remote_src: yes
+
+    - name: Update DB connections
+      replace:
+        path: /usr/share/nginx/html/index.php
+        regexp: "{{ item.regexp }}"
+        replace: "{{ item.replace }}"
+      loop:
+        - { regexp: '\$database = "database";', replace: '$database = "mydb";' }
+        - { regexp: '\$username = "user";', replace: '$username = "myuser";' }
+        - { regexp: '\$password = "password";', replace: '$password = "mypassword";' }
+
+    - name: Restart nginx
+      service:
+        name: nginx
+        state: restarted

@@ -1,0 +1,87 @@
+#jinja2_ansible1.j2
+
+# Source
+{
+  "names": [
+    "Alpha",
+    "Beta",
+    "Charlie",
+    "Delta",
+    "Echo"
+  ]
+}
+
+# Filter
+{{ names | join("\n")}}
+
+# Output
+Alpha
+Beta
+Charlie
+Delta
+Echo
+
+
+# Source
+{
+  "name_servers": [
+    "10.1.1.5",
+    "10.1.1.6",
+    "10.1.1.8",
+    "10.8.8.1",
+    "8.8.8.8"
+  ]
+}
+
+# Filter
+{% for ns in name_servers -%}
+nameserver {{ ns }}
+{% endfor %}
+
+# Output
+nameserver 10.1.1.5
+nameserver 10.1.1.6
+nameserver 10.1.1.8
+nameserver 10.8.8.1
+nameserver 8.8.8.8
+
+
+# Source
+{
+  "hosts": [
+    {
+      "name": "web1",
+      "ip_address": "192.168.5.4"
+    },
+    {
+      "name": "web2",
+      "ip_address": "192.168.5.5"
+    },
+    {
+      "name": "web3",
+      "ip_address": "192.168.5.8"
+    },
+    {
+      "name": "db1",
+      "ip_address": "192.168.5.9"
+    }
+  ]
+}
+
+# Filter
+{% for host in hosts -%}
+{{ host.name }} {{ host.ip_address }}
+{% endfor %}
+
+# Output
+web1 192.168.5.4
+web2 192.168.5.5
+web3 192.168.5.8
+db1 192.168.5.9
+
+# Filter (needs some help with spacing)
+{% for host in hosts -%}
+  {% if "web" in host.name -%}
+    {{ host.name }} {{ host.ip_address }}
+  {% endif %}
+{% endfor %}

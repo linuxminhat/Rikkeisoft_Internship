@@ -1,0 +1,99 @@
+thor@ansible-controller ~$ ansible --version
+ansible 2.7.13
+  config file = /etc/ansible/ansible.cfg
+  configured module search path = [u'/home/thor/.ansible/plugins/modules', u'/usr/share/ansible/plugins/modules']
+  ansible python module location = /usr/lib/python2.7/site-packages/ansible
+  executable location = /usr/bin/ansible
+  python version = 2.7.5 (default, Jun 20 2019, 20:27:34) [GCC 4.8.5 20150623 (Red Hat 4.8.5-36)]
+
+
+thor@ansible-controller ~$ sudo yum install ansible
+...
+Dependency Installed:
+  python2-httplib2.noarch 0:0.18.1-3.el7                   python2-jmespath.noarch 0:0.9.4-2.el7
+
+Updated:
+  ansible.noarch 0:2.9.13-1.el7
+
+
+thor@ansible-controller ~$ ansible --version
+ansible 2.9.13
+  config file = /etc/ansible/ansible.cfg
+  configured module search path = [u'/home/thor/.ansible/plugins/modules', u'/usr/share/ansible/plugins/modules']
+  ansible python module location = /usr/lib/python2.7/site-packages/ansible
+  executable location = /usr/bin/ansible
+  python version = 2.7.5 (default, Jun 20 2019, 20:27:34) [GCC 4.8.5 20150623 (Red Hat 4.8.5-36)]
+
+
+thor@ansible-controller ~$ ssh-keygen
+Generating public/private rsa key pair.
+Enter file in which to save the key (/home/thor/.ssh/id_rsa):
+Created directory '/home/thor/.ssh'.
+Enter passphrase (empty for no passphrase):
+Enter same passphrase again:
+Your identification has been saved in /home/thor/.ssh/id_rsa.
+Your public key has been saved in /home/thor/.ssh/id_rsa.pub.
+The key fingerprint is:
+SHA256:IHrcwg4/vRdgEsMSUvkbJ/FEGUFL/FGTcQ4Bw3pEA0g thor@ansible-controller
+The key's randomart image is:
++---[RSA 2048]----+
+|..o=E=BB=o*+.    |
+| .o *.+.+o.=     |
+|   o.*o+ .  .    |
+|   +=o*.o        |
+|  o =B.oS        |
+|   =.o  .        |
+|    + .  .       |
+|     . ..        |
+|      ..         |
++----[SHA256]-----+
+thor@ansible-controller ~$ cat .ssh/id_rsa
+-----BEGIN RSA PRIVATE KEY-----
+MIIEpAIBAAKCAQEA1lwx1baeYby4JnT+M8MckB8C+shfs0/dyJ4b2FrXu4P6cI/h
+4ae1SDqWQRzKhbnKx6j0yVnt0sijxJvVLJb3wIR8DBciQsckYEQEo6mDIKevMCpe
++H0DxnwQ6sueNDLFujs/buh9fe0qeW6j92JUELe5AYLK65Rb1w5taywk21IGnRUJ
+Cwb2vPrsITJNTIFM84DAD0j+7koR5hOyeymgFqO9wn5Koa93SoX54pfambiaQVOQ
+X8Uz6USdmOwMSpGPReJPLnI4Ri3S2S+JFjpC7/Ddqvv5gQoogNEW0b2JLiHAUqcT
+33N78MvkdAiwnKAA7/hm4VH5A7usDPRZkk32gQIDAQABAoIBACO5VazSNG8Bbocq
+NDsYJyh1op98yUYu5z1J7EYQTae4hQJBWFmtA284JFZRoAbNQdgodjMgQ5w/R9u6
+RLqbpkp1Sd8R8+nBGnTYoRVNaMcGaxHR3eX3n6tyfbdDm+gDFiTFPvsSz+cuoUd/
+gt/1iSEIHVL9IyhDn1Kl2uJjhvjt0ouCivqCag0UHGfRfiW8o4piO8GPtaOELXvL
+lAqZlGCvayZBWkR38QGY2/uPDK2y8i5zZ3xul/BxLRASiGZVbMJcSg44w+n8Cyyu
+KBLeEExf8/1hCG45xf9b5HbaNfadvMCz9wYv/pBMW1Zxm+bsE0uTYY2DjiBgbxdt
+k4nz9qkCgYEA6ygq1t9xDhTI/C0jTOGyr1onMdHL13RGz2JE828cqbT1zSWdZSIT
+hIw4tLSO5nya2HBdrwV7W47KIl8oEOjT3Msg1/XEs4bq0nSe9Vefmwxdo8Mrl+wj
+CGSVrY4TqJG9mSu9bjCJrZa0Ax7Y47P1nDQetNNUFE0rAsqBxxt0r88CgYEA6Vwj
+SCGdZWkv+wSn3wLoRlXZ22ftBgYijQEiVVVUYaHEKfO7PcYPy7R17FYjYxpb94Fr
+H5A+NfG6JzD2RVWyj7+AP7S+iDLRD6h1pszCDYKIM4u4zlsM/1ztFRnhLJSd09b4
+F4vHJU2yKe2EgChHheJ2PbrN8h8u7uxdOFRDuK8CgYEA0zaQw86NzQf+PgKM4lEW
+HUnsSmMVo79cmoi5Ra1XIVbYMBrI9D1XKoaHqEdE0uC4dA75FmrmEaZ/B8BQTF/T
+a01HgrHMqzNTVxRIcjTxtmG0+ZIjZaFDFhbCGdCy94VvtlQDISWXg8MIjIT4ag0J
+XfOyYNgvfMyTBT6+sgeHFyECgYEAvnTklspYm5vt/QEfwXOt/zmyRM/dMz1ulYaH
+bv3lkIlmgJbcCt7LpYXzeKAU4Z1x0d9efrRLEdvoAnSDirMWuRuioFvz5VUUK6Nh
+4nDbMAuI/gjbHBBT21cMaFxm2uuwpGSetxjtwBRZhL7FlZNKTIs31cnQq/unYnim
+3IJpgyECgYBpWRaXvfwG2tWUyglx4YnRNTqHvhENZTHg7dYekh1dVjdJsyIomu0b
+sbcI35ULNM1eKuF/RKbP+vPrjY23JQ/XmZKtb5PBlQxOPMhBGVMzImwDc27RZDFh
+ht9JCqZVbkefcqW1IIkvu0OjMC+cwKARCza7J5uo5TDTjWb+YQ2rYw==
+-----END RSA PRIVATE KEY-----
+
+
+thor@ansible-controller ~/playbooks$ ssh-copy-id root@node00
+...
+thor@ansible-controller ~/playbooks$ ssh-copy-id root@node01
+...
+
+thor@ansible-controller ~/playbooks$ ansible all -m ping -i inventory
+node00 | SUCCESS => {
+    "ansible_facts": {
+        "discovered_interpreter_python": "/usr/bin/python"
+    },
+    "changed": false,
+    "ping": "pong"
+}
+node01 | SUCCESS => {
+    "ansible_facts": {
+        "discovered_interpreter_python": "/usr/bin/python"
+    },
+    "changed": false,
+    "ping": "pong"
+}

@@ -1,0 +1,21 @@
+#blocks1_blocks_rescue.yml
+---
+- name: Install and start httpd
+  hosts: all
+  tasks:
+    - name: Install and start httpd only on CentOS servers
+      block:
+        - name: Install httpd
+          yum:
+            name: httpd
+            state: present
+        - name: Start httpd service
+          service:
+            name: httpd
+            state: started
+            enabled: yes
+      when: ansible_facts['distribution'] == 'CentOS'
+      rescue:
+        - name: Errors
+          debug:
+            msg: "Playbook has failed for {{ inventory_hostname }} node"

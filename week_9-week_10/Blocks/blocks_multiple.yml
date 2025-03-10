@@ -1,0 +1,30 @@
+#blocks.yml
+---
+- name: Play with using blocks
+  hosts: all
+  tasks:
+  - block:
+    - name: Install MySQL
+      yum:
+        name: mysql-server
+        state: present
+    - name: Start MySQL service
+      service:
+        name: mysql-server
+        state: started
+        enabled: yes
+    become_user: db-user
+    when: ansible_facts['distribution'] == 'CentOS'
+
+  - block:
+    - name: Install nginx
+      yum:
+        name: nginx
+        state: present
+    - name: Start nginx service
+      service:
+        name: nginx
+        state: started
+        enabled: yes
+    become_user: web-user
+    when: ansible_facts['distribution'] == 'CentOS'

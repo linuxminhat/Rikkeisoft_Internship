@@ -1,0 +1,14 @@
+Write a playbook ~/playbooks/logrotate.yml to configure log-rotation on remote hosts.
+
+Complete the following tasks:
+
+grab the module from GitHub: https://github.com/arillso/ansible.logrotate Use ansible-galaxy install command install inside /home/thor/playbooks/roles If you stumbled upon the issue, could not find/use git, install git in the ansible-runner first and install the role.
+
+configure your log rotation rules as:
+
+daily
+rotate 3
+compress
+…to rotate a log file that would present on location /var/log/myapp.log
+
+That means rotate daily, compress the log file and keep the last three rotations. Check on the options section that the role provides. Since this role depends on facts on remote hosts, make sure to gather facts is not false.

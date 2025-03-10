@@ -1,0 +1,37 @@
+#ignore_errors.yml
+---
+- name: Deploy web app but do not fail play if mail task fails
+  hosts: all
+  any_errors_fatal: true
+  tasks:
+    - name: Install dependencies
+      # details
+    - name: Install MySQL database
+      # details
+    - name: Start MySQL service
+      # details
+    - name: Install Python Flask dependencies
+      # details
+    - name: Run web server
+      # details
+    - name: Send status email if successful
+      mail:
+        to: admin@company.com
+        subject: Web server configured successfully - {{ inventory_hostname }}
+        body: Web server configured successfully - {{ inventory_hostname }}
+      ignore_errors: yes
+...
+
+---
+- hosts: local
+  tasks:
+    - name: get files
+      get_url:
+        url: "http://{{item}}/index.html"
+        dest: "/tmp/{{item}}"
+      ignore_errors: yes
+      with_items:
+        - scoldham2
+        - scoldham3
+        - scoldham4
+...

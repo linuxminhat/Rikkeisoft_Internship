@@ -1,0 +1,40 @@
+---
+- name: Setup a new server
+  hosts: all
+  become: yes
+  tasks:
+    - name: Install elinks, httpd, and firewalld
+      yum:
+        name:
+          - elinks
+          - httpd
+          - firewalld
+        state: installed
+
+    - name: Start httpd
+      service:
+        name: httpd
+        state: started
+        enabled: yes
+
+    - name: Start firewalld
+      service:
+        name: firewalld
+        state: started
+        enabled: yes
+
+    - name: Open firewall for 80/tcp
+      firewalld:
+        zone: public
+        port: 80/tcp
+        state: enabled
+        permanent: yes
+      notify:
+        - "bounce firewall"
+
+  handlers:
+    - name: Restart firewalld
+      service:
+        name: firewalld
+        state: restarted
+      listen: "bounce firewall"

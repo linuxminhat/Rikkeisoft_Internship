@@ -1,0 +1,8 @@
+---
+- name: Update awscli on hosts
+  hosts: all
+  tasks:
+    - name: Update awscli
+      pip:
+        name: awscli
+        state: latest

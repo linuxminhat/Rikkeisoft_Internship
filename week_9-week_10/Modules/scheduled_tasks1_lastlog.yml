@@ -1,0 +1,11 @@
+#lastlog.yml
+---
+- name: Add cronjob to clear lastlog on node00
+  hosts: node00
+  tasks:
+  - name: Add cronjob to clear lastlog
+    cron:
+      job: echo "" > /var/log/lastlog
+      minute: 0
+      hour: 0
+      state: present

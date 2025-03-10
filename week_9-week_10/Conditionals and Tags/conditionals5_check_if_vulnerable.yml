@@ -1,0 +1,26 @@
+#conditionals5_check_if_vulnerable.yml
+---
+- name: Check for shellshock vulnerability
+  gather_facts: no
+  hosts: all
+  tasks:
+#  - name: Run already copied script to test for shellshock vulnerability
+#    shell: /usr/local/bin/report_status.sh
+#    register: shell_report_status_result
+#  - debug:
+#      var: shell_report_status_result
+  - name: Copy and run script to test for shellshock vulnerability
+    script: /home/thor/playbooks/report_status.sh
+    register: script_report_status_result
+  - debug:
+      var: script_report_status_result.stdout_lines[0]
+
+- name: Mitigate shellshock vulnerability
+  hosts: all
+  gather_facts: no
+  tasks:
+  - name: Update bash if vulnerable
+    package:
+      name: bash
+      state: latest
+    when: script_report_status_result.stdout_lines[0] is match("vulnerable")

@@ -1,0 +1,76 @@
+# Ansible Modules
+System
+  user
+  group
+  hostname
+  iptables
+  lvg
+  lvol
+  make
+  mount
+  ping
+  timezone
+  systemd
+  service
+    # stop, stop, or restart services on the remote node(s)
+
+Commands
+  # Execute a command on a remote node
+  command
+    # Supports various parameters, like chdir, creates, and free_form
+  expect
+  raw
+  script
+    # Copies a script to the remote node and executes
+  shell
+
+Files
+  acl
+  archive
+  copy
+  file
+  find
+  lineinfile
+  replace
+  stat
+  template
+  unarchive
+
+Database
+  mongodb
+  mssql
+  mysql
+
+Cloud
+  amazon
+  atomic
+  azure
+  centurylink
+  cloudscale
+  cloudstack
+  digital ocean
+  docker
+  google
+  linode
+  openstack
+  rackspace
+  smartos
+  softlayer
+  vmware
+
+Windows
+  win_copy
+  win_command
+  win_domain
+  win_file
+  win_iis_website
+  win_msg
+  win_msi
+  win_package
+  win_ping
+  win_path
+  win_robocopy
+  win_regedit
+  win_shell
+  win_service
+  win_user

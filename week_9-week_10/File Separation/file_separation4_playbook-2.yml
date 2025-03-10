@@ -1,0 +1,15 @@
+#file_separation4_playbook-2.yml
+
+# We have some additional inventory data about database stored at /home/thor/playbooks/general/common/db/db.yml
+# Include this in the playbook playbook-2.yml. We are trying to print the db_version.
+
+---
+- name: Print DB server data
+  hosts: all
+  gather_facts: no
+  tasks:
+    - include_vars:
+        file: /home/thor/playbooks/general/common/db/db.yml
+        name: db_data
+    - debug:
+        var: db_data.db_version

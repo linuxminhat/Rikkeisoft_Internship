@@ -1,0 +1,10 @@
+#conditionals5_check_if_vulnerable_ANSWER.yml
+---
+- hosts: web2
+  gather_facts: no
+  tasks:
+    - name: Run a script
+      shell: sh /usr/local/bin/report_status.sh
+      register: test
+    - debug:
+        var: test

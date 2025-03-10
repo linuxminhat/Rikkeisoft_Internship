@@ -1,0 +1,9 @@
+#remove_user.yml
+---
+- name: Remove admin user from all hosts
+  hosts: all
+  tasks:
+  - name: Remove admin user
+    user:
+      name: admin
+      state: absent

@@ -1,0 +1,7 @@
+#magic_variables_variable.yml
+---
+- name: Copy node01's dns_server to all hosts
+  hosts: all
+  tasks:
+  - name: Copy node01's dsn_server to /tmp/variable.txt
+    shell: echo "{{ hostvars['node01.host'].dns_server }}" > /tmp/variable.txt

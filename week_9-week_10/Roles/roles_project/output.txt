@@ -1,0 +1,95 @@
+ansible-galaxy init common --init-path=./roles
+- common was created successfully
+
+
+ansible-galaxy init mysql --init-path=./roles
+- mysql was created successfully
+
+
+ansible-galaxy init httpd-php --init-path=./roles
+- httpd-php was created successfully
+
+
+mv common.yml ../roles/common/tasks/main.yml
+mv db.yml ../roles/mysql/tasks/main.yml
+mv web.yml ../roles/httpd-php/tasks/main.yml
+
+
+ansible-playbook -i inventory deploy-lamp-stack.yml
+
+PLAY [Deploy lamp stack application] *****************************************************************************
+
+TASK [Gathering Facts] *******************************************************************************************
+ok: [lamp-db]
+ok: [lamp-web]
+
+TASK [common : Install common dependencies] **********************************************************************
+changed: [lamp-db]
+changed: [lamp-web]
+
+PLAY [Deploy lamp stack application] *****************************************************************************
+
+TASK [Gathering Facts] *******************************************************************************************
+ok: [lamp-db]
+
+TASK [mysql : Install MariaDB package] ***************************************************************************
+changed: [lamp-db]
+
+TASK [mysql : Create Mysql configuration file] *******************************************************************
+changed: [lamp-db]
+
+TASK [mysql : Start MariaDB Service] *****************************************************************************
+changed: [lamp-db]
+
+TASK [mysql : Start firewalld] ***********************************************************************************
+changed: [lamp-db]
+
+TASK [mysql : insert firewalld rule] *****************************************************************************
+changed: [lamp-db]
+
+TASK [mysql : Create Application Database] ***********************************************************************
+changed: [lamp-db]
+
+TASK [mysql : Create Application DB User] ************************************************************************
+changed: [lamp-db]
+
+TASK [mysql : Move db-load-script to db host] ********************************************************************
+changed: [lamp-db]
+
+TASK [mysql : Load Inventory Data] *******************************************************************************
+changed: [lamp-db]
+
+PLAY [Deploy lamp stack application] *****************************************************************************
+
+TASK [Gathering Facts] *******************************************************************************************
+ok: [lamp-web]
+
+TASK [httpd-php : Install httpd and php] *************************************************************************
+changed: [lamp-web]
+
+TASK [httpd-php : Install web role specific dependencies] ********************************************************
+changed: [lamp-web]
+
+TASK [httpd-php : Start firewalld] *******************************************************************************
+changed: [lamp-web]
+
+TASK [httpd-php : insert firewalld rule for httpd] ***************************************************************
+changed: [lamp-web]
+
+TASK [httpd-php : Set index.php as the default page] *************************************************************
+changed: [lamp-web]
+
+TASK [httpd-php : http service state] ****************************************************************************
+changed: [lamp-web]
+
+TASK [httpd-php : Copy the code from repository] *****************************************************************
+changed: [lamp-web]
+
+TASK [httpd-php : Creates the index.php file] ********************************************************************
+changed: [lamp-web]
+
+PLAY RECAP *******************************************************************************************************
+lamp-db                    : ok=12   changed=10   unreachable=0    failed=0
+lamp-web                   : ok=11   changed=9    unreachable=0    failed=0
+
+

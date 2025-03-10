@@ -1,0 +1,130 @@
+#deploy-lamp-stack.yml
+---
+- name: Deploy lamp stack application
+  hosts: lamp-db
+  become: yes
+  tasks:
+  - name: Install common dependencies
+    yum:
+      name:
+        - libselinux-python
+        - libsemanage-python
+        - firewalld
+      state: installed
+
+- name: Deploy and configure mariadb on lamp-db
+  hosts: lamp-db
+  become: yes
+  tasks:
+  - name: Install database
+    yum:
+      name:
+        - mariadb-server
+        - MySQL-python
+
+  - name: Copy MySQL configuration file
+    copy:
+      src: files/my.cnf
+      dest: /etc/my.cnf
+
+  - name: Start mariadb service
+    service:
+      name: mariadb
+      state: started
+      enabled: yes
+
+  - name: Start firewalld service
+    service:
+      name: firewalld
+      state: started
+      enabled: yes
+
+  - name: Add firewall rule for mysql
+    firewalld:
+      zone: public
+      port: 3306/tcp
+      state: enabled
+
+  - name: Create app database
+    mysql_db:
+      name: "{{ dbname }}"
+      state: present
+
+  - name: Create app database user
+    mysql_user:
+      name: "{{ dbuser }}"
+      password: "{{ dbpassword }}"
+      host: 172.20.1.100
+      priv: '*.*:ALL'
+
+  - name: Copy db script
+    copy:
+      src: db-load-script.sql
+      dest: /tmp
+
+  - name: Load inventory via script
+    shell: mysql -f < /tmp/db-load-script.sql
+
+- name: Install and deploy web service to lamp-web
+  hosts: lamp-web
+  become: yes
+  tasks:
+  - name: Install common dependencies
+    yum:
+      name:
+        - libselinux-python
+        - libsemanage-python
+        - firewalld
+      state: installed
+
+  - name: Install web services
+    yum:
+      name:
+      - httpd
+      - php
+      - php-mysql
+      state: installed
+
+  - name: Install git
+    yum:
+      name: git
+      state: installed
+
+  - name: Start firewalld service
+    service:
+      name: firewalld
+      state: started
+      enabled: yes
+
+  - name: Add firewall rule for httpd
+    firewalld:
+      zone: public
+      port: "{{ httpd_port }}/tcp"
+      state: enabled
+
+  - name: Set index.php as default page
+    replace:
+      path: /etc/httpd/conf/httpd.conf
+      regexp: 'DirectoryIndex index.html'
+      replace: 'DirectoryIndex index.php'
+
+  - name: Start httpd service
+    service:
+      name: httpd
+      state: started
+      enabled: yes
+
+- name: Clone site from github and configure
+  hosts: lamp-web
+  become: yes
+  tasks:
+  - name: Clone site from github
+    git:
+      repo: "{{ repository }}"
+      dest: /var/www/html/
+      force: yes
+
+  - name: Copy custom index.php
+    copy:
+      src: files/index.php
+      dest: /var/www/html/index.php

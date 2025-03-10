@@ -1,0 +1,89 @@
+#jinja2.j2
+# https://jinja.palletsprojects.com/en/2.11.x/
+
+# FILTERS
+my_name="Bond"
+
+# Substitute Filter
+The name is {{ my_name }}
+The name is Bond
+
+# Upper Filter
+The name is {{ my_name | upper }}
+The name is BOND
+
+# Lower Filter
+The name is {{ my_name | lower }}
+The name is bond
+
+# Title Filter
+The name is {{ my_name | title }}
+The name is Bond
+
+# Replace Filter
+The name is {{ my_name | replace("Bond", "Bourne") }}
+The name is Bourne
+
+# Default Filter (insert default value if variable is undefined, to prevent error)
+The name is {{ first_name | default("James") }} {{ my_name }}
+The name is James Bond
+
+# Min Filter
+The name is {{ [1, 2, 3] | min }}
+1
+
+# Max Filter
+The name is {{ [1, 2, 3] | max }}
+3
+
+# Last Filter
+The name is {{ [1, 2, 3, 2, 7, 4, 9, 8] | last }}
+8
+
+# Unique Filter
+The name is {{ [1, 2, 3, 2] | unique }}
+1, 2, 3
+
+# Union Filter
+The name is {{ [1, 2, 3, 4] | union([4, 5]) }}
+1, 2, 3, 4, 5
+
+# Interesect Filter
+The name is {{ [1, 2, 3, 4] | intersect([4, 5]) }}
+4
+
+# Random Filter
+The name is {{ 100 | random }}
+#some random number 0-100
+
+# Join Filter
+{{ ["The", "name", "is", "Bond"] | join(" ") }}
+The name is Bond
+
+# Join Filter (again)
+{{ [ "we", "are", "meant", "to", "be", "together"] | join(" ") | title }}
+We Are Meant To Be Together
+
+# Wordcount Filter
+{{ [ "we", "are", "meant", "to", "be", "together"] | wordcount }}
+6
+
+# LOOPS
+# '%' indicates a code block as opposed to a one-liner
+
+{% for number in [0,1,2,3,4] %}
+{{ number }}
+{% endfor %}}
+0
+1
+2
+3
+4
+
+# CONDITIONALS
+{% for number in [0,1,2,3,4] %}
+    {% if number == 2 %}
+        {{ number }}
+    {% endif %}
+{% endfor %}
+2

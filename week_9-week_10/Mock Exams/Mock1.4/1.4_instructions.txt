@@ -1,0 +1,7 @@
+Create a playbook facts.yml under ~/playbooks directory on Ansible controller. In this playbook using blockinfile module create a file facts.txt under /root on node02 host and add below given block in it. You will need to enable facts gathering for this task.
+
+This is Ansible managed node `<hostname-of-host> `
+IP address of host is `<ip-address-of-host>`
+Its OS family is `<os-family>`
+
+After that make a copy of this file as index.html under /usr/share/nginx/html/

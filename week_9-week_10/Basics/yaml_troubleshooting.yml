@@ -1,0 +1,112 @@
+
+
+
+#~/playbooks/give_ssh_access.yml
+- hosts: localhost
+  check_mode: yes # Do not modify this line
+  become: yes
+  tasks:
+  - authorized_key:
+       user: root
+       state: present
+       key: |
+         ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDi4AgyjD8szXxs7UcDTqTSoQwqvFUaayvSg2BnHuAl3eIl7exuZKuMhDqRWkCuw+8Nk9IvvPb5qOj9WMWz3T5Nw9wMz6BCEKDLsirU9MwZg7PO0VyX0YjoEY+/B5kuqabG0s7KUjDO1Q0BG2YxTGjClIX8dOzlS4CFa+o9T6+OZm78nTYn4OmIIKn6/qSmtSlZvSO8XYJfa+bNltRNElWJ2Jh8RrkWr/sz6CeroIp3WL8GEz7n1lZpNxC6pDx+UJ9kZjf/PdD8pUhmHjNvD/2NqSB/BGtacuowysh4A3p746nv7v33/vpmSCJcq6lenM5wNkWi5Jj46S+bfBujC5tJ vagrant@localhost.localdomain
+
+
+#~/playbooks/deploy-lamp-stack.yml
+---
+- name: Deploy lamp stack application
+  hosts: all
+  become: yes
+  check_mode: yes # Do not modify this line
+  tasks:
+    - name: Install common dependencies
+      yum:
+        name:
+          - libselinux-python
+          - libsemanage-python
+          - firewalld
+        state: installed
+
+# Install and Configure Database
+- name: Deploy lamp stack application
+  hosts: db_servers
+  become: yes
+  check_mode: yes # Do not modify this line
+  tasks:
+    - name: Install MariaDB package
+      yum:
+        name:
+          - mariadb-server
+          - MySQL-python
+        state: installed
+
+    - name: Create Mysql configuration file
+      copy:
+        src: files/my.cnf
+        dest: /etc/my.cnf
+
+    - name: Start MariaDB Service
+      service:
+        name: mariadb
+        state: started
+        enabled: yes
+
+    - name: Start firewalld
+      service:
+        name: firewalld
+        state: started
+        enabled: yes
+
+# Do not uncomment this!
+#    - name: insert firewalld rule
+#      firewalld: port={{ mysql_port }}/tcp permanent=true state=enabled
+
+    - name: Move db-load-script to db host
+      copy:
+        src: files/db-load-script.sql
+        dest: /tmp/db-load-script.sql
+
+    - name: Load Inventory Data
+      shell: mysql -f < /tmp/db-load-script.sql
+
+- name: Deploy lamp stack application
+  hosts: web_servers
+  check_mode: yes # Do not modify this line
+  become: yes
+  tasks:
+    - name: Install httpd and php
+      yum:
+        name:
+          - httpd
+          - php
+          - php-mysql
+        state: present
+
+    - name: Install web role specific dependencies
+      yum:
+        name: git
+        state: installed
+
+    - name: Start firewalld
+      service:
+        name: firewalld
+        state: started
+        enabled: yes
+
+    - name: http service state
+      service:
+        name: httpd
+        state: started
+        enabled: yes
+
+    - name: Copy the code from repository
+      git:
+        repo: "{{ repository }}"
+        dest: /var/www/html/
+        force: yes
+
+    - name: Creates the index.php file
+      copy:
+        src: files/index.php
+        dest: /var/www/html/index.php

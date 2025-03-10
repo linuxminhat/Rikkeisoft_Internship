@@ -1,0 +1,10 @@
+#templates_nginx.conf.j2
+server {
+    location / {
+        fastcgi_pass {{ host }}:{{ port }};
+        fastcgi_param QUERY_STRING $query_string
+    }
+    location ~ \ gif|jpg|png $ {
+        root {{ image_path }};
+    }
+}

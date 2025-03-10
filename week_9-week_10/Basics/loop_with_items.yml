@@ -1,0 +1,87 @@
+# Ansible Loops
+# "loop" replaced "with_items" directive.
+
+# Sample Playbook
+-
+  name: Create users
+  hosts: localhost
+  tasks:
+    - user: name='{{item.name}}' state=present
+      loop:
+        - joe
+        - george
+        - ravi
+
+# Sample Playbook
+-
+  name: Create users
+  hosts: localhost
+  tasks:
+    - user: name='{{item}}' state=present uid='{{item.uid}}'
+      loop:
+        - name: joe
+          uid: 1010
+        - name: george
+          uid: 1011
+        - name: ravi
+          uid: 1012
+
+# Sample Playbook
+-
+  name: Create users
+  hosts: localhost
+  tasks:
+    - user: name='{{item}}' state=present uid='{{item.uid}}'
+      loop:
+        - {name: joe, uid: 1010}
+        - {name: george, uid: 1011}
+        - {name: ravi, uid: 1012}
+
+# Types of loops
+loop
+with_items
+with_file
+with_url
+with_mongodb
+
+# Lookup Plugins: Custom scripts for specific tasks
+"with_"
+
+# Sample Playbook
+-
+    name: 'Print list of fruits'
+    hosts: localhost
+    vars:
+        fruits:
+            - Apple
+            - Banana
+            - Grapes
+            - Orange
+    tasks:
+        -
+            command: 'echo "{{item}}"'
+            with_items: '{{fruits}}'
+
+# Sample Playbook
+-
+    name: 'Install required packages'
+    hosts: localhost
+    vars:
+        packages:
+            - httpd
+            - binutils
+            - glibc
+            - ksh
+            - libaio
+            - libXext
+            - gcc
+            - make
+            - sysstat
+            - unixODBC
+            - mongodb
+            - nodejs
+            - grunt
+    tasks:
+        -
+            yum: 'name={{item}} state=present'
+            with_items: '{{packages}}'

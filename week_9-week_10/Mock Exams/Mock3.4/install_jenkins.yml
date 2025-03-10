@@ -1,0 +1,12 @@
+---
+- name: Deploy Jenkins to node01
+  hosts: node01
+  pre_tasks:
+    - name: Install java
+      yum:
+        name: java
+        state: installed
+  roles:
+    - role: geerlingguy.jenkins
+      vars:
+        jenkins_http_port: 8082

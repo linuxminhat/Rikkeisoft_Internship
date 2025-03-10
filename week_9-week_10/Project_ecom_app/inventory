@@ -1,0 +1,23 @@
+# Inventory File
+
+# Hosts
+lamp-db ansible_host=172.20.1.101 ansible_password=maria ansible_user=maria
+lamp-web ansible_host=172.20.1.100 ansible_password=john ansible_user=john
+
+# Groups
+[db_servers]
+lamp-db
+
+[db_servers:vars]
+mysqlservice=mysqld
+mysql_port=3306
+dbname=ecomdb
+dbuser=ecomuser
+dbpassword=ecompassword
+
+[web_servers]
+lamp-web
+
+[web_servers:vars]
+httpd_port=80
+repository=https://github.com/kodekloudhub/learning-app-ecommerce.git

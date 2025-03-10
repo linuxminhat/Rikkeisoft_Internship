@@ -1,0 +1,6 @@
+---
+- name: Configure logrotate
+  hosts: all
+  gather_facts: yes
+  roles:
+    - role: ansible.logrotate

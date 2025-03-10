@@ -1,0 +1,60 @@
+# This file contains user groups and users listed by group membership.
+#
+# The playbook /home/ansible/exam/users.yml should do the following:
+#
+# Download and store this file in /home/ansible/files/user_list.yml on control1.
+# Create the listed users and groups as system users and groups on node1.
+# Each user shoud be assigned a default group based on the list containing their name.
+# For example, john should have the default group staff.
+#
+
+user_groups:
+  - staff
+  - students
+  - faculty
+staff:
+  - john
+  - henery
+  - amanda
+  - marshal
+  - hank
+  - nancy
+  - kate
+  - jim
+  - stan
+  - megan
+  - emily
+  - jack
+  - aaron
+students:
+  - frank
+  - karen
+  - alexa
+  - cathrine
+  - dave
+  - chuck
+  - eric
+  - lauren
+  - beth
+  - nicole
+  - jen
+  - greg
+  - hugo
+  - jessica
+  - johnson
+  - ashley
+  - keith
+  - landon
+  - marge
+  - mac
+  - ned
+  - lisa
+faculty:
+  - zach
+  - yancy
+  - walter
+  - thomas
+  - stacy
+  - rene
+  - qunicy
+  - penny

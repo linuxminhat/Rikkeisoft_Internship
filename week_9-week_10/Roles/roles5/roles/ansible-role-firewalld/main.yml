@@ -1,0 +1,9 @@
+---
+- name: Install common dependencies
+  yum:
+    name:
+      - firewalld
+    state: installed
+
+- name: Start firewalld
+  service: name=firewalld state=started enabled=yes

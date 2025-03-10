@@ -1,0 +1,16 @@
+#templates5_inventory
+dns_server_america ansible_host=172.20.1.100 ansible_ssh_pass=Passw0rd ansible_user=root
+dns_server_asia ansible_host=172.20.1.101 ansible_ssh_pass=Passw0rd ansible_user=root
+[america]
+web0001 ansible_hostname=web0001.company.com ansible_host=10.1.1.101 ansible_ssh_pass=Passw0rd
+web0002 ansible_hostname=web0002.company.com ansible_host=10.1.1.102 ansible_ssh_pass=Passw0rd
+web0003 ansible_hostname=web0003.company.com ansible_host=10.1.1.103 ansible_ssh_pass=Passw0rd
+web0004 ansible_hostname=web0004.company.com ansible_host=10.1.1.104 ansible_ssh_pass=Passw0rd
+web0005 ansible_hostname=web0005.company.com ansible_host=10.1.1.105 ansible_ssh_pass=Passw0rd
+
+[asia]
+web2001 ansible_hostname=web2001.company.com ansible_host=10.1.1.201 ansible_ssh_pass=Passw0rd
+web2002 ansible_hostname=web2002.company.com ansible_host=10.1.1.202 ansible_ssh_pass=Passw0rd
+web2003 ansible_hostname=web2003.company.com ansible_host=10.1.1.203 ansible_ssh_pass=Passw0rd
+web2004 ansible_hostname=web2004.company.com ansible_host=10.1.1.204 ansible_ssh_pass=Passw0rd
+web2005 ansible_hostname=web2005.company.com ansible_host=10.1.1.205 ansible_ssh_pass=Passw0rd

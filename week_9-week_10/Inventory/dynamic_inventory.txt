@@ -1,0 +1,66 @@
+# Static Inventory with flat files
+# INI
+web1 ansible_host=172.20.1.100 ansible_ssh_pass=Passw0rd
+web2 ansible_host=172.20.1.101 ansible_ssh_pass=Passw0rd
+
+[web_servers]
+web1
+web2
+
+
+# JSON
+"web_servers": {
+    "hosts": "web1" "web2"
+}
+
+"_meta": {
+    "hostvars": {
+        "web1": {
+            "ansible_host": "172.20.1.100",
+            "ansible_ssh_pass": "Passw0rd"
+        }
+        "web2": {
+            "ansible_host": "172.20.1.101",
+            "ansible_ssh_pass": "Passw0rd"
+        }
+    }
+}
+
+
+# YAML
+web_servers
+    hosts
+        web1
+            ansible_host 172.20.1.100
+            ansible_ssh_pass Passw0rd
+        web2
+            ansible_host 172.20.1.101
+            ansible_ssh_pass Passw0rd
+
+
+# Dynamic Inventory with Scripts
+# Programmatically gather inventory using a python script
+# NOTE: Many scripts are readily available (see ansible github repo)
+# e.g. inventory.py
+# inventory.py must support "--list" and "--host" arguments
+# "--list" must output inventory in JSON format for all hosts
+# "--host web1" must output inventory in JSON format just for web1 host
+ansible-playbook playbook.yml -i inventory.py
+
+# e.g. ec2.py (requires AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY_ID be set as environment variables prior to running the script)
+
+
+# Dynamic Inventory with Python-based Inventory Plugins
+# INI Plugin reads inventory from INI files
+# Script Plugin reads inventory from scripts (Python, shell, etc.)
+# YAML Plugin reads inventory from YAML files
+# You can build your own plugin to read anything (e.g. XML)
+
+# Plugins are enabled in /etc/ansible/ansible.cfg
+[inventory]
+enable_plugins = host_list, script, auto, yaml, ini
+
+
+# Testing Inventory
+ansible-inventory -i inventory.txt
+ansible-inventory -i inventory.py

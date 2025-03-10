@@ -1,0 +1,20 @@
+#conditionals6_install_packages.yml
+#Develop a playbook - /home/thor/playbooks/install_packages.yml - to install an extra package htop on web2 node. The package name htop must be passed as a value to a variable extra_packages with the -e option in command line while running the playbook. The playbook install_packages.yml already has some exiting code, modify the task install extra packages so that it only runs if extra_packages variable is defined and it has value htop. At the end playbook must be able to install this extra package on web2 node while passing correct values in extra vars i.e -e.
+#Use inventory from /home/thor/playbooks/inventory.
+
+---
+- name: Install extra packages
+  hosts: web2
+  gather_facts: no
+  tasks:
+    - name: install nginx
+      apt: name=nginx state=present
+      tags: [install_core]
+
+    - name: install extra packages
+      apt:
+        name: "{{extra_packages}}"
+        state: present
+      when: extra_packages is defined and extra_packages is search("htop")
+
+#ansible-playbook -i inventory install_packages.yml -e "extra_packages=htop" --check

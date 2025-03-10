@@ -1,0 +1,162 @@
+# Ansible Privilege Escalation
+
+# root is super user
+# admins
+# developers
+# accounts for tools
+
+# Invoke super user to become root for a particular command (sudo, pfexec, doas, ksu, runas)
+
+# Good practice to have a dedicated user for Ansible
+
+# Use "become: yes" directive to escalate privileges (e.g. sudo) on the target host
+# Inventory
+lamp-dev1 ansible_host=172.20.1.100 ansible_user=admin
+# Example Playbook
+---
+- name: "Install nginx"
+  become: yes
+  hosts: all
+  tasks:
+  - yum:
+      name: nginx
+      state: latest
+
+# Use other tools (e.g. doas) with become_method, to install package as 'admin' (see inventory) but with root privileges.
+# Inventory
+lamp-dev1 ansible_host=172.20.1.100 ansible_user=admin
+# Example Playbook
+---
+- name: "Install nginx"
+  become: yes
+  become_method: doas
+  hosts: all
+  tasks:
+  - yum:
+      name: nginx
+      state: latest
+
+# Become a different user on target host to install package (set in COMMANDLINE)
+# Inventory
+lamp-dev1 ansible_host=172.20.1.100 ansible_user=admin
+# Example Playbook
+---
+- name: "Install nginx"
+  hosts: all
+  tasks:
+  - yum:
+      name: nginx
+      state: latest
+
+# CLI
+ansible-playbook -i inventory --become --become-method=doas --become-user=nginx playbook.yml
+
+# Become a different user on target host to install package (set in PLAYBOOK)
+# Inventory
+lamp-dev1 ansible_host=172.20.1.100 ansible_user=admin
+# Example Playbook
+---
+- name: "Install nginx"
+  become: yes
+  become_user: nginx
+  hosts: all
+  tasks:
+  - yum:
+      name: nginx
+      state: latest
+
+# Become a different user on target host to install package (set in INVENTORY)
+# Inventory
+lamp-dev1 ansible_host=172.20.1.100 ansible_user=admin ansible_become=yes ansible_become_user=nginx
+# Example Playbook
+---
+- name: "Install nginx"
+  hosts: all
+  tasks:
+  - yum:
+      name: nginx
+      state: latest
+
+# Become a different user on target host to install package (set in CONFIGURATION: ansible.cfg)
+# /etc/ansible/ansible.cfg
+become        = True
+become_method = doas
+become_user   = nginx
+
+# Inventory
+lamp-dev1 ansible_host=172.20.1.100 ansible_user=admin
+# Example Playbook
+---
+- name: "Install nginx"
+  hosts: all
+  tasks:
+  - yum:
+      name: nginx
+      state: latest
+
+# Get Ansible to prompt for sudo password at runtime with "--ask-become-pass"
+ansible-playbook -i inventory --become --become-method=doas --become-user=nginx --ask-become-pass playbook.yml
+
+# Lab 1
+# Playbook Example
+---
+- hosts: all
+  become: yes
+  gather_facts: no
+  tasks:
+    - name: Create a blank file
+      file:
+        path: /home/admin/test.txt
+        state: touch
+
+# Inventory
+[web]
+web1
+
+[web:vars]
+ansible_host=172.20.1.100
+ansible_ssh_pass=Passw0rd
+ansible_user=ansible
+ansible_become_pass=Passw0rd
+ansible_ssh_pipelining=true
+
+# Lab 2 (based on Lab 1)
+# Playbook Example
+---
+- hosts: all
+  become: yes
+  become_user: admin
+  gather_facts: no
+  tasks:
+    - name: Create a blank file
+      file:
+        path: /home/admin/test.txt
+        state: touch
+
+# Lab 3
+#~/playbooks/web2/web2.sh
+#!/bin/bash
+ansible-playbook -i inventory --ask-become-pass file.yml
+
+#~/playbooks/web2/inventory
+[web]
+web2
+
+[web:vars]
+ansible_host=172.20.1.101
+ansible_ssh_pass=Passw0rd
+ansible_user=ansible
+ansible_become_user=admin
+ansible_ssh_pipelining=true
+
+#~/playbooks/web2/file.yml
+---
+- hosts: all
+  become: yes
+  gather_facts: no
+  tasks:
+    - name: Create a blank file
+      file:
+        path: /home/admin/test.txt
+        state: touch
+

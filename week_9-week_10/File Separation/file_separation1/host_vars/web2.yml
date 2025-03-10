@@ -1,0 +1,4 @@
+#web2.yml
+ansible_host: 172.20.1.101
+dns_server: 8.8.8.8
+size: small

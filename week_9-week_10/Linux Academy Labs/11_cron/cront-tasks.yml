@@ -1,0 +1,12 @@
+---
+- name: Configure cron task on all servers
+  hosts: all
+  become: yes
+  tasks:
+    - name: Configure 'df' command to run at 5am and 5pm
+      cron:
+        name: Log diskspace
+        hour: 5,17
+        job: "df -h >> /tmp/diskspace"
+        # Set "state: absent" to remove this task
+        state: present

@@ -1,0 +1,46 @@
+# Ansible FAQ
+
+# Boolean (all valid)
+yes
+true
+TRUE
+True
+
+no
+false
+FALSE
+False
+
+# Three dashes at beginning of YAML
+# Completely optional, but has meaning in YAML
+
+# Some strings do not need to be quoted.
+# Strings containing a colon followed by a space must be quoted.
+# If a string starts with a quote the entire string must be quoted.
+# Double quotes allow escape characters.
+# Single quotes do not allow escape characters. (Do they allow variable substitution?)
+
+# Variable Notation
+# If using curly braces variable notation immediately after a directive's colon, the curly braces must be quoted.
+
+msg: "{{ dns_server_ip }}"
+
+# If using curly braces variable notation in the middle of a string, the curly braces do not need to be quoted.
+
+msg: The DNS server is {{ dns_server_ip }}
+
+# If using a "var:" option (e.g. with debug module), it expects a variable and curly braces are not required.
+
+- name: "Test"
+  hosts: all
+  tasks:
+    - debug:
+        msg: "{{ dns_server_ip }}"
+        var: dns_server_ip
+
+# If using "when:" directive a variable is expected and curly braces are not required.
+# If using "with_items:" or "loop:" directives curly braces *are* required.
+
+# Is it "ansible_ssh_pass" or "ansible_password"
+# "ansible_ssh_pass" is the *old* way
+# "ansible_password" is the *new* way

@@ -1,0 +1,144 @@
+# dynamic_custom.py
+controller$ ./dynamic_custom.py --list |jq
+{
+  "group": {
+    "hosts": [
+      "172.20.1.101",
+      "172.20.1.102",
+      "172.20.1.103"
+    ],
+    "vars": {
+      "ansible_ssh_user": "root",
+      "ansible_ssh_pass": "Passw0rd"
+    }
+  },
+  "_meta": {
+    "172.20.1.103": {
+      "host_specific_var": "custom3"
+    },
+    "hostvars": {
+      "172.20.1.102": {
+        "host_specific_var": "custom2"
+      },
+      "172.20.1.101": {
+        "host_specific_var": "custom1"
+      }
+    }
+  }
+}
+
+controller$ ansible-inventory -i dynamic_custom.py --list
+{
+    "_meta": {
+        "hostvars": {
+            "172.20.1.101": {
+                "ansible_ssh_pass": "Passw0rd",
+                "ansible_ssh_user": "root",
+                "host_specific_var": "custom1"
+            },
+            "172.20.1.102": {
+                "ansible_ssh_pass": "Passw0rd",
+                "ansible_ssh_user": "root",
+                "host_specific_var": "custom2"
+            },
+            "172.20.1.103": {
+                "ansible_ssh_pass": "Passw0rd",
+                "ansible_ssh_user": "root"
+            }
+        }
+    },
+    "all": {
+        "children": [
+            "group",
+            "ungrouped"
+        ]
+    },
+    "group": {
+        "hosts": [
+            "172.20.1.101",
+            "172.20.1.102",
+            "172.20.1.103"
+        ]
+    },
+    "ungrouped": {}
+}
+
+controller$ ansible-playbook -i dynamic_custom.py ping.yml
+
+PLAY [Ping all hosts] ********************************************************************************************
+
+TASK [Gathering Facts] *******************************************************************************************
+ok: [172.20.1.102]
+ok: [172.20.1.101]
+ok: [172.20.1.103]
+
+TASK [Ping host] *************************************************************************************************
+ok: [172.20.1.102]
+ok: [172.20.1.101]
+ok: [172.20.1.103]
+
+PLAY RECAP *******************************************************************************************************
+172.20.1.101               : ok=2    changed=0    unreachable=0    failed=0
+172.20.1.102               : ok=2    changed=0    unreachable=0    failed=0
+172.20.1.103               : ok=2    changed=0    unreachable=0    failed=0
+
+
+# dynamic_web.py
+controller$ ./dynamic_web.py --list |jq
+{
+  "web": {
+    "hosts": [
+      "172.20.1.100",
+      "172.20.1.101"
+    ],
+    "vars": {
+      "ansible_ssh_user": "root",
+      "ansible_ssh_pass": "Passw0rd"
+    }
+  },
+  "_meta": {
+    "hostvars": {
+      "172.20.1.100": {
+        "host_specific_var": "foo"
+      },
+      "172.20.1.101": {
+        "host_specific_var": "bar"
+      }
+    }
+  }
+}
+
+
+# ec2.py
+controller$ ./ec2.py --list |jq
+{
+  "group": {
+    "hosts": [
+      "172.20.1.109",
+      "172.20.1.110"
+    ],
+    "vars": {
+      "ec2_state": "Running",
+      "ansible_ssh_user": "root",
+      "ansible_ssh_pass": "Passw0rd"
+    }
+  },
+  "_meta": {
+    "hostvars": {
+      "172.20.1.109": {
+        "ec2_region": "ca-central-1"
+      },
+      "172.20.1.110": {
+        "ec2_region": "us-east-1"
+      }
+    }
+  }
+}
+
+controller$ ansible-inventory -i ec2.py --host 172.20.1.109
+{
+    "ansible_ssh_pass": "Passw0rd",
+    "ansible_ssh_user": "root",
+    "ec2_region": "ca-central-1",
+    "ec2_state": "Running"
+}

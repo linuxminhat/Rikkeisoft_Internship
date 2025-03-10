@@ -1,0 +1,21 @@
+#templates5_generate-hosts-ips.yml
+---
+- name: Generate hosts file and push to dns_server_america
+  hosts: dns_server_america
+  tasks:
+  - name: Generate hosts file
+    template:
+      src: hosts.j2
+      dest: /tmp/hosts.txt
+    vars:
+      GROUP_NAME: america
+
+- name: Generate hosts file and push to dns_server_asia
+  hosts: dns_server_asia
+  tasks:
+  - name: Generate hosts file
+    template:
+      src: hosts.j2
+      dest: /tmp/hosts.txt
+    vars:
+      GROUP_NAME: asia

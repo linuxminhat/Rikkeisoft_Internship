@@ -1,0 +1,40 @@
+---
+- hosts: node01
+  tasks:
+    - name: remove httpd and php packages
+      yum:
+        name: httpd, php
+        state: present
+
+    - name: Create doc root
+      file:
+        path: /var/www/html/myroot
+        state: directory
+        owner: apache
+        group: apache
+
+    - name: change document root
+      replace:
+        path: /etc/httpd/conf/httpd.conf
+        regexp: 'DocumentRoot "/var/www/html"'
+        replace: 'DocumentRoot "/var/www/html/myroot"'
+
+    - name: copy template
+      template:
+        src: phpinfo.php.j2
+        dest: /var/www/html/myroot/phpinfo.php
+        owner: apache
+        group: apache
+
+    - name: Start service httpd
+      service:
+        name: httpd
+        state: started
+        enabled: yes
+
+    - name: open port httpd
+      firewalld:
+        port: 80/tcp
+        state: enabled
+        zone: public
+        permanent: yes

@@ -1,0 +1,25 @@
+- name: 5563947-Install dependencies
+  yum:
+    enablerepo: extras
+    name:
+      - epel-release
+    state: installed
+
+- name: 5563947-Install dependencies
+  yum:
+    name:
+      - python-pip
+    state: installed
+
+- name: 5563948-Install Python Flask dependencies
+  pip:
+    name:
+      - flask
+      - flask-mysql
+    state: present
+
+- name: Copy web-server code
+  copy: src=app.py dest=/opt/app.py
+
+- name: Start web-application
+  shell: FLASK_APP=/opt/app.py nohup flask run --host=0.0.0.0 &

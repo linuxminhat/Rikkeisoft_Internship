@@ -1,0 +1,20 @@
+#register_uptime.yml
+---
+- name: Print uptime of all hosts
+  hosts: all
+  tasks:
+  - name: Get uptime
+    shell: uptime
+    register: uptime_result
+  - name: Print full output
+    debug:
+      var: uptime_result
+  - name: Print uptime
+    debug:
+      var: uptime_result.stdout
+    
+     # one of the following option is a correct answer:
+     # - debug: var=uptime_result.output
+     # - debug: msg=uptime_result.stdout
+     # - debug: msg=uptime_result.stdoutput
+     # - debug: var=uptime_result.stdout

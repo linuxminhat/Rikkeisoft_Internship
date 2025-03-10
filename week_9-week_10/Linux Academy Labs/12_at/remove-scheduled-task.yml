@@ -1,0 +1,18 @@
+# Set 'become: yes' to add to root user's queue (atq).
+# Set 'user: ansible' to add to ansible user's queue (atq).
+# Root user has visibility to all user's tasks, so removing a task with
+#'become: yes' will remove all matching tasks for all users. This happens
+#even if 'user: ansible' is set for the playbook (apparently the 'at' module
+#(or 'at' package) ignores this when removing tasks).
+---
+- name: Remove scheduled task on all hosts
+  hosts: all
+  #become: yes
+  #user: ansible
+  tasks:
+    - name: Deschedule 'df' command
+      at:
+        command: df -h > /tmp/diskspace
+        count: 20
+        units: minutes
+        state: absent

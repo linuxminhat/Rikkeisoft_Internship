@@ -1,0 +1,13 @@
+---
+- name: Update awscli on hosts
+  hosts: all
+  tasks:
+    - name: Update awscli
+      pip:
+        name: awscli
+        state: latest
+      register: pip_out
+
+    - name: Show pip_out
+      debug:
+        var: pip_out

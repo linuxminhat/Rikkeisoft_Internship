@@ -1,0 +1,17 @@
+#parallelism4_httpd.yml
+# There are three nodes we are managing using Ansible. All of them are already added in ~/playbooks/inventory file present on Ansible controller. We have a playbook at path ~/playbooks/httpd.yml to install/configure httpd web server on all managed nodes. Update the playbook to use free strategy.
+---
+- name: Install httpd
+  hosts: all
+  gather_facts: no
+  strategy: free
+  tasks:
+    - name: Install httpd
+      yum:
+        name: httpd
+        state: present
+
+    - name: start service
+      service:
+        name: httpd
+        state: started

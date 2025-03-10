@@ -1,0 +1,8 @@
+---
+- name: Deploy template
+  hosts: local
+  tasks:
+    - name: deploy local net file
+      template:
+        src: /home/user/template/network.j2
+        dest: /home/user/template/network.txt

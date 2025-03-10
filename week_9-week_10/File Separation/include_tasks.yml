@@ -1,0 +1,39 @@
+#include_tasks.yml
+
+# ~/playbooks/tasks/db.yml
+- name: Install mysql packages
+  # details
+
+- name: Start mysql services
+  # details
+
+- name: Configure database
+  # details
+
+
+# ~/playbooks/tasks/web.yml
+- name: Install python flask dependencies
+  # details
+
+- name: Run web server
+  # details
+
+
+# ~/playbooks/playbook.yml
+- name: Deploy web and db server
+  hosts: web-db-server
+  tasks:
+    - include_tasks: tasks/db.yml
+    - include_tasks: tasks/web.yml
+
+# ~/playbooks/playbook-db.yml
+- name: Deploy db server
+  hosts: db-server
+  tasks:
+    - include_tasks: tasks/db.yml
+
+# ~/playbooks/playbook.yml
+- name: Deploy web server
+  hosts: web-server
+  tasks:
+    - include_tasks: tasks/web.yml

@@ -1,0 +1,20 @@
+#templates3_generate-inventory.yml
+---
+- name: Gather facts from web group
+  hosts: web
+  gather_facts: True
+#  tasks:
+#  - name: Print ansible_facts
+#    debug:
+#      var: ansible_facts
+
+- name: Generate inventory csv and push to inventory server
+  hosts: inventory_server
+  tasks:
+  - name: Show Template Results
+    debug:
+      msg: "{{ lookup('template', 'inventory.csv.j2') }}"
+  - name: Generate inventory csv and push to inventory server
+    template:
+      src: inventory.csv.j2
+      dest: /tmp/inventory.csv

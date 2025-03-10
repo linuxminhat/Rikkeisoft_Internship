@@ -1,0 +1,4 @@
+#templates5_hosts.j2
+{% for host in groups[GROUP_NAME] %}
+{{ host }} {{ hostvars[host]['ansible_host'] }}
+{% endfor %}

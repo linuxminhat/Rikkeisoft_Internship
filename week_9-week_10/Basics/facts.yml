@@ -1,0 +1,61 @@
+# Ansible Facts
+# When Ansible connects to a host it collects information such as:
+- System architecture
+- OS version
+- Proc details
+- Mem details
+- Network details
+- Hostname
+- Disks, volumes, mounts
+- etc.
+
+# These are all "Facts"
+
+# The "Gathering Facts" task is run with all playbooks using the "setup" module.
+
+# Get facts for host1 and store in hosts.facts
+ansible host1 -i inventory -m setup > host1.facts
+
+# Variables stored in ansible_facts
+---
+- name: "Print ansible_facts"
+  hosts: all
+  tasks:
+    - debug:
+        var: ansible_facts
+
+# You can turn of "Gathering Facts"
+---
+- name: "Print ansible_facts"
+  hosts: all
+  gather_facts: no
+  tasks:
+    - debug:
+        var: ansible_facts
+
+# Hard-config in /etc/ansible/ansible.cfg
+gathering = implicit
+
+# Playbook setting takes precedent over ansible.cfg configuration.
+
+# Get sub-facts
+---
+- name: "Display facts from localhost"
+  hosts: localhost
+  tasks:
+    - debug:
+        var: ansible_facts.distribution_version
+
+# Save variable to local file
+---
+- name: "Save ansible_facts to a file"
+  hosts: web1
+  tasks:
+    - name: "Retrieve and store ansible_facts"
+      debug:
+        var: ansible_facts
+    - name: "Copy variable to file"
+      local_action:
+        module: copy
+        content: "{{ansible_facts}}"
+        dest: /home/thor/playbooks/web/web-facts.txt

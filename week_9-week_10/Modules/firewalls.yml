@@ -1,0 +1,118 @@
+# Inventory
+web1 ansible_host=172.20.1.100 ansible_ssh_pass=Passw0rd ansible_user=root
+web2 ansible_host=172.20.1.101 ansible_ssh_pass=Passw0rd ansible_user=root
+
+# Playbook
+---
+- name: Install firewalld on web1
+  hosts: web1
+  tasks:
+  - name: Install firewalld
+    yum:
+      name: firewalld
+      state: installed
+  - name: Start and enable firewalld
+    service:
+      name: firewalld
+      state: started
+      enabled: yes
+
+# Playbook
+---
+- name: Install firewalld on web1
+  hosts: web1
+  tasks:
+  - name: Install firewalld
+    yum:
+      name: firewalld
+      state: installed
+  - name: Restart and enable firewalld
+    service:
+      name: firewalld
+      state: restarted
+      enabled: yes
+
+# Playbook
+---
+- name: Whitelist web2 IP on web1
+  hosts: web1
+  tasks:
+  - name: Whitelist web2 IP
+    firewalld:
+      source: 172.20.1.101/32
+      state: enabled
+      zone: internal
+      permanent: yes
+      immediate: yes
+
+# Playbook (note: "zone: block" reverses the "state" function?)
+---
+- name: Block 161/udp on web1
+  hosts: web1
+  tasks:
+  - name: Block 161/udp
+    firewalld:
+      port: 161/udp
+      state: enabled
+      zone: block
+      permanent: yes
+      immediate: yes
+
+# Playbook
+---
+- name: Enable https on web1 from ansible controller
+  hosts: web1
+  tasks:
+  - name: Enable https from ansible controller
+    firewalld:
+      service: https
+      state: enabled
+      source: 172.20.1.2/32
+      zone: internal
+      permanent: yes
+      immediate: yes
+
+# Playbook
+---
+- name: Set up httpd and firewalld on web2 for port 8082
+- hosts: web2
+  tasks:
+    - name: Install httpd
+      yum:
+        name: httpd
+        state: installed
+
+    - name: Enable Apache service
+      service:
+        name: httpd
+        enabled: yes
+
+    - name: Install firewalld
+      yum:
+        name: firewalld
+        state: installed
+
+    - name: Start and enable firewalld service
+      service:
+        name: firewalld
+        state: started
+        enabled: yes
+
+    - name: Change Apache port
+      replace:
+        path: /etc/httpd/conf/httpd.conf
+        regexp: '^Listen 80.*$'
+        replace: "Listen 8082"
+
+    - name: Restart Apache service
+      service:
+        name: httpd
+        state: restarted
+
+    - name: Enable 8082 on firewalld
+      firewalld:
+        port: 8082/tcp
+        state: enabled
+        zone: public
+        permanent: yes
+        immediate: yes

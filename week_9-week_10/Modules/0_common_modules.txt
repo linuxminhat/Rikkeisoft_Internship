@@ -1,0 +1,26 @@
+# Working with files
+file
+copy
+archive
+unarchive
+get_url
+lineinfile
+
+# Accounts, permissions, ssh
+user
+group
+htpasswd
+
+# Linux system and services
+service
+yum
+sysctl
+
+# Others
+command (default)
+shell
+script
+
+# Ansible Utilities
+ping
+debug

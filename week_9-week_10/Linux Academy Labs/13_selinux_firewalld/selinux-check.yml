@@ -1,0 +1,9 @@
+---
+- name: Ensure hosts are set to enforce selinux
+  hosts: all
+  become: yes
+  tasks:
+    - name: Ensure selinux is set to enforcing
+      selinux:
+        policy: targeted
+        state: enforcing

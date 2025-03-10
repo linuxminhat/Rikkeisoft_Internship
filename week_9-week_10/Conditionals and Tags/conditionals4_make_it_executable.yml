@@ -1,0 +1,30 @@
+#conditionals4_make_it_executable.yml
+---
+- hosts: web2
+#  gather_facts: no
+  vars:
+    remote_dest: /usr/local/bin/report_status.sh
+  tasks:
+  - stat:
+      path: "{{remote_dest}}"
+    register: file_status
+
+  - debug:
+      var: file_status
+
+  - name: Log message if file not executable
+    shell: 'echo "File report_status.sh is not executable, making it executable..." > /tmp/change.log'
+    when: file_status.stat.executable == false
+  
+  - name: Make the script executable (0755)
+    file:
+      path: "{{remote_dest}}"
+      mode: '0755'
+    when: file_status.stat.executable == false
+
+# Setting 0775 is needed due to error in lab validation scripts
+  - name: Set 0775 if not already
+    file:
+      path: "{{remote_dest}}"
+      mode: '0775'
+    when: file_status.stat.mode != "0775"

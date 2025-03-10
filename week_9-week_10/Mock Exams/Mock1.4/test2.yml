@@ -1,0 +1,11 @@
+---
+- name: Test facts
+  hosts: node02
+  gather_facts: true
+  tasks:
+    - debug:
+        var: "{{ item }}"
+      loop:
+        - ansible_nodename
+        - ansible_all_ipv4_addresses[0]
+        - ansible_os_family

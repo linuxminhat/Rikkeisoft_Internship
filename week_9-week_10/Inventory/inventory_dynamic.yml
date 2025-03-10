@@ -1,0 +1,21 @@
+# Ansible Dynamic Inventory
+
+ansible-playbook -i inventory.txt playbook.yml
+
+ansible-playbook -i inventory.py playbook.yml
+
+# Static Inventory File
+server1.company.com
+server2.company.com
+
+[mail]
+server3.company.com
+server4.company.com
+
+[db]
+server5.company.com
+server6.company.com
+
+
+# Dynamic Inventory File
+# See Ansible docs

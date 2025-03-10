@@ -1,0 +1,14 @@
+#script_cron.yml
+#ssh root@node00 -C /root/free.sh
+#ssh root@node00 -C crontab -l
+---
+- name: Add cronjob to run a script on node00
+  hosts: node00
+  tasks:
+  - name: Add cronjob to run a script
+    cron:
+      name: "Check Memory"
+      job: "sh /root/free.sh"
+      minute: 0
+      hour: "*/1"
+      state: present

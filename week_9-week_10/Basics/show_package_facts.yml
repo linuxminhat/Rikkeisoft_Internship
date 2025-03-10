@@ -1,0 +1,22 @@
+#show_package_facts.yml
+---
+- name: Check if git is missing from web2
+  hosts: web2
+  tasks:
+  - name: Gather package_facts
+    package_facts:
+      manager: auto
+
+  - name: Save package_facts to file
+    local_action:
+      module: copy
+      content: "{{ ansible_facts.packages }}"
+      dest: ./ansible_facts.packages.txt
+
+#  - name: Print ansible_facts.packages
+#    debug:
+#      var: ansible_facts.packages
+
+#  - name: Print ansible_facts.packages.git
+#    debug:
+#      var: ansible_facts.packages.git

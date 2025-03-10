@@ -1,0 +1,8 @@
+---
+- name: Configure vm.swappiness on node01
+  hosts: node01
+  tasks:
+    - name: Configure vm.swappiness
+      sysctl:
+        name: vm.swappiness
+        value: '10'

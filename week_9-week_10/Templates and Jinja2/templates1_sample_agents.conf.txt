@@ -1,0 +1,7 @@
+#templates1_sample_agents.conf
+hostname, ipaddress, monitor_port, protocol
+web0001, 10.1.1.101, 8080, http
+web0002, 10.1.1.102, 8080, http
+db0003, 10.1.1.103, 3306, tcp
+db0004, 10.1.1.104, 3306, tcp
+db0005, 10.1.1.105, 3306, tcp

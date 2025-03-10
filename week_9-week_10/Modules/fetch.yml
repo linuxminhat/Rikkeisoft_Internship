@@ -1,0 +1,20 @@
+---
+- name: Archive and fetch logs from hosts
+  hosts: all
+  user: ansible
+  become: yes
+  gather_facts: no
+  tasks:
+    - name: Compress /var/log/ into /home/ansible/logs.tar.gz
+      archive:
+        path: /var/log
+        dest: /home/ansible/logs.tar.gz
+        owner: ansible
+        group: ansible
+        format: gz
+
+    - name: Fetch logs archive
+      fetch:
+        src: /home/ansible/logs.tar.gz
+        dest: logs-backup_{{ inventory_hostname }}_{{ ansible_date_time['year'] }}{{ ansible_date_time['month'] }}{{ ansible_date_time['day'] }}-{{ ansible_date_time['hour'] }}{{ ansible_date_time['minute'] }}.tar.gz
+        flat: yes

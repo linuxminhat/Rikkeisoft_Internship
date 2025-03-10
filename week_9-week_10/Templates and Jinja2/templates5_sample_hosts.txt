@@ -1,0 +1,5 @@
+#templates5_sample_hosts.txt
+host001 192.168.1.1
+host002 192.168.1.2
+host003 192.168.1.3
+host004 192.168.1.4

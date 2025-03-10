@@ -1,0 +1,5 @@
+#templates1_agents.conf.j2
+hostname, ipaddress, monitor_port, protocol
+{% for host in groups['lamp_app'] %}
+{{ host }}, {{ hostvars[host].ansible_host }}, {{ hostvars[host].monitor_port }}, {{ hostvars[host].protocol }}
+{% endfor %}

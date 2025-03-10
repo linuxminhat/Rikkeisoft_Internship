@@ -1,0 +1,9 @@
+#remove_cron.yml
+#ssh root@node00 -C crontab -l
+- name: Remove cronjob from node00
+  hosts: node00
+  tasks:
+  - name: Remove cronjob
+    cron:
+      name: "Check Memory"
+      state: absent

@@ -1,0 +1,43 @@
+{
+    "_meta": {
+        "hostvars": {
+            "media1": {
+                "media_content": "/var/media/content/",
+                "media_index": "/opt/media/mediaIndex"
+            },
+            "media2": {
+                "media_content": "/var/media/content/",
+                "media_index": "/opt/media/mediaIndex"
+            },
+            "web1": {
+                "httpd_config": "/etc/httpd/",
+                "httpd_webroot": "/var/www/",
+                "script_files": "/usr/local/scripts"
+            },
+            "web2": {
+                "httpd_config": "/etc/httpd/",
+                "httpd_webroot": "/var/www/"
+            }
+        }
+    },
+    "all": {
+        "children": [
+            "media",
+            "ungrouped",
+            "webservers"
+        ]
+    },
+    "media": {
+        "hosts": [
+            "media1",
+            "media2"
+        ]
+    },
+    "ungrouped": {},
+    "webservers": {
+        "hosts": [
+            "web1",
+            "web2"
+        ]
+    }
+}

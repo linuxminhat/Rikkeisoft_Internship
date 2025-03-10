@@ -1,0 +1,49 @@
+---
+- name: Install httpd
+  hosts: web1
+  tasks:
+  - yum:
+     name: httpd
+     state: present
+
+
+---
+- name: Install wget from URL
+  hosts: web1
+  tasks:
+  - yum:
+      name: http://mirror.centos.org/centos/7/os/x86_64/Packages/wget-1.14-18.el7_6.1.x86_64.rpm
+      state: present
+
+
+---
+- hosts: all
+  tasks:
+    - name: Install unzip package
+      yum:
+        name: unzip-5.52
+        state: present
+
+
+---
+- hosts: all
+  tasks:
+    - name: Install iotop package
+      yum:
+        name: iotop
+        state: present
+
+
+---
+- name: Install multiple packages on web1
+  hosts: web1
+  tasks:
+  - name: "Install vsftpd-2.2.2"
+    yum:
+      name: vsftpd-2.2.2
+      state: present
+      allow_downgrade: yes
+  - name: "Install sudo"
+    yum:
+      name: sudo
+      state: present

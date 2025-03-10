@@ -1,0 +1,9 @@
+#add_user.yml
+---
+- name: Create account for Sabin Nepal to expire 12/31/2023
+  hosts: all
+  tasks:
+  - name: Create account for Sabin Nepal to expire 12/31/2023
+    user:
+      name: neymarsabin
+      expires: 1704067199

@@ -1,0 +1,15 @@
+#conditionals2_check_if_missing_ANSWER.yml
+---
+- hosts: web2
+  gather_facts: false
+  tasks:
+    - shell: dpkg -l git
+      register: check_if_git_installed
+      ignore_errors: true
+
+    - debug: var=check_if_git_installed
+    - shell: echo 'Oops, git is missing' > /tmp/is_git_installed.txt
+      when: check_if_git_installed.rc != 0
+
+    - shell: git --version > /tmp/is_git_installed.txt
+      when: check_if_git_installed.rc == 0

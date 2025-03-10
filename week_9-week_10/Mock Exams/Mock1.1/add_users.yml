@@ -1,0 +1,50 @@
+    ---
+    - name: Add and configure users
+      hosts: node00
+      vars:
+        admin_pass: !vault |
+              $ANSIBLE_VAULT;1.1;AES256
+              32666132323233363435623530336538363562303930656662363631353766643264393765646433
+              3464646335663238663766383338353766376363333533370a656331396230623439646439356366
+              61643466393863353864313864343464363262393433663834653635653735663961346263313865
+              6339623532353264320a323737646265373265366233366534376234363238396561656266626438
+              3265
+        developer_pass: !vault |
+              $ANSIBLE_VAULT;1.1;AES256
+              35393832663964376264306639373839386262643964623139633335643938313739373239633862
+              3838626334376232393536633233613636303334623563300a663666333837383630316632646165
+              65366136616562626665313833643837396262393439326633346139636532656561613035386438
+              3736313830313030350a636463343864623962363931303931636366363633373533666562653764
+              3334
+      tasks:
+
+        - name: Include users
+          include_vars:
+            file: ~/playbooks/data/users.yml
+            name: users
+
+        - name: Show users
+          debug:
+            var: users
+
+        - name: Show admin password decrypted from vault
+          debug:
+            var: admin_pass
+
+        - name: Show hashed admin password
+          debug:
+            msg: "{{ admin_pass | string | password_hash('sha512') }}"
+
+        - name: Add and configure admin users
+          user:
+            name: "{{ item }}"
+            password: "{{ admin_pass | string | password_hash('sha512') }}"
+            groups: wheel
+          loop: "{{ users.admins }}"
+
+        - name: Add and configure developer users
+          user:
+            name: "{{ item }}"
+            password: "{{ developer_pass | string | password_hash('sha512') }}"
+            home: /var/www
+          loop: "{{ users.developers }}"

@@ -1,0 +1,18 @@
+#templates_redis.conf.j2
+bind {{ ip_address }}
+
+protected-mode yes
+
+port {{ redis_port | default('6379') }}
+
+tcp-backlog 511
+
+# Unix socket
+timeout 0
+
+# TCP keep-alive
+tcp-keepalive {{ tcp_keepalive | default('300') }}
+
+daemonize no
+
+supervised no

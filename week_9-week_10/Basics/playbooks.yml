@@ -1,0 +1,167 @@
+# Sample Playbook
+# https://docs.ansible.com/ansible/latest/reference_appendices/YAMLSyntax.html
+# This playbook is a YAML list (list is indicated by '-') of two plays (YAML dictionaries)
+# Each play is a YAML dictionary (indicated by lack of '-' before each item)
+  # Order of dictionary items (name, hosts, and tasks) does not matter.
+  # Order of list items under "tasks" *does matter*
+# The "tasks" section is a YAML list (indicated by '-') of YAML dictionaries
+
+# Check Mode or Dry Run
+ansible-playbook playbook.yml --check
+
+# Start-at-Task
+ansible-playbook playbook.yml --start-at-task "Start httpd service"
+ansible-playbook playbook.yml --start-at-task "[name or tag of task]"
+
+# Tagging
+- name: Test
+  tags: install and start
+  hosts: all
+  tasks:
+    - yum:
+        name: httpd
+        state: installed
+      tags: install
+    - service:
+        name: httpd
+        state: started
+      tags: start httpd service
+
+ansible-playbook playbook.yml --tags "install"
+ansible-playbook playbook.yml --skip-tags "install"
+
+
+-
+  name: Play 1
+  hosts: localhost
+  tasks:
+    - name: Execute command 'date'
+      command: date
+    - name: Execute script on server
+      script: test_script.sh
+-
+  name: Play 2
+  hosts: localhost
+  tasks:
+    - name: Install httpd service
+      yum:
+        name: httpd
+        state: present
+    - name: Start web server
+      service:
+        name: httpd
+        state: started
+
+
+# Sample Playbook (there are better ways to accomplish these tasks)
+-
+  name: 'Stop the web services on web server nodes'
+  hosts: web_nodes
+  tasks:
+    -
+      name: 'Stop the web services on web server nodes'
+      command: 'service httpd stop'
+-
+  name: 'Shutdown the database services on db server nodes'
+  hosts: db_nodes
+  tasks:
+    -
+      name: 'Shutdown the database services on db server nodes'
+      command: 'service mysql stop'
+-
+  name: 'Restart all servers (web and db) at once'
+  hosts: all_nodes
+  tasks:
+    -
+      name: 'Restart all servers (web and db) at once'
+      command: '/sbin/shutdown -r'
+-
+  name: 'Start the db services on db server nodes'
+  hosts: db_nodes
+  tasks:
+    -
+      name: 'Start the db services on db server nodes'
+      command: 'service mysql start'
+-
+  name: 'Start the web services on web server nodes'
+  hosts: web_nodes
+  tasks:
+    -
+      name: 'Start the web services on web server nodes'
+      command: 'service httpd start'
+
+# Sample Playbook
+-
+  name: Play 1
+  hosts: localhost
+  tasks:
+    - name: Execute command 'date'
+      command: date
+    - name: Display resolv.conf contents
+      command cat /etc/resolv.conf
+    - name: Display resolv.conf contents after changing directory to /etc
+      command cat resolv.conf chdir=/etc
+    - name: Create directory named 'folder' if it does not already exist
+      command: mkdir /folder creates=/folder
+
+# Sample Playbook
+-
+  name: Start Services in order
+  hosts: localhost
+  tasks:
+    - name: Start the database service
+      service: name=postgresql state=started
+-
+  name: Start services in order (same as above, but different YAML)
+  hosts: localhost
+  tasks:
+    - name: Start the database service
+      service:
+        name: postgresql
+        state: started
+
+# Idempotency: when the result of an action is the same no matter how many times the action is taken without intervening steps. Many actions in Ansible are idempotent.
+
+# "service: state=started" indicates the state that the service needs to be in, not necessarily the action.
+  # If httpd is not already started, Ansible will start it
+  # If httpd is already started, Ansible will do nothing
+
+# lineinfile
+# Search for a line in a file and replace it or add it if it doesn't exist.
+
+# Sample Playbook
+# Running this script multiple times will result in duplicate lines.
+#echo "nameserver 10.1.250.10" >> /etc/resolv.conf 
+# Running this playbook multiple times will result in only one occurrence of the line (idempotent).
+- name: Add DNS server to resolv.conf
+  hosts: localhost
+  tasks:
+    - lineinfile:
+        path: /etc/resolv.conf
+        line: 'nameserver 10.1.250.10'
+
+# Sample Playbook
+
+-
+    name: 'Execute a script on all web server nodes and start httpd service'
+    hosts: web_nodes
+    tasks:
+        -
+            name: 'Update entry into /etc/resolv.conf'
+            lineinfile:
+                path: /etc/resolv.conf
+                line: 'nameserver 10.1.250.10'
+        -
+            name: 'Create a new user'
+            user:
+                name: web_user
+                uid: 1040
+                group: developers
+        -
+            name: 'Execute a script'
+            script: /tmp/install_script.sh
+        -
+            name: 'Start httpd service'
+            service:
+                name: httpd
+                state: present

@@ -1,0 +1,24 @@
+#error_handling4_httpd_errors.yml
+# A playbook at ~/playbooks/httpd_errors.yml runs tasks on web1 node only. However, there is a faulty task in it. We want to ignore the failed task so that the playbook can proceed to the next task. Make the appropriate changes inside the playbook to ignore the second task. Use inventory file ~/playbooks/inventory .
+# Do not try to fix the failed task.
+---
+- name: Install httpd
+  hosts: web1
+  gather_facts: no
+  tasks:
+    - name: Install httpd
+      yum:
+        name: httpd
+        state: present
+
+    - name: Do not remove this task
+      command: /bin/false
+      register: results
+      ignore_errors: yes
+
+    - shell: "echo {{ results.msg }} > /tmp/output"
+
+    - name: start service
+      service:
+        name: httpd
+        state: started

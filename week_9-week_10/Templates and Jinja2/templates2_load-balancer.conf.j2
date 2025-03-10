@@ -1,0 +1,22 @@
+#templates2_load-balancer.conf.j2
+# Define which servers to include in the load balancing scheme.
+# It's best to use the servers' private IPs for better performance and security.
+# You can find the private IPs at your UpCloud control panel Network section.
+http {
+    upstream backend {
+        {% for host in groups['web'] %}
+        server {{ hostvars[host].ansible_host }};
+        {% endfor %}
+    }
+
+    # This server accepts all traffic to port 80 and passes it to the upstream.
+    # Notice that the upstream name and the proxy_pass need to match.
+
+    server {
+        listen 80;
+
+        location / {
+            proxy_pass http://backend;
+        }
+    }
+}

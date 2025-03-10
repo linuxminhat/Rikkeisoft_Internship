@@ -1,0 +1,14 @@
+#create_user.yml
+---
+- name: Create user admin for all hosts
+  hosts: all
+  tasks:
+  - name: Create group admin
+    group:
+      name: admin
+      state: present
+  - name: Create user admin
+    user:
+      name: admin
+      group: admin
+      uid: 2048

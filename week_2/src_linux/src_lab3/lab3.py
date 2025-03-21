@@ -1,13 +1,11 @@
 import os
 import time
-
-# Đường dẫn đến thư mục chứa log
+ 
 LOG_DIR = "/var/log"
 
-# Thời gian hiện tại
+ 
 current_time = time.time()
-
-# Tìm và xóa các file không được truy cập trong 1 phút
+ 
 for filename in os.listdir(LOG_DIR):
     file_path = os.path.join(LOG_DIR, filename)
     if os.path.isfile(file_path):
